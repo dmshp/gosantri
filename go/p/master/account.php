@@ -20,7 +20,7 @@ $a = mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM tabel_member")); ?
             <a href="#" class="btn btn-success btn-icon btn-sm text-uppercase">
 				 <i class="fa-solid fa-user-slash mr-50"></i>Non Aktifkan akun anda</a>	
 			
-			<a href="../aut/logout.php" class="btn btn-danger btn-icon btn-sm">
+			<a href="../p/aut/logout.php" class="btn btn-danger btn-icon btn-sm">
 				<i class="fa-solid fa-power-off ml-50"></i></a>
 </div>
        <hr class="my-2">

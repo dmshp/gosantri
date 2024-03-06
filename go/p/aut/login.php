@@ -27,7 +27,7 @@ if (isset($_GET['code'])) {
     'email' => $google_info->email,
     'picture' => $google_info->picture
   ];
-  header('Location: /w/aut/google-login/login_google.php');
+  header('Location: /p/aut/google-login/login_google.php');
 }
 ?>
 <!DOCTYPE html>
