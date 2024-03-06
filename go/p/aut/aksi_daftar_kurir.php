@@ -75,7 +75,7 @@ $insert_2=mysqli_query($koneksi, "INSERT INTO tabel_kurir VALUES ('','$random','
 			tittle: "Pendaftaran Berhasil",
 			text: "Data sedang di verifikasi",
 		}).then(function() {
-			window.location = "../index.php";
+			window.location = "./index.php";
 		});
 	}, 1);
 </script>

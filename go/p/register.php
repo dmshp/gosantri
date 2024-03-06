@@ -50,7 +50,7 @@ if (isset($_GET['code'])) {
 
 	<link href="app-assets/font/css/fontawesome.min.css" rel="stylesheet" type="text/css">
 	<link href="app-assets/font/css/all.min.css" rel="stylesheet" type="text/css">
-	
+
 	<!-- BEGIN: Vendor CSS-->
 	<link rel="stylesheet" type="text/css" href="app-assets/vendors/css/vendors.min.css">
 	<!-- END: Vendor CSS-->
@@ -105,116 +105,123 @@ if (isset($_GET['code'])) {
 										</div>
 
 										<div class="card-body pt-0">
-											<form action="aksi_daftar_kurir.php" method="POST"
+											<form action="./aut/google-login/add_kurir_baru.php" method="POST"
 												enctype="multipart/form-data">
-												<div class="row">
-													<div class="col-12">
-														<fieldset
-															class="form-label-group form-group position-relative has-icon-left">
-															<input type="text" class="form-control" name="nama"
-																placeholder="Nama Anda" required>
-															<div class="form-control-position">
-																<i class="feather icon-user"></i>
-															</div>
-															<label for="user-name">Nama Anda</label>
-														</fieldset>
+												<input type="hidden" name="lat_kurir" id="lat_kurir"
+													class="form-control" readonly>
+												<input type="hidden" name="lon_kurir" id="lon_kurir"
+													class="form-control" readonly>
+												<fieldset
+													class="form-label-group form-group position-relative has-icon-left">
+													<input type="text" class="form-control" name="nama"
+														placeholder="Nama" required>
+													<div class="form-control-position">
+														<i class="feather icon-user"></i>
 													</div>
-
-													<div class="col-6 mr-0 pr-0">
-														<fieldset
-															class="form-label-group form-group position-relative has-icon-left">
-															<input type="email" class="form-control" name="email"
-																placeholder="Email Anda" required>
-															<div class="form-control-position">
-																<i class="feather icon-mail"></i>
-															</div>
-															<label for="user-name">Email Anda</label>
-														</fieldset>
-													</div>
-
-													<div class="col-6">
-														<fieldset
-															class="form-label-group form-group position-relative has-icon-left">
-															<input type="text" class="form-control" name="no_tlv"
-																placeholder="No. Telepon" required>
-															<div class="form-control-position">
-																<i class="feather icon-phone"></i>
-															</div>
-															<label for="user-name">No. Telepon</label>
-														</fieldset>
-													</div>
-
-													<div class="col-6 mr-0 pr-0">
-														<fieldset
-															class="form-label-group position-relative has-icon-left">
-															<input type="password" class="form-control" name="pass"
-																placeholder="Password" required>
-															<div class="form-control-position">
-																<i class="feather icon-lock"></i>
-															</div>
-															<label for="user-password">Password</label>
-														</fieldset>
-													</div>
-
-													<div class="col-6">
-														<fieldset
-															class="form-label-group position-relative has-icon-left">
-															<input type="password" class="form-control" name="pass1"
-																placeholder="Ketik Ulang Password" required>
-															<div class="form-control-position">
-																<i class="feather icon-lock"></i>
-															</div>
-															<label for="user-password">Ketik Ulang Password</label>
-														</fieldset>
-													</div>
-
-												</div>
-
+													<label for="user-name">Nama</label>
+												</fieldset>
 
 												<fieldset
 													class="form-label-group form-group position-relative has-icon-left">
-													<textarea class="form-control" name="alamat" required></textarea>
+													<input type="email" class="form-control" name="email"
+														placeholder="Email" required>
+													<div class="form-control-position">
+														<i class="feather icon-mail"></i>
+													</div>
+													<label for="user-name">Email</label>
+												</fieldset>
+
+												<fieldset class="form-label-group position-relative has-icon-left">
+													<input type="password" class="form-control" name="pass"
+														placeholder="Password" required>
+													<div class="form-control-position">
+														<i class="feather icon-lock"></i>
+													</div>
+													<label for="user-password">Password</label>
+												</fieldset>
+
+												<fieldset class="form-label-group position-relative has-icon-left">
+													<input type="password" class="form-control" name="pass1"
+														placeholder="Ketik Ulang Password" required>
+													<div class="form-control-position">
+														<i class="feather icon-lock"></i>
+													</div>
+													<label for="user-password">Ketik Ulang Password</label>
+												</fieldset>
+
+												<fieldset
+													class="form-label-group form-group position-relative has-icon-left">
+													<input type="number" class="form-control" name="no_tlv"
+														placeholder="No. HP (Yang masih aktif)" required>
+													<div class="form-control-position">
+														<i class="feather icon-phone"></i>
+													</div>
+													<label for="user-name">No. HP (Yang masih aktif)</label>
+												</fieldset>
+
+												<fieldset
+													class="form-label-group form-group position-relative has-icon-left">
+													<input type="text" class="form-control" name="alamat"
+														placeholder="Alamat Lengkap" required>
 													<div class="form-control-position">
 														<i class="feather icon-home"></i>
 													</div>
 													<label for="user-name">Alamat Lengkap</label>
 												</fieldset>
 
+												<p class="font-small-2 nama-user text-bold-700 text-danger text-right">
+													<i>Documen yang di upload berupa file gambar (.jpg/.jpeg) max.
+														1Mb.</i>
+												</p>
 
 												<fieldset
 													class="form-label-group form-group position-relative has-icon-left">
 													<div class="custom-file">
-														<input type="file" class="custom-file-input" name="image"
-															id="image" required>
-														<label class="custom-file-label pl-3" for="image">Upload
+														<input type="file" class="custom-file-input" name="image_ktp"
+															id="image_ktp" required>
+														<label class="custom-file-label pl-3" for="image_ktp">Upload
 															KTP</label>
 													</div>
 													<div class="form-control-position">
 														<i class="feather icon-image"></i>
 													</div>
 												</fieldset>
+
+												<fieldset
+													class="form-label-group form-group position-relative has-icon-left">
+													<div class="custom-file">
+														<input type="file" class="custom-file-input" name="image_sim"
+															id="image_sim" required>
+														<label class="custom-file-label pl-3" for="image_sim">Upload
+															SIM</label>
+													</div>
+													<div class="form-control-position">
+														<i class="feather icon-image"></i>
+													</div>
+												</fieldset>
+
 												<h6 class="">Data Kendaraan</h6>
 												<hr>
+
 												<fieldset
 													class="form-label-group form-group position-relative has-icon-left">
 													<input type="text" class="form-control" name="sepeda_motor"
-														placeholder="Sepeda Motor" required>
+														placeholder="Merk / Type Sepeda Motor" required>
 													<div class="form-control-position">
 														<i class="fas fa-motorcycle"></i>
 													</div>
-													<label for="user-name">Sepeda Motor</label>
+													<label for="user-name">Merk / Type Sepeda Motor</label>
 												</fieldset>
 
 												<fieldset
 													class="form-label-group form-group position-relative has-icon-left">
-													<input type="text" class="form-control" name="sepeda_motor_tahun"
+													<input type="number" class="form-control" name="sepeda_motor_tahun"
 														placeholder="Tahun" required>
 													<div class="form-control-position">
 														<i class="feather icon-calendar"></i>
 													</div>
 													<label for="user-name">Tahun</label>
 												</fieldset>
-
 
 												<fieldset
 													class="form-label-group form-group position-relative has-icon-left">
@@ -224,6 +231,36 @@ if (isset($_GET['code'])) {
 														<i class="fas fa-window-maximize"></i>
 													</div>
 													<label for="user-name">Nomor Polisi</label>
+												</fieldset>
+
+												<fieldset
+													class="form-label-group form-group position-relative has-icon-left">
+													<input type="text" class="form-control" name="nm_bank"
+														placeholder="Nama Bank" required>
+													<div class="form-control-position">
+														<i class="fas fa-window-maximize"></i>
+													</div>
+													<label for="user-name">Nama Bank</label>
+												</fieldset>
+
+												<fieldset
+													class="form-label-group form-group position-relative has-icon-left">
+													<input type="text" class="form-control" name="an_bank"
+														placeholder="Atas Nama Bank" required>
+													<div class="form-control-position">
+														<i class="fas fa-window-maximize"></i>
+													</div>
+													<label for="user-name">Atas Nama Bank</label>
+												</fieldset>
+
+												<fieldset
+													class="form-label-group form-group position-relative has-icon-left">
+													<input type="text" class="form-control" name="nomor_rekening"
+														placeholder="Nomor Rekening" required>
+													<div class="form-control-position">
+														<i class="fas fa-window-maximize"></i>
+													</div>
+													<label for="user-name">Nomor Rekening</label>
 												</fieldset>
 
 												<div class="form-group row">
@@ -245,11 +282,13 @@ if (isset($_GET['code'])) {
 													</div>
 												</div>
 
-												<a href="login.php"
-													class="btn btn-outline-primary btn-inline mb-50">Masuk</a>
-												<button type="submit" class="btn btn-primary btn-inline mb-50"
-													id="type-success">
-													Daftar 
+												<a href="login.php" class="btn btn-outline-primary btn-inline mb-50">
+													Masuk
+												</a>
+												<button type="submit" name="daftar-merchant"
+													class="btn btn-primary btn-inline mb-50" name="submit_kurir"
+													id="submit_kurir">
+													Daftar
 												</button>
 											</form>
 										</div>
@@ -270,7 +309,7 @@ if (isset($_GET['code'])) {
 										  <i class="fa-brands fa-facebook-f" style="margin-right:5px"></i>
 										 Masuk dengan Facebook
 									   </a>
-									    </div-->
+										</div-->
 											</div>
 										</div>
 									</div>
@@ -303,7 +342,24 @@ if (isset($_GET['code'])) {
 
 	<!-- BEGIN: Page JS-->
 	<!-- END: Page JS-->
+	<script>
+		$(document).ready(function () {
+			navigator.geolocation.getCurrentPosition((position) => {
+				$("#lat_kurir").val(`${position.coords.latitude}`);
+				$("#lon_kurir").val(`${position.coords.longitude}`);
+			});
+		});
 
+		$("#submit_kurir").click(() => {
+			if (!navigator.geolocation)
+				return alert("Geolocation is not supported.");
+
+			navigator.geolocation.getCurrentPosition((position) => {
+				$("#lat_kurir").val(`${position.coords.latitude}`);
+				$("#lon_kurir").val(`${position.coords.longitude}`);
+			});
+		});
+	</script>
 </body>
 <!-- END: Body-->
 

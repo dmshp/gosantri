@@ -55,7 +55,7 @@ if (mysqli_num_rows($prosescek)>0) { //proses mengingatkan data sudah ada
 
 // ---------------------------- UPLOAD GAMBAR KTP -----------------------
 
-$folder = "../../img/ktp/";
+$folder = "../../images/ktp/";
 $upload_image_ktp = $_FILES['image_ktp']['name'];
 // tentukan ukuran width yang diharapkan
 $width_size = 1024;
@@ -88,7 +88,7 @@ unlink($filesavektp);
 
 // ---------------------------- UPLOAD GAMBAR SIM -----------------------
 
-$folder = "../../img/sim/";
+$folder = "../../images/sim/";
 $upload_image_sim = $_FILES['image_sim']['name'];
 // tentukan ukuran width yang diharapkan
 $width_size = 1024;
@@ -129,7 +129,7 @@ $insert_2=mysqli_query($koneksi, "INSERT INTO tabel_kurir VALUES ('','$random','
 			tittle: "Pendaftaran Berhasil",
 			text: "Data sedang di verifikasi Admin, Mohon sabar menunggu...",
 		}).then(function() {
-			window.location = "../../aut/login.php";
+			window.location = "../../login.php";
 		});
 	}, 1);
 </script>
