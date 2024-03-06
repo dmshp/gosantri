@@ -1,20 +1,15 @@
-<!--?php
-$host	= "localhost";
-$users	= "root";
-$pass	= "";
-$db		= "republ23_santrigo";
-$koneksi= mysqli_connect($host, $users, $pass, $db) or die(mysqli_error());
-if (!$koneksi){
-	echo "KONEKSI DATABASE GAGAL";
-}
-?!-->
-<!--?php
-	define('db_host','localhost');
-	define('db_user','root');
-	define('db_pass','');
-	define('db_name','gmaps');
-	
-	mysql_connect(db_host,db_user,db_pass);
-	mysql_select_db(db_name);
-	
-?-->
+<?php
+require_once './vendor/autoload.php';
+
+$clientID = '993443318801-bihrfs1370edp9d4m07bvg5f36bhf0o6.apps.googleusercontent.com';
+$clientSecret = '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';
+$redirectURI = 'https://santrimart.co.id/w/aut/login.php';
+// $redirectURI = 'http://localhost/santrimart/w/aut/login.php';
+
+// CREATE CLIENT REQUEST TO GOOGLE
+$client = new Google_Client();
+$client->setClientId($clientID);
+$client->setClientSecret($clientSecret);
+$client->setRedirectUri($redirectURI);
+$client->addScope('profile');
+$client->addScope('email');

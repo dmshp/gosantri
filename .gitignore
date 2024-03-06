@@ -1,5 +1,7 @@
 .republ23_santrigo.sql
 go/p/images/
+go/p/vendor/
 marketing/p/images/
+marketing/p/vendor/
 member/p/images/
 merchant/p/images/

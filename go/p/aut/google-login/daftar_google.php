@@ -1,17 +1,18 @@
 <head>
     <!-- SweetAlert -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <?php
 
 include "../../inc/koneksi.php";
 $a = mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM tabel_toko"));
-$background       = $a['background'];
-$headerfooter     = $a['headerfooter'];
-$tombol           = $a['tombol'];
-$logo             = $a['logo'];
-$toko             = $a['nm_toko'];
+$background = $a['background'];
+$headerfooter = $a['headerfooter'];
+$tombol = $a['tombol'];
+$logo = $a['logo'];
+$toko = $a['nm_toko'];
 
 require 'function.php';
 
@@ -42,9 +43,9 @@ if (isset($_POST["submit"])) {
     }
 }
 
-$nama   = isset($_SESSION['info']['name']) ? $_SESSION['info']['name'] : '';
-$email  = isset($_SESSION['info']['email']) ? $_SESSION['info']['email'] : '';
-$img    = isset($_SESSION['info']['picture']) ? $_SESSION['info']['picture'] : '';
+$nama = isset($_SESSION['info']['name']) ? $_SESSION['info']['name'] : '';
+$email = isset($_SESSION['info']['email']) ? $_SESSION['info']['email'] : '';
+$img = isset($_SESSION['info']['picture']) ? $_SESSION['info']['picture'] : '';
 // var_dump($nama);
 // var_dump($email);
 // var_dump($img);
@@ -53,14 +54,13 @@ $img    = isset($_SESSION['info']['picture']) ? $_SESSION['info']['picture'] : '
 
 
 <style type="text/css">
-    
-    .nama-user{
+    .nama-user {
         font-size: 11px;
         animation: blink-animation 1s steps(3, start) infinite;
         -webkit-animation: blink-animation 1s steps(3, start) infinite;
     }
 
-    .text-user{
+    .text-user {
         color: #86ff01;
         animation: blink-animation 1s steps(3, start) infinite;
         -webkit-animation: blink-animation 1s steps(3, start) infinite;
@@ -69,13 +69,13 @@ $img    = isset($_SESSION['info']['picture']) ? $_SESSION['info']['picture'] : '
 
     @keyframes blink-animation {
         to {
-          visibility: hidden;
+            visibility: hidden;
         }
     }
 
     @-webkit-keyframes blink-animation {
         to {
-          visibility: hidden;
+            visibility: hidden;
         }
     }
 
@@ -86,19 +86,19 @@ $img    = isset($_SESSION['info']['picture']) ? $_SESSION['info']['picture'] : '
     }
 
     .filter-switch label {
-      cursor: pointer;
+        cursor: pointer;
     }
 
-    .filter-switch-item input:checked + label {
-      color: inherit;
+    .filter-switch-item input:checked+label {
+        color: inherit;
     }
 
-    .filter-switch-item input:not(:checked) + label {
-      --bg-opacity: 0;
-      box-shadow: none;
+    .filter-switch-item input:not(:checked)+label {
+        --bg-opacity: 0;
+        box-shadow: none;
     }
 
-    .btn-info: hover {
+    .btn-info:hover {
         border-color: #01b1B5 !important;
         background-color: #00CFE8 !important;
         color: #FFFFFF;
@@ -112,9 +112,9 @@ $img    = isset($_SESSION['info']['picture']) ? $_SESSION['info']['picture'] : '
         font-weight: 450;
         padding: 0.61rem 0.635rem;
         border-radius: 2px;
-   }
+    }
 
-   .has-icon-left .form-control-position i {
+    .has-icon-left .form-control-position i {
         position: relative;
         top: 10px;
         left: 5px;
@@ -147,36 +147,35 @@ $img    = isset($_SESSION['info']['picture']) ? $_SESSION['info']['picture'] : '
         -webkit-transition: all 0.2s linear;
         transition: all 0.2s linear;
     }
-
 </style>
 
 <script type="text/javascript">
 
-    function simpan_member_baru(){
+    function simpan_member_baru() {
 
         if ($("#alamat").val() == '') {
-          Swal.fire("BELUM LENGKAP!", "Kolom Alamat Belum di isi!", "warning");
-          $("#alamat").focus();
-          return;
+            Swal.fire("BELUM LENGKAP!", "Kolom Alamat Belum di isi!", "warning");
+            $("#alamat").focus();
+            return;
         } else if ($("#no_tlv").val() == '') {
-          Swal.fire("BELUM LENGKAP!", "Kolom Nomor Telephone Belum di isi!", "warning");
-          $("#no_tlv").focus();
-          return;
+            Swal.fire("BELUM LENGKAP!", "Kolom Nomor Telephone Belum di isi!", "warning");
+            $("#no_tlv").focus();
+            return;
         } else {
 
-            setTimeout(function() {
+            setTimeout(function () {
                 Swal.fire({
                     icon: "success",
                     tittle: "Berhasil Login",
                     text: "Data Berhasil Di Lengkapi Silahkan Login Kembali!",
-                }).then(function() {
+                }).then(function () {
                     window.location = "../../aut/login.php";
                 });
             }, 1);
-        } 
-        
-         
-      }
+        }
+
+
+    }
 
 
 </script>
@@ -193,7 +192,9 @@ $img    = isset($_SESSION['info']['picture']) ? $_SESSION['info']['picture'] : '
     <meta name="keywords" content="<?php echo $toko; ?>">
     <meta name="author" content="<?php echo $toko; ?>">
     <meta http-equiv="refresh" content="1200">
-    <title>.: <?php echo $toko; ?> :.</title>
+    <title>.:
+        <?php echo $toko; ?> :.
+    </title>
     <!-- BEGIN: Vendor CSS-->
     <link rel="shortcut icon" type="image/x-icon" href="../../img/<?php echo $logo; ?>">
     <link rel="stylesheet" type="text/css" href="../../app-assets/vendors/css/vendors.min.css">
@@ -229,7 +230,9 @@ $img    = isset($_SESSION['info']['picture']) ? $_SESSION['info']['picture'] : '
 
 <!-- BEGIN: Body-->
 
-<body class="horizontal-layout horizontal-menu 1-column  navbar-floating footer-static bg-full-screen-image blank-page" data-open="hover" data-menu="horizontal-menu" data-col="1-column" style="background:<?php echo $a['background']; ?>">
+<body class="horizontal-layout horizontal-menu 1-column  navbar-floating footer-static bg-full-screen-image blank-page"
+    data-open="hover" data-menu="horizontal-menu" data-col="1-column"
+    style="background:<?php echo $a['background']; ?>">
     <!-- BEGIN: Content-->
     <div class="app-content content pb-5">
         <div class="content-overlay"></div>
@@ -257,66 +260,86 @@ $img    = isset($_SESSION['info']['picture']) ? $_SESSION['info']['picture'] : '
                                             <!-- Merchant -->
 
                                             <div class="card-body pt-0">
-                                                
+
                                                 <ul class="nav nav-tabs justify-content-center" role="tablist">
-                                                  <li class="nav-item">
-                                                    <a class="nav-link active" href="#member" role="tab" data-toggle="tab">
-                                                        <i class="fa-solid fa-address-card"></i> MEMBER
-                                                    </a>
-                                                  </li>
-                                                  <li class="nav-item">
-                                                    <a class="nav-link" href="#merchant" role="tab" data-toggle="tab">
-                                                        <i class="fa-solid fa-house-chimney-user"></i> MERCHANT
-                                                    </a>
-                                                  </li>
-                                                  <li class="nav-item">
-                                                    <a class="nav-link" href="#kurir" role="tab" data-toggle="tab">
-                                                        <i class="fa-solid fa-truck-fast"></i> KURIR
-                                                    </a>
-                                                  </li>
-                                                  <li class="nav-item">
-                                                    <a class="nav-link" href="#marketing" role="tab" data-toggle="tab">
-                                                        <i class="fa-solid fa-mail-bulk"></i> MARKETING
-                                                        <span class="badge badge-pill badge-up2 badge-danger font-small-2 mr-2 nama-user">Baru</span>
-                                                    </a>
-                                                  </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link active" href="#member" role="tab"
+                                                            data-toggle="tab">
+                                                            <i class="fa-solid fa-address-card"></i> MEMBER
+                                                        </a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="#merchant" role="tab"
+                                                            data-toggle="tab">
+                                                            <i class="fa-solid fa-house-chimney-user"></i> MERCHANT
+                                                        </a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="#kurir" role="tab" data-toggle="tab">
+                                                            <i class="fa-solid fa-truck-fast"></i> KURIR
+                                                        </a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="#marketing" role="tab"
+                                                            data-toggle="tab">
+                                                            <i class="fa-solid fa-mail-bulk"></i> MARKETING
+                                                            <span
+                                                                class="badge badge-pill badge-up2 badge-danger font-small-2 mr-2 nama-user">Baru</span>
+                                                        </a>
+                                                    </li>
                                                 </ul>
                                                 <br><br>
 
                                                 <!-- Tab panes -->
                                                 <div class="tab-content">
-                                                    <div role="tabpanel" class="tab-pane fade show in active" id="member">
-                                                        <form action="add_member_baru.php" method="POST" enctype="multipart/form-data">
-                                                            <input type="hidden" name="lat_member" id="lat_member" class="form-control" readonly>
-                                                            <input type="hidden" name="lon_member" id="lon_member" class="form-control" readonly>
-                                                            <input type="hidden" class="form-control" name="pass" id="pass" readonly>
-                                                            <input type="hidden" class="form-control" name="pass1" id="pass1" readonly>
-                                                            <fieldset class="form-label-group form-group position-relative has-icon-left">
-                                                                <input type="text" class="form-control" name="nama" value="<?php echo $nama; ?>" placeholder="Nama" required>
+                                                    <div role="tabpanel" class="tab-pane fade show in active"
+                                                        id="member">
+                                                        <form action="add_member_baru.php" method="POST"
+                                                            enctype="multipart/form-data">
+                                                            <input type="hidden" name="lat_member" id="lat_member"
+                                                                class="form-control" readonly>
+                                                            <input type="hidden" name="lon_member" id="lon_member"
+                                                                class="form-control" readonly>
+                                                            <input type="hidden" class="form-control" name="pass"
+                                                                id="pass" readonly>
+                                                            <input type="hidden" class="form-control" name="pass1"
+                                                                id="pass1" readonly>
+                                                            <fieldset
+                                                                class="form-label-group form-group position-relative has-icon-left">
+                                                                <input type="text" class="form-control" name="nama"
+                                                                    value="<?php echo $nama; ?>" placeholder="Nama"
+                                                                    required>
                                                                 <div class="form-control-position">
                                                                     <i class="feather icon-user"></i>
                                                                 </div>
-                                                               <label for="user-name">Nama</label>
+                                                                <label for="user-name">Nama</label>
                                                             </fieldset>
-                                                        
-                                                            <fieldset class="form-label-group form-group position-relative has-icon-left">
-                                                                <input type="email" class="form-control" name="email" value="<?php echo $email; ?>" placeholder="Email" required>
-                                                                    <div class="form-control-position">
-                                                                       <i class="feather icon-mail"></i>
-                                                                    </div>
+
+                                                            <fieldset
+                                                                class="form-label-group form-group position-relative has-icon-left">
+                                                                <input type="email" class="form-control" name="email"
+                                                                    value="<?php echo $email; ?>" placeholder="Email"
+                                                                    required>
+                                                                <div class="form-control-position">
+                                                                    <i class="feather icon-mail"></i>
+                                                                </div>
                                                                 <label for="user-name">Email</label>
                                                             </fieldset>
 
-                                                            <fieldset class="form-label-group form-group position-relative has-icon-left">
-                                                                <input type="text" class="form-control" name="alamat" placeholder="Alamat Lengkap" required>
+                                                            <fieldset
+                                                                class="form-label-group form-group position-relative has-icon-left">
+                                                                <input type="text" class="form-control" name="alamat"
+                                                                    placeholder="Alamat Lengkap" required>
                                                                 <div class="form-control-position">
                                                                     <i class="feather icon-home"></i>
                                                                 </div>
                                                                 <label for="user-name">Alamat Lengkap</label>
                                                             </fieldset>
 
-                                                            <fieldset class="form-label-group form-group position-relative has-icon-left">
-                                                                <input type="number" class="form-control" name="no_tlv" placeholder="No. Telepon" required>
+                                                            <fieldset
+                                                                class="form-label-group form-group position-relative has-icon-left">
+                                                                <input type="number" class="form-control" name="no_tlv"
+                                                                    placeholder="No. Telepon" required>
                                                                 <div class="form-control-position">
                                                                     <i class="feather icon-phone"></i>
                                                                 </div>
@@ -326,132 +349,183 @@ $img    = isset($_SESSION['info']['picture']) ? $_SESSION['info']['picture'] : '
                                                             <div class="form-group row">
                                                                 <div class="col-12">
                                                                     <fieldset class="checkbox">
-                                                                        <div class="vs-checkbox-con vs-checkbox-primary">
-                                                                            <input type="checkbox" checked name="validasi">
+                                                                        <div
+                                                                            class="vs-checkbox-con vs-checkbox-primary">
+                                                                            <input type="checkbox" checked
+                                                                                name="validasi">
                                                                             <span class="vs-checkbox">
                                                                                 <span class="vs-checkbox--check">
-                                                                                    <i class="vs-icon feather icon-check"></i>
+                                                                                    <i
+                                                                                        class="vs-icon feather icon-check"></i>
                                                                                 </span>
                                                                             </span>
-                                                                            <span class="font-small-2"> Saya setuju dengan seluruh kebijakkan <?php echo $a['nm_toko']; ?>.</span>
+                                                                            <span class="font-small-2"> Saya setuju
+                                                                                dengan seluruh kebijakkan
+                                                                                <?php echo $a['nm_toko']; ?>.
+                                                                            </span>
                                                                         </div>
                                                                     </fieldset>
                                                                 </div>
                                                             </div>
-                                                            <button type="submit" name="submit" class="btn btn-primary float-right btn-inline mb-50" id="type-success">Lanjutkan
+                                                            <button type="submit" name="submit"
+                                                                class="btn btn-primary float-right btn-inline mb-50"
+                                                                id="type-success">Lanjutkan
                                                             </button>
                                                         </form>
                                                     </div>
                                                     <div role="tabpanel" class="tab-pane fade" id="merchant">
-                                                        <form action="add_merchant_baru.php" method="POST" enctype="multipart/form-data">
-                                                            <input type="hidden" name="lat_merchant" id="lat_merchant" class="form-control" readonly>
-                                                            <input type="hidden" name="lon_merchant" id="lon_merchant" class="form-control" readonly>
-                                                            <input type="hidden" class="form-control" name="pass" id="pass" readonly>
-                                                            <input type="hidden" class="form-control" name="pass1" id="pass1" readonly>
-                                                            <fieldset class="form-label-group form-group position-relative has-icon-left">
-                                                                <input type="text" class="form-control" name="nama" value="<?php echo $nama; ?>" placeholder="Nama" required>
+                                                        <form action="add_merchant_baru.php" method="POST"
+                                                            enctype="multipart/form-data">
+                                                            <input type="hidden" name="lat_merchant" id="lat_merchant"
+                                                                class="form-control" readonly>
+                                                            <input type="hidden" name="lon_merchant" id="lon_merchant"
+                                                                class="form-control" readonly>
+                                                            <input type="hidden" class="form-control" name="pass"
+                                                                id="pass" readonly>
+                                                            <input type="hidden" class="form-control" name="pass1"
+                                                                id="pass1" readonly>
+                                                            <fieldset
+                                                                class="form-label-group form-group position-relative has-icon-left">
+                                                                <input type="text" class="form-control" name="nama"
+                                                                    value="<?php echo $nama; ?>" placeholder="Nama"
+                                                                    required>
                                                                 <div class="form-control-position">
                                                                     <i class="feather icon-user"></i>
                                                                 </div>
-                                                               <label for="user-name">Nama</label>
+                                                                <label for="user-name">Nama</label>
                                                             </fieldset>
-                                                        
-                                                            <fieldset class="form-label-group form-group position-relative has-icon-left">
-                                                                <input type="email" class="form-control" name="email" value="<?php echo $email; ?>" placeholder="Email" required>
-                                                                    <div class="form-control-position">
-                                                                       <i class="feather icon-mail"></i>
-                                                                    </div>
+
+                                                            <fieldset
+                                                                class="form-label-group form-group position-relative has-icon-left">
+                                                                <input type="email" class="form-control" name="email"
+                                                                    value="<?php echo $email; ?>" placeholder="Email"
+                                                                    required>
+                                                                <div class="form-control-position">
+                                                                    <i class="feather icon-mail"></i>
+                                                                </div>
                                                                 <label for="user-name">Email</label>
                                                             </fieldset>
 
-                                                            <fieldset class="form-label-group form-group position-relative has-icon-left">
-                                                                <input type="text" class="form-control" name="alamat" placeholder="Alamat Lengkap" required>
+                                                            <fieldset
+                                                                class="form-label-group form-group position-relative has-icon-left">
+                                                                <input type="text" class="form-control" name="alamat"
+                                                                    placeholder="Alamat Lengkap" required>
                                                                 <div class="form-control-position">
                                                                     <i class="feather icon-home"></i>
                                                                 </div>
                                                                 <label for="user-name">Alamat Lengkap</label>
                                                             </fieldset>
 
-                                                            <fieldset class="form-label-group form-group position-relative has-icon-left">
-                                                                <input type="number" class="form-control" name="no_tlv" placeholder="No. HP (Yang masih aktif)" required>
+                                                            <fieldset
+                                                                class="form-label-group form-group position-relative has-icon-left">
+                                                                <input type="number" class="form-control" name="no_tlv"
+                                                                    placeholder="No. HP (Yang masih aktif)" required>
                                                                 <div class="form-control-position">
                                                                     <i class="feather icon-phone"></i>
                                                                 </div>
                                                                 <label for="user-name">No. HP (Yang masih aktif)</label>
                                                             </fieldset>
 
-                                                            <p class="font-small-2 nama-user text-bold-700 text-danger text-right">
-                                                                <i>Documen yang di upload berupa file gambar (.jpg/.jpeg) max. 1Mb.</i>
+                                                            <p
+                                                                class="font-small-2 nama-user text-bold-700 text-danger text-right">
+                                                                <i>Documen yang di upload berupa file gambar
+                                                                    (.jpg/.jpeg) max. 1Mb.</i>
                                                             </p>
 
-                                                            <fieldset class="form-label-group form-group position-relative has-icon-left">
+                                                            <fieldset
+                                                                class="form-label-group form-group position-relative has-icon-left">
                                                                 <div class="custom-file">
-                                                                    <input type="file" class="custom-file-input" name="image_ktp" id="image_ktp" required>
-                                                                    <label class="custom-file-label pl-3" for="image_ktp">Upload KTP</label>
+                                                                    <input type="file" class="custom-file-input"
+                                                                        name="image_ktp" id="image_ktp" required>
+                                                                    <label class="custom-file-label pl-3"
+                                                                        for="image_ktp">Upload KTP</label>
                                                                 </div>
                                                                 <div class="form-control-position">
                                                                     <i class="feather icon-image"></i>
                                                                 </div>
                                                             </fieldset>
 
-                                                            <fieldset class="form-label-group form-group position-relative has-icon-left">
+                                                            <fieldset
+                                                                class="form-label-group form-group position-relative has-icon-left">
                                                                 <div class="custom-file">
-                                                                    <input type="file" class="custom-file-input" name="image_siup" id="image_siup" required>
-                                                                    <label class="custom-file-label pl-3" for="image_siup">Upload Surat Ijin Mendirirkan Usaha</label>
+                                                                    <input type="file" class="custom-file-input"
+                                                                        name="image_siup" id="image_siup" required>
+                                                                    <label class="custom-file-label pl-3"
+                                                                        for="image_siup">Upload Surat Ijin Mendirirkan
+                                                                        Usaha</label>
                                                                 </div>
                                                                 <div class="form-control-position">
                                                                     <i class="feather icon-image"></i>
                                                                 </div>
                                                             </fieldset>
 
-                                                            <p class="font-small-2 nama-user text-bold-700 text-danger text-right">
-                                                                <i>File yang di upload berupa harus file gambar dengan format .png max. 500 kb.</i>
+                                                            <p
+                                                                class="font-small-2 nama-user text-bold-700 text-danger text-right">
+                                                                <i>File yang di upload berupa harus file gambar dengan
+                                                                    format .png max. 500 kb.</i>
                                                             </p>
 
-                                                            <fieldset class="form-label-group form-group position-relative has-icon-left">
+                                                            <fieldset
+                                                                class="form-label-group form-group position-relative has-icon-left">
                                                                 <div class="custom-file">
-                                                                    <input type="file" class="custom-file-input" name="image_toko" id="image_toko" required>
-                                                                    <label class="custom-file-label pl-3" for="image_toko">Upload Logo Merchant</label>
+                                                                    <input type="file" class="custom-file-input"
+                                                                        name="image_toko" id="image_toko" required>
+                                                                    <label class="custom-file-label pl-3"
+                                                                        for="image_toko">Upload Logo Merchant</label>
                                                                 </div>
                                                                 <div class="form-control-position">
                                                                     <i class="feather icon-image"></i>
                                                                 </div>
                                                             </fieldset>
 
-                                                            <fieldset class="form-label-group form-group position-relative has-icon-left">
-                                                                <input type="text" class="form-control" name="nm_merchant" placeholder="Nama Merchant" required>
+                                                            <fieldset
+                                                                class="form-label-group form-group position-relative has-icon-left">
+                                                                <input type="text" class="form-control"
+                                                                    name="nm_merchant" placeholder="Nama Merchant"
+                                                                    required>
                                                                 <div class="form-control-position">
                                                                     <i class="feather icon-user"></i>
                                                                 </div>
                                                                 <label for="user-name">Nama Merchant</label>
                                                             </fieldset>
 
-                                                            <fieldset class="form-label-group form-group position-relative has-icon-left">
-                                                                <input type="text" class="form-control" name="alamat_merchant" placeholder="Alamat Merchant" required>
+                                                            <fieldset
+                                                                class="form-label-group form-group position-relative has-icon-left">
+                                                                <input type="text" class="form-control"
+                                                                    name="alamat_merchant" placeholder="Alamat Merchant"
+                                                                    required>
                                                                 <div class="form-control-position">
                                                                     <i class="feather icon-home"></i>
                                                                 </div>
                                                                 <label for="user-name">Alamat Merchant</label>
                                                             </fieldset>
 
-                                                            <fieldset class="form-label-group form-group position-relative has-icon-left">
-                                                                <input type="text" class="form-control" name="nm_bank" placeholder="Nama Bank" required>
+                                                            <fieldset
+                                                                class="form-label-group form-group position-relative has-icon-left">
+                                                                <input type="text" class="form-control" name="nm_bank"
+                                                                    placeholder="Nama Bank" required>
                                                                 <div class="form-control-position">
                                                                     <i class="fas fa-window-maximize"></i>
                                                                 </div>
                                                                 <label for="user-name">Nama Bank</label>
                                                             </fieldset>
 
-                                                            <fieldset class="form-label-group form-group position-relative has-icon-left">
-                                                                <input type="text" class="form-control" name="an_bank" placeholder="Atas Nama Bank" value="<?php echo $nama; ?>" required>
+                                                            <fieldset
+                                                                class="form-label-group form-group position-relative has-icon-left">
+                                                                <input type="text" class="form-control" name="an_bank"
+                                                                    placeholder="Atas Nama Bank"
+                                                                    value="<?php echo $nama; ?>" required>
                                                                 <div class="form-control-position">
                                                                     <i class="fas fa-window-maximize"></i>
                                                                 </div>
                                                                 <label for="user-name">Atas Nama Bank</label>
                                                             </fieldset>
 
-                                                            <fieldset class="form-label-group form-group position-relative has-icon-left">
-                                                                <input type="text" class="form-control" name="nomor_rekening" placeholder="Nomor Rekening" required>
+                                                            <fieldset
+                                                                class="form-label-group form-group position-relative has-icon-left">
+                                                                <input type="text" class="form-control"
+                                                                    name="nomor_rekening" placeholder="Nomor Rekening"
+                                                                    required>
                                                                 <div class="form-control-position">
                                                                     <i class="fas fa-window-maximize"></i>
                                                                 </div>
@@ -461,128 +535,178 @@ $img    = isset($_SESSION['info']['picture']) ? $_SESSION['info']['picture'] : '
                                                             <div class="form-group row">
                                                                 <div class="col-12">
                                                                     <fieldset class="checkbox">
-                                                                        <div class="vs-checkbox-con vs-checkbox-primary">
-                                                                            <input type="checkbox" checked name="validasi">
+                                                                        <div
+                                                                            class="vs-checkbox-con vs-checkbox-primary">
+                                                                            <input type="checkbox" checked
+                                                                                name="validasi">
                                                                             <span class="vs-checkbox">
                                                                                 <span class="vs-checkbox--check">
-                                                                                    <i class="vs-icon feather icon-check"></i>
+                                                                                    <i
+                                                                                        class="vs-icon feather icon-check"></i>
                                                                                 </span>
                                                                             </span>
-                                                                            <span class="font-small-2"> Saya setuju dengan seluruh kebijakkan <?php echo $a['nm_toko']; ?>.</span>
+                                                                            <span class="font-small-2"> Saya setuju
+                                                                                dengan seluruh kebijakkan
+                                                                                <?php echo $a['nm_toko']; ?>.
+                                                                            </span>
                                                                         </div>
                                                                     </fieldset>
                                                                 </div>
                                                             </div>
-                                                            <button type="submit" name="submit_merchant" id="submit_merchant" class="btn btn-primary float-right btn-inline mb-50" id="type-success">Lanjutkan
+                                                            <button type="submit" name="submit_merchant"
+                                                                id="submit_merchant"
+                                                                class="btn btn-primary float-right btn-inline mb-50"
+                                                                id="type-success">Lanjutkan
                                                             </button>
                                                         </form>
                                                     </div>
                                                     <div role="tabpanel" class="tab-pane fade" id="kurir">
-                                                        <form action="add_kurir_baru.php" method="POST" enctype="multipart/form-data">
-                                                            <input type="hidden" name="lat_kurir" id="lat_kurir" class="form-control" readonly>
-                                                            <input type="hidden" name="lon_kurir" id="lon_kurir" class="form-control" readonly>
-                                                            <input type="hidden" class="form-control" name="pass" id="pass" readonly>
-                                                            <input type="hidden" class="form-control" name="pass1" id="pass1" readonly>
-                                                            <fieldset class="form-label-group form-group position-relative has-icon-left">
-                                                                <input type="text" class="form-control" name="nama" value="<?php echo $nama; ?>" placeholder="Nama" required>
+                                                        <form action="add_kurir_baru.php" method="POST"
+                                                            enctype="multipart/form-data">
+                                                            <input type="hidden" name="lat_kurir" id="lat_kurir"
+                                                                class="form-control" readonly>
+                                                            <input type="hidden" name="lon_kurir" id="lon_kurir"
+                                                                class="form-control" readonly>
+                                                            <input type="hidden" class="form-control" name="pass"
+                                                                id="pass" readonly>
+                                                            <input type="hidden" class="form-control" name="pass1"
+                                                                id="pass1" readonly>
+                                                            <fieldset
+                                                                class="form-label-group form-group position-relative has-icon-left">
+                                                                <input type="text" class="form-control" name="nama"
+                                                                    value="<?php echo $nama; ?>" placeholder="Nama"
+                                                                    required>
                                                                 <div class="form-control-position">
                                                                     <i class="feather icon-user"></i>
                                                                 </div>
-                                                               <label for="user-name">Nama</label>
+                                                                <label for="user-name">Nama</label>
                                                             </fieldset>
-                                                        
-                                                            <fieldset class="form-label-group form-group position-relative has-icon-left">
-                                                                <input type="email" class="form-control" name="email" value="<?php echo $email; ?>" placeholder="Email" required>
-                                                                    <div class="form-control-position">
-                                                                       <i class="feather icon-mail"></i>
-                                                                    </div>
+
+                                                            <fieldset
+                                                                class="form-label-group form-group position-relative has-icon-left">
+                                                                <input type="email" class="form-control" name="email"
+                                                                    value="<?php echo $email; ?>" placeholder="Email"
+                                                                    required>
+                                                                <div class="form-control-position">
+                                                                    <i class="feather icon-mail"></i>
+                                                                </div>
                                                                 <label for="user-name">Email</label>
                                                             </fieldset>
 
-                                                            <fieldset class="form-label-group form-group position-relative has-icon-left">
-                                                                <input type="text" class="form-control" name="alamat" placeholder="Alamat Lengkap" required>
+                                                            <fieldset
+                                                                class="form-label-group form-group position-relative has-icon-left">
+                                                                <input type="text" class="form-control" name="alamat"
+                                                                    placeholder="Alamat Lengkap" required>
                                                                 <div class="form-control-position">
                                                                     <i class="feather icon-home"></i>
                                                                 </div>
                                                                 <label for="user-name">Alamat Lengkap</label>
                                                             </fieldset>
 
-                                                            <fieldset class="form-label-group form-group position-relative has-icon-left">
-                                                                <input type="number" class="form-control" name="no_tlv" placeholder="No. HP (Yang masih aktif)" required>
+                                                            <fieldset
+                                                                class="form-label-group form-group position-relative has-icon-left">
+                                                                <input type="number" class="form-control" name="no_tlv"
+                                                                    placeholder="No. HP (Yang masih aktif)" required>
                                                                 <div class="form-control-position">
                                                                     <i class="feather icon-phone"></i>
                                                                 </div>
                                                                 <label for="user-name">No. HP (Yang masih aktif)</label>
                                                             </fieldset>
 
-                                                            <p class="font-small-2 nama-user text-bold-700 text-danger text-right">
-                                                                <i>Documen yang di upload berupa file gambar (.jpg/.jpeg) max. 1Mb.</i>
+                                                            <p
+                                                                class="font-small-2 nama-user text-bold-700 text-danger text-right">
+                                                                <i>Documen yang di upload berupa file gambar
+                                                                    (.jpg/.jpeg) max. 1Mb.</i>
                                                             </p>
 
-                                                            <fieldset class="form-label-group form-group position-relative has-icon-left">
+                                                            <fieldset
+                                                                class="form-label-group form-group position-relative has-icon-left">
                                                                 <div class="custom-file">
-                                                                    <input type="file" class="custom-file-input" name="image_ktp" id="image_ktp" required>
-                                                                    <label class="custom-file-label pl-3" for="image_ktp">Upload KTP</label>
+                                                                    <input type="file" class="custom-file-input"
+                                                                        name="image_ktp" id="image_ktp" required>
+                                                                    <label class="custom-file-label pl-3"
+                                                                        for="image_ktp">Upload KTP</label>
                                                                 </div>
                                                                 <div class="form-control-position">
                                                                     <i class="feather icon-image"></i>
                                                                 </div>
                                                             </fieldset>
 
-                                                            <fieldset class="form-label-group form-group position-relative has-icon-left">
+                                                            <fieldset
+                                                                class="form-label-group form-group position-relative has-icon-left">
                                                                 <div class="custom-file">
-                                                                    <input type="file" class="custom-file-input" name="image_sim" id="image_sim" required>
-                                                                    <label class="custom-file-label pl-3" for="image_sim">Upload SIM</label>
+                                                                    <input type="file" class="custom-file-input"
+                                                                        name="image_sim" id="image_sim" required>
+                                                                    <label class="custom-file-label pl-3"
+                                                                        for="image_sim">Upload SIM</label>
                                                                 </div>
                                                                 <div class="form-control-position">
                                                                     <i class="feather icon-image"></i>
                                                                 </div>
                                                             </fieldset>
 
-                                                            <h6 class="">Data Kendaraan</h6><hr>
+                                                            <h6 class="">Data Kendaraan</h6>
+                                                            <hr>
 
-                                                            <fieldset class="form-label-group form-group position-relative has-icon-left">
-                                                                <input type="text" class="form-control" name="sepeda_motor" placeholder="Merk / Type Sepeda Motor" required>
+                                                            <fieldset
+                                                                class="form-label-group form-group position-relative has-icon-left">
+                                                                <input type="text" class="form-control"
+                                                                    name="sepeda_motor"
+                                                                    placeholder="Merk / Type Sepeda Motor" required>
                                                                 <div class="form-control-position">
                                                                     <i class="fas fa-motorcycle"></i>
                                                                 </div>
                                                                 <label for="user-name">Merk / Type Sepeda Motor</label>
                                                             </fieldset>
 
-                                                            <fieldset class="form-label-group form-group position-relative has-icon-left">
-                                                                <input type="number" class="form-control" name="sepeda_motor_tahun" placeholder="Tahun" required>
+                                                            <fieldset
+                                                                class="form-label-group form-group position-relative has-icon-left">
+                                                                <input type="number" class="form-control"
+                                                                    name="sepeda_motor_tahun" placeholder="Tahun"
+                                                                    required>
                                                                 <div class="form-control-position">
                                                                     <i class="feather icon-calendar"></i>
                                                                 </div>
                                                                 <label for="user-name">Tahun</label>
-                                                            </fieldset> 
-                                                                        
-                                                            <fieldset class="form-label-group form-group position-relative has-icon-left">
-                                                                <input type="text" class="form-control" name="nomor_polisi" placeholder="Nomor Polisi" required>
+                                                            </fieldset>
+
+                                                            <fieldset
+                                                                class="form-label-group form-group position-relative has-icon-left">
+                                                                <input type="text" class="form-control"
+                                                                    name="nomor_polisi" placeholder="Nomor Polisi"
+                                                                    required>
                                                                 <div class="form-control-position">
                                                                     <i class="fas fa-window-maximize"></i>
                                                                 </div>
                                                                 <label for="user-name">Nomor Polisi</label>
                                                             </fieldset>
 
-                                                            <fieldset class="form-label-group form-group position-relative has-icon-left">
-                                                                <input type="text" class="form-control" name="nm_bank" placeholder="Nama Bank" required>
+                                                            <fieldset
+                                                                class="form-label-group form-group position-relative has-icon-left">
+                                                                <input type="text" class="form-control" name="nm_bank"
+                                                                    placeholder="Nama Bank" required>
                                                                 <div class="form-control-position">
                                                                     <i class="fas fa-window-maximize"></i>
                                                                 </div>
                                                                 <label for="user-name">Nama Bank</label>
                                                             </fieldset>
 
-                                                            <fieldset class="form-label-group form-group position-relative has-icon-left">
-                                                                <input type="text" class="form-control" name="an_bank" placeholder="Atas Nama Bank" value="<?php echo $nama; ?>" required>
+                                                            <fieldset
+                                                                class="form-label-group form-group position-relative has-icon-left">
+                                                                <input type="text" class="form-control" name="an_bank"
+                                                                    placeholder="Atas Nama Bank"
+                                                                    value="<?php echo $nama; ?>" required>
                                                                 <div class="form-control-position">
                                                                     <i class="fas fa-window-maximize"></i>
                                                                 </div>
                                                                 <label for="user-name">Atas Nama Bank</label>
                                                             </fieldset>
 
-                                                            <fieldset class="form-label-group form-group position-relative has-icon-left">
-                                                                <input type="text" class="form-control" name="nomor_rekening" placeholder="Nomor Rekening" required>
+                                                            <fieldset
+                                                                class="form-label-group form-group position-relative has-icon-left">
+                                                                <input type="text" class="form-control"
+                                                                    name="nomor_rekening" placeholder="Nomor Rekening"
+                                                                    required>
                                                                 <div class="form-control-position">
                                                                     <i class="fas fa-window-maximize"></i>
                                                                 </div>
@@ -592,130 +716,180 @@ $img    = isset($_SESSION['info']['picture']) ? $_SESSION['info']['picture'] : '
                                                             <div class="form-group row">
                                                                 <div class="col-12">
                                                                     <fieldset class="checkbox">
-                                                                        <div class="vs-checkbox-con vs-checkbox-primary">
-                                                                            <input type="checkbox" checked name="validasi">
+                                                                        <div
+                                                                            class="vs-checkbox-con vs-checkbox-primary">
+                                                                            <input type="checkbox" checked
+                                                                                name="validasi">
                                                                             <span class="vs-checkbox">
                                                                                 <span class="vs-checkbox--check">
-                                                                                    <i class="vs-icon feather icon-check"></i>
+                                                                                    <i
+                                                                                        class="vs-icon feather icon-check"></i>
                                                                                 </span>
                                                                             </span>
-                                                                            <span class="font-small-2"> Saya setuju dengan seluruh kebijakkan <?php echo $a['nm_toko']; ?>.</span>
+                                                                            <span class="font-small-2"> Saya setuju
+                                                                                dengan seluruh kebijakkan
+                                                                                <?php echo $a['nm_toko']; ?>.
+                                                                            </span>
                                                                         </div>
                                                                     </fieldset>
                                                                 </div>
                                                             </div>
-                                                            <button type="submit" name="submit_kurir" id="submit_kurir" class="btn btn-primary float-right btn-inline mb-50" id="type-success">Lanjutkan
+                                                            <button type="submit" name="submit_kurir" id="submit_kurir"
+                                                                class="btn btn-primary float-right btn-inline mb-50"
+                                                                id="type-success">Lanjutkan
                                                             </button>
                                                         </form>
                                                     </div>
                                                     <div role="tabpanel" class="tab-pane fade" id="marketing">
-                                                        <form action="add_marketing_baru.php" method="POST" enctype="multipart/form-data">
-                                                            <input type="hidden" name="lat_marketing" id="lat_marketing" class="form-control" readonly>
-                                                            <input type="hidden" name="lon_marketing" id="lon_marketing" class="form-control" readonly>
-                                                            <input type="hidden" class="form-control" name="pass" id="pass" readonly>
-                                                            <input type="hidden" class="form-control" name="pass1" id="pass1" readonly>
-                                                            <fieldset class="form-label-group form-group position-relative has-icon-left">
-                                                                <input type="text" class="form-control" name="nama" value="<?php echo $nama; ?>" placeholder="Nama" required>
+                                                        <form action="add_marketing_baru.php" method="POST"
+                                                            enctype="multipart/form-data">
+                                                            <input type="hidden" name="lat_marketing" id="lat_marketing"
+                                                                class="form-control" readonly>
+                                                            <input type="hidden" name="lon_marketing" id="lon_marketing"
+                                                                class="form-control" readonly>
+                                                            <input type="hidden" class="form-control" name="pass"
+                                                                id="pass" readonly>
+                                                            <input type="hidden" class="form-control" name="pass1"
+                                                                id="pass1" readonly>
+                                                            <fieldset
+                                                                class="form-label-group form-group position-relative has-icon-left">
+                                                                <input type="text" class="form-control" name="nama"
+                                                                    value="<?php echo $nama; ?>" placeholder="Nama"
+                                                                    required>
                                                                 <div class="form-control-position">
                                                                     <i class="feather icon-user"></i>
                                                                 </div>
-                                                               <label for="user-name">Nama</label>
-                                                            </fieldset>
-                                                        
-                                                            <fieldset class="form-label-group form-group position-relative has-icon-left">
-                                                                <input type="email" class="form-control" name="email" value="<?php echo $email; ?>" placeholder="Email" required>
-                                                                    <div class="form-control-position">
-                                                                       <i class="feather icon-mail"></i>
-                                                                    </div>
-                                                                <label for="user-name">Email</label>
-                                                            </fieldset>
-                                                                
+                                                                <label for="user-name">Nama</label>
                                                             </fieldset>
 
-                                                            <fieldset class="form-label-group form-group position-relative has-icon-left">
-                                                                <input type="text" class="form-control" name="alamat" placeholder="Alamat Lengkap" required>
+                                                            <fieldset
+                                                                class="form-label-group form-group position-relative has-icon-left">
+                                                                <input type="email" class="form-control" name="email"
+                                                                    value="<?php echo $email; ?>" placeholder="Email"
+                                                                    required>
+                                                                <div class="form-control-position">
+                                                                    <i class="feather icon-mail"></i>
+                                                                </div>
+                                                                <label for="user-name">Email</label>
+                                                            </fieldset>
+
+                                                            </fieldset>
+
+                                                            <fieldset
+                                                                class="form-label-group form-group position-relative has-icon-left">
+                                                                <input type="text" class="form-control" name="alamat"
+                                                                    placeholder="Alamat Lengkap" required>
                                                                 <div class="form-control-position">
                                                                     <i class="feather icon-home"></i>
                                                                 </div>
                                                                 <label for="user-name">Alamat Lengkap</label>
                                                             </fieldset>
 
-                                                            <fieldset class="form-label-group form-group position-relative has-icon-left">
-                                                                <input type="number" class="form-control" name="no_tlv" placeholder="No. HP (Yang masih aktif)" required>
+                                                            <fieldset
+                                                                class="form-label-group form-group position-relative has-icon-left">
+                                                                <input type="number" class="form-control" name="no_tlv"
+                                                                    placeholder="No. HP (Yang masih aktif)" required>
                                                                 <div class="form-control-position">
                                                                     <i class="feather icon-phone"></i>
                                                                 </div>
                                                                 <label for="user-name">No. HP (Yang masih aktif)</label>
                                                             </fieldset>
 
-                                                            <p class="font-small-2 nama-user text-bold-700 text-danger text-right">
-                                                                <i>Documen yang di upload berupa file gambar (.jpg/.jpeg) max. 1Mb.</i>
+                                                            <p
+                                                                class="font-small-2 nama-user text-bold-700 text-danger text-right">
+                                                                <i>Documen yang di upload berupa file gambar
+                                                                    (.jpg/.jpeg) max. 1Mb.</i>
                                                             </p>
 
-                                                            <fieldset class="form-label-group form-group position-relative has-icon-left">
+                                                            <fieldset
+                                                                class="form-label-group form-group position-relative has-icon-left">
                                                                 <div class="custom-file">
-                                                                    <input type="file" class="custom-file-input" name="image_ktp" id="image_ktp" required>
-                                                                    <label class="custom-file-label pl-3" for="image">Upload KTP</label>
+                                                                    <input type="file" class="custom-file-input"
+                                                                        name="image_ktp" id="image_ktp" required>
+                                                                    <label class="custom-file-label pl-3"
+                                                                        for="image">Upload KTP</label>
                                                                 </div>
                                                                 <div class="form-control-position">
                                                                     <i class="feather icon-image"></i>
                                                                 </div>
                                                             </fieldset>
 
-                                                            <fieldset class="form-label-group form-group position-relative has-icon-left">
+                                                            <fieldset
+                                                                class="form-label-group form-group position-relative has-icon-left">
                                                                 <div class="custom-file">
-                                                                    <input type="file" class="custom-file-input" name="image_sim" id="image_sim" required>
-                                                                    <label class="custom-file-label pl-3" for="image_sim">Upload SIM A / C</label>
+                                                                    <input type="file" class="custom-file-input"
+                                                                        name="image_sim" id="image_sim" required>
+                                                                    <label class="custom-file-label pl-3"
+                                                                        for="image_sim">Upload SIM A / C</label>
                                                                 </div>
                                                                 <div class="form-control-position">
                                                                     <i class="feather icon-image"></i>
                                                                 </div>
                                                             </fieldset>
 
-                                                            <h6 class="">Data Kendaraan (Mobil / Motor)</h6><hr>
+                                                            <h6 class="">Data Kendaraan (Mobil / Motor)</h6>
+                                                            <hr>
 
-                                                            <fieldset class="form-label-group form-group position-relative has-icon-left">
-                                                                <input type="text" class="form-control" name="type_kendaraan" placeholder="Merk / Type Kendaraan (Mobil / Motor)" required>
+                                                            <fieldset
+                                                                class="form-label-group form-group position-relative has-icon-left">
+                                                                <input type="text" class="form-control"
+                                                                    name="type_kendaraan"
+                                                                    placeholder="Merk / Type Kendaraan (Mobil / Motor)"
+                                                                    required>
                                                                 <div class="form-control-position">
                                                                     <i class="fas fa-shuttle-van"></i>
                                                                 </div>
-                                                                <label for="user-name">Merk / Type Kendaraan (Mobil / Motor)</label>
+                                                                <label for="user-name">Merk / Type Kendaraan (Mobil /
+                                                                    Motor)</label>
                                                             </fieldset>
 
-                                                            <fieldset class="form-label-group form-group position-relative has-icon-left">
-                                                                <input type="number" class="form-control" name="tahun_kendaraan" placeholder="Tahun" required>
+                                                            <fieldset
+                                                                class="form-label-group form-group position-relative has-icon-left">
+                                                                <input type="number" class="form-control"
+                                                                    name="tahun_kendaraan" placeholder="Tahun" required>
                                                                 <div class="form-control-position">
                                                                     <i class="feather icon-calendar"></i>
                                                                 </div>
                                                                 <label for="user-name">Tahun</label>
-                                                            </fieldset> 
-                                                                        
-                                                            <fieldset class="form-label-group form-group position-relative has-icon-left">
-                                                                <input type="text" class="form-control" name="nomor_polisi" placeholder="Nomor Polisi" required>
+                                                            </fieldset>
+
+                                                            <fieldset
+                                                                class="form-label-group form-group position-relative has-icon-left">
+                                                                <input type="text" class="form-control"
+                                                                    name="nomor_polisi" placeholder="Nomor Polisi"
+                                                                    required>
                                                                 <div class="form-control-position">
                                                                     <i class="fas fa-window-maximize"></i>
                                                                 </div>
                                                                 <label for="user-name">Nomor Polisi</label>
                                                             </fieldset>
 
-                                                            <fieldset class="form-label-group form-group position-relative has-icon-left">
-                                                                <input type="text" class="form-control" name="nm_bank" placeholder="Nama Bank" required>
+                                                            <fieldset
+                                                                class="form-label-group form-group position-relative has-icon-left">
+                                                                <input type="text" class="form-control" name="nm_bank"
+                                                                    placeholder="Nama Bank" required>
                                                                 <div class="form-control-position">
                                                                     <i class="fas fa-window-maximize"></i>
                                                                 </div>
                                                                 <label for="user-name">Nama Bank</label>
                                                             </fieldset>
 
-                                                            <fieldset class="form-label-group form-group position-relative has-icon-left">
-                                                                <input type="text" class="form-control" name="an_bank" placeholder="Atas Nama Bank" value="<?php echo $nama; ?>" required>
+                                                            <fieldset
+                                                                class="form-label-group form-group position-relative has-icon-left">
+                                                                <input type="text" class="form-control" name="an_bank"
+                                                                    placeholder="Atas Nama Bank"
+                                                                    value="<?php echo $nama; ?>" required>
                                                                 <div class="form-control-position">
                                                                     <i class="fas fa-window-maximize"></i>
                                                                 </div>
                                                                 <label for="user-name">Atas Nama Bank</label>
                                                             </fieldset>
 
-                                                            <fieldset class="form-label-group form-group position-relative has-icon-left">
-                                                                <input type="text" class="form-control" name="nomor_rekening" placeholder="Nomor Rekening" required>
+                                                            <fieldset
+                                                                class="form-label-group form-group position-relative has-icon-left">
+                                                                <input type="text" class="form-control"
+                                                                    name="nomor_rekening" placeholder="Nomor Rekening"
+                                                                    required>
                                                                 <div class="form-control-position">
                                                                     <i class="fas fa-window-maximize"></i>
                                                                 </div>
@@ -725,19 +899,28 @@ $img    = isset($_SESSION['info']['picture']) ? $_SESSION['info']['picture'] : '
                                                             <div class="form-group row">
                                                                 <div class="col-12">
                                                                     <fieldset class="checkbox">
-                                                                        <div class="vs-checkbox-con vs-checkbox-primary">
-                                                                            <input type="checkbox" checked name="validasi">
+                                                                        <div
+                                                                            class="vs-checkbox-con vs-checkbox-primary">
+                                                                            <input type="checkbox" checked
+                                                                                name="validasi">
                                                                             <span class="vs-checkbox">
                                                                                 <span class="vs-checkbox--check">
-                                                                                    <i class="vs-icon feather icon-check"></i>
+                                                                                    <i
+                                                                                        class="vs-icon feather icon-check"></i>
                                                                                 </span>
                                                                             </span>
-                                                                            <span class="font-small-2"> Saya setuju dengan seluruh kebijakkan <?php echo $a['nm_toko']; ?>.</span>
+                                                                            <span class="font-small-2"> Saya setuju
+                                                                                dengan seluruh kebijakkan
+                                                                                <?php echo $a['nm_toko']; ?>.
+                                                                            </span>
                                                                         </div>
                                                                     </fieldset>
                                                                 </div>
                                                             </div>
-                                                            <button type="submit" name="submit_marketing" id="submit_marketing" class="btn btn-primary float-right btn-inline mb-50" id="type-success">Lanjutkan
+                                                            <button type="submit" name="submit_marketing"
+                                                                id="submit_marketing"
+                                                                class="btn btn-primary float-right btn-inline mb-50"
+                                                                id="type-success">Lanjutkan
                                                             </button>
                                                         </form>
                                                     </div>
@@ -750,7 +933,7 @@ $img    = isset($_SESSION['info']['picture']) ? $_SESSION['info']['picture'] : '
                             </div>
                         </div>
                     </div>
-                </div>
+            </div>
             </section>
         </div>
     </div>
@@ -764,7 +947,9 @@ $img    = isset($_SESSION['info']['picture']) ? $_SESSION['info']['picture'] : '
     <!-- BEGIN Vendor JS-->
 
     <!-- BEGIN: Page Vendor JS-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
     <script src="../../app-assets/vendors/js/ui/jquery.sticky.js"></script>
     <!-- END: Page Vendor JS-->
 
@@ -780,7 +965,7 @@ $img    = isset($_SESSION['info']['picture']) ? $_SESSION['info']['picture'] : '
     <!-- END: Page JS-->
 
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
 
             navigator.geolocation.getCurrentPosition((position) => {
                 $("#lat_member").val(`${position.coords.latitude}`);
@@ -803,33 +988,33 @@ $img    = isset($_SESSION['info']['picture']) ? $_SESSION['info']['picture'] : '
             });
 
             $("#submit_kurir").click(() => {
-              if (!navigator.geolocation)
-                return alert("Geolocation is not supported.");
+                if (!navigator.geolocation)
+                    return alert("Geolocation is not supported.");
 
-              navigator.geolocation.getCurrentPosition((position) => {
-                $("#lat_kurir").val(`${position.coords.latitude}`);
-                $("#lon_kurir").val(`${position.coords.longitude}`);
-              });
+                navigator.geolocation.getCurrentPosition((position) => {
+                    $("#lat_kurir").val(`${position.coords.latitude}`);
+                    $("#lon_kurir").val(`${position.coords.longitude}`);
+                });
             });
 
             $('#submit_merchant').click(() => {
                 if (!navigator.geolocation)
-                return alert("Geolocation is not supported.");
+                    return alert("Geolocation is not supported.");
 
-              navigator.geolocation.getCurrentPosition((position) => {
-                $("#lat_merchant").val(`${position.coords.latitude}`);
-                $("#lon_merchant").val(`${position.coords.longitude}`);
-              });
+                navigator.geolocation.getCurrentPosition((position) => {
+                    $("#lat_merchant").val(`${position.coords.latitude}`);
+                    $("#lon_merchant").val(`${position.coords.longitude}`);
+                });
             });
 
             $('#submit_marketing').click(() => {
                 if (!navigator.geolocation)
-                return alert("Geolocation is not supported.");
+                    return alert("Geolocation is not supported.");
 
-              navigator.geolocation.getCurrentPosition((position) => {
-                $("#lat_marketing").val(`${position.coords.latitude}`);
-                $("#lon_marketing").val(`${position.coords.longitude}`);
-              });
+                navigator.geolocation.getCurrentPosition((position) => {
+                    $("#lat_marketing").val(`${position.coords.latitude}`);
+                    $("#lon_marketing").val(`${position.coords.longitude}`);
+                });
             });
 
         });
@@ -838,17 +1023,17 @@ $img    = isset($_SESSION['info']['picture']) ? $_SESSION['info']['picture'] : '
     <script>
         // tambahkan event listener pada button get location
         $("#get-location").click(() => {
-          // untuk memeriksa jika browser tidak support maka akan muncul alert
+            // untuk memeriksa jika browser tidak support maka akan muncul alert
             if (!navigator.geolocation)
-            // return alert("Geolocation is not supported.");
+                // return alert("Geolocation is not supported.");
 
-          // jika browser support maka fungsi ini akan dijalankan
-          navigator.geolocation.getCurrentPosition((position) => {
-            alert('aaaaaaaaaaaaa ${position.coords.latitude}');
-            // tambahkan callback untuk menampilkan latitude dan longitude
-            $("#latitude").html(`Latitude: ${position.coords.latitude}`);
-            $("#longitude").html(`Longitude: ${position.coords.longitude}`);
-          });
+                // jika browser support maka fungsi ini akan dijalankan
+                navigator.geolocation.getCurrentPosition((position) => {
+                    alert('aaaaaaaaaaaaa ${position.coords.latitude}');
+                    // tambahkan callback untuk menampilkan latitude dan longitude
+                    $("#latitude").html(`Latitude: ${position.coords.latitude}`);
+                    $("#longitude").html(`Longitude: ${position.coords.longitude}`);
+                });
         });
     </script>
 

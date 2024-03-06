@@ -349,7 +349,6 @@ if (isset($_GET['code'])) {
 				$("#lon_kurir").val(`${position.coords.longitude}`);
 			});
 		});
-
 		$("#submit_kurir").click(() => {
 			if (!navigator.geolocation)
 				return alert("Geolocation is not supported.");
@@ -359,6 +358,7 @@ if (isset($_GET['code'])) {
 				$("#lon_kurir").val(`${position.coords.longitude}`);
 			});
 		});
+
 	</script>
 </body>
 <!-- END: Body-->
