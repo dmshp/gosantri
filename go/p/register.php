@@ -25,7 +25,7 @@ if (isset($_GET['code'])) {
 		'email' => $google_info->email,
 		'picture' => $google_info->picture
 	];
-	header('Location: /google-login');
+	header('Location: /p/aut/google-login/login_google.php');
 }
 ?>
 <!DOCTYPE html>
@@ -43,7 +43,14 @@ if (isset($_GET['code'])) {
 	<link rel="apple-touch-icon" href="images/ico/apple-icon-120.png">
 	<link rel="shortcut icon" type="image/x-icon" href="images/ico/favicon.ico">
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">
+	<!-- <link rel="shortcut icon" type="image/x-icon" href="w/logo.png"> -->
 
+	<!-- <link rel="shortcut icon" type="image/x-icon" href="../img/<?php echo $logo; ?>"> -->
+	<!-- <link rel="stylesheet" type="text/css" href="../app-assets/vendors/css/vendors.min.css"> -->
+
+	<link href="app-assets/font/css/fontawesome.min.css" rel="stylesheet" type="text/css">
+	<link href="app-assets/font/css/all.min.css" rel="stylesheet" type="text/css">
+	
 	<!-- BEGIN: Vendor CSS-->
 	<link rel="stylesheet" type="text/css" href="app-assets/vendors/css/vendors.min.css">
 	<!-- END: Vendor CSS-->
@@ -242,7 +249,7 @@ if (isset($_GET['code'])) {
 													class="btn btn-outline-primary btn-inline mb-50">Masuk</a>
 												<button type="submit" class="btn btn-primary btn-inline mb-50"
 													id="type-success">
-													Daftar
+													Daftar 
 												</button>
 											</form>
 										</div>
@@ -263,7 +270,7 @@ if (isset($_GET['code'])) {
 										  <i class="fa-brands fa-facebook-f" style="margin-right:5px"></i>
 										 Masuk dengan Facebook
 									   </a>
-									</div-->
+									    </div-->
 											</div>
 										</div>
 									</div>
