@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAn663LJf_g9rRQONdNTWhA_jY9qPVY_f4"></script>
+  <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAn663LJf_g9rRQONdNTWhA_jY9qPVY_f4"></script> -->
 </head>
 <body>
   <div class="card">
@@ -55,7 +55,8 @@
 
           <div class="col-md-12 col-12 mb-1">
             <h3>PETA DISINI</h3>
-            <div id="maps" style="height: 47vh; width: 100%;"></div>
+            <!-- <div id="maps" style="height: 47vh; width: 100%;"></div> -->
+            <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d32654820.88251222!2d117.8888!3d-2.44565!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sid!2sid!4v1690044063482!5m2!1sid!2sid" width="80%" style="border:0; height: 100vh" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           </div>
         </div>		 
       </div>
@@ -63,21 +64,21 @@
   </div>
 
   <script>
-    function initMap() {
-      var mapOptions = {
-        center: { lat: -6.2088, lng: 106.8456 }, 
-        zoom: 13, 
-      };
-      var map = new google.maps.Map(document.getElementById('maps'), mapOptions);
+    // function initMap() {
+    //   var mapOptions = {
+    //     center: { lat: -6.2088, lng: 106.8456 }, 
+    //     zoom: 13, 
+    //   };
+    //   var map = new google.maps.Map(document.getElementById('maps'), mapOptions);
 
-      var marker = new google.maps.Marker({
-        position: { lat: -6.2088, lng: 106.8456 },
-        map: map,
-        title: 'Lokasi Penjemputan'
-      });
-    }
+    //   var marker = new google.maps.Marker({
+    //     position: { lat: -6.2088, lng: 106.8456 },
+    //     map: map,
+    //     title: 'Lokasi Penjemputan'
+    //   });
+    // }
 
-    google.maps.event.addDomListener(window, 'load', initMap);
+    // google.maps.event.addDomListener(window, 'load', initMap);
   </script>
 </body>
 </html>
