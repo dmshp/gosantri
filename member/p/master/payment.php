@@ -1,3 +1,19 @@
+<?php 
+// $id_user = $_SESSION['id_user'];
+//debet jika status 1, kredit jika status 1 atau status 0 saat penarikan
+// $kurir = mysqli_fetch_array(mysqli_query($koneksi, "SELECT SUM(CASE WHEN arus=0 and status=1 THEN `nominal` END) as saldo, SUM(CASE WHEN (arus=1 and status=1) or (arus=1 and status=0 and no_faktur_pembelian='') THEN `nominal` END) as wd FROM `tabel_keuangan` WHERE `id_member`=$id_user"));
+// $saldo = $kurir['saldo'] - $kurir['wd'];
+
+// $ketQuery = "SELECT * FROM tabel_keuangan WHERE id_member = '$id_user' order by id_keuangan DESC LIMIT 1";
+// $executeSat = mysqli_query($koneksi, $ketQuery);
+// $b = mysqli_fetch_array($executeSat);
+
+
+// $Query = "SELECT * FROM tabel_member WHERE id_user = '$id_user'";
+// $execute = mysqli_query($koneksi, $Query);
+// $data = mysqli_fetch_array($execute);
+
+?>
 <div class="card mt-2"> 
   <div class="content-wrapper">
    <div class="content-detached content-right">
@@ -17,10 +33,10 @@
       <div class="card-body d-flex justify-content-center align-items-center flex-column">
       <div>
        <h1 class="mb-0 text-center text-success border-bottom-primary border-2 round p-1 font-weight-bold">
-		   <sup class="font-medium-2 text-dark">Rp.</sup>230.597</h1>
+		   <sup class="font-medium-2 text-dark">Rp. </sup><?= number_format($saldo, 0, ",", "."); ?></h1>
 	   	   <small class="text-muted">Selalu cek saldo, demi kelancaran
 			   <b>Transaksi </b>anda</small>
-       <h5 class="mt-1"><span class="text-success">Transaksi Terakhir <sup>Rp.</sup>20.000</span></h5>
+       <h5 class="mt-1"><span class="text-success">Transaksi Terakhir <sup>Rp. </sup><?= number_format($b['nominal'], 0, ",", "."); ?></span></h5>
       </div>
      </div>
 	 <div class="btn-group">
@@ -37,21 +53,21 @@
 			<div class="col-lg-12 col-12">
              <div class="font-small-2 mb-0">Bank Tujuan</div>
                <fieldset class="form-label-group form-group position-relative has-icon-left">
-                 <input type="text" class="form-control" value="BCA">
+                 <input type="text" class="form-control" value="<?php echo $data['bank']; ?>">
                   <div class="form-control-position"><i class="fa-solid fa-money-check"></i></div>
                </fieldset>
             </div>
 		   <div class="col-sm-6 col-12">
              <div class="font-small-2 mb-0">Atas Nama</div>
                <fieldset class="form-label-group form-group position-relative has-icon-left">
-                 <input type="text" class="form-control" value="si Fulan">
+                 <input type="text" class="form-control" value="<?php echo $data['an_rekening']; ?>">
                   <div class="form-control-position"><i class="fa-solid fa-book-open-reader"></i></div>
                </fieldset>
             </div>
 		   <div class="col-sm-6 col-12">
              <div class="font-small-2 mb-0">Nomer Rekening</div>
                <fieldset class="form-label-group form-group position-relative has-icon-left">
-                 <input type="text" class="form-control" value="123456789">
+                 <input type="text" class="form-control" value="<?php echo $data['no_rekening']; ?>">
                   <div class="form-control-position"><i class="fa-solid fa-book-open"></i></div>
                </fieldset>
             </div> 
