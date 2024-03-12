@@ -1,3 +1,5 @@
+<?php include "./inc/koneksi.php";
+$a = mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM tabel_toko")); ?>
 <div class="content-body mt-1">
   <div id="user-profile">
     <div class="row">
@@ -57,66 +59,33 @@
   <div class="row">
     <div class="col-12">
       <center>
-        <div class="btn btn-icon text-center btn-kecil" onclick="openNav1()">
+        <a class="btn btn-icon text-center btn-kecil" href="?menu=delivery">
           <img src="images/ico/ride.png" width="60px">
           <h6 class="font-small-1 pt-1 text-Capitalize">SantriRide</h6>
-        </div>
-        <!--======================= OVERLAY =========================-->
-        <div id="myNav1" class="overlay">
-          <a href="javascript:void(0)" class="closebtn" onclick="closeNav1()"><i
-              class="fa-solid fa-circle-xmark"></i></a>
-          <div class="overlay-content">
-            <?php include 'master/delivery.php' ?>
-          </div>
-        </div>
-        <!--======================= OVERLAY =========================-->
+        </a>
 
-        <div class="btn btn-icon text-center btn-kecil" onclick="openNav2()">
+        <a class="btn btn-icon text-center btn-kecil" href="?menu=delivery">
           <img src="images/ico/car.png" width="60px">
           <h6 class="font-small-1 pt-1 text-Capitalize">SantriCar</h6>
-        </div>
-        <!--======================= OVERLAY =========================-->
-        <div id="myNav2" class="overlay">
-          <a href="javascript:void(0)" class="closebtn" onclick="closeNav2()"><i
-              class="fa-solid fa-circle-xmark"></i></a>
-          <div class="overlay-content">
-            <?php include 'master/delivery.php' ?>
-          </div>
-        </div>
-        <!--======================= OVERLAY =========================-->
+        </a>
 
-        <div class="btn btn-icon text-center btn-kecil" onclick="openNav3()">
+        <a class="btn btn-icon text-center btn-kecil" href="?menu=delivery">
           <img src="images/ico/carxl.png" width="60px">
           <h6 class="font-small-1 pt-1 text-Capitalize">SantriCarXL</h6>
-        </div>
-        <!--======================= OVERLAY =========================-->
-        <div id="myNav3" class="overlay">
-          <a href="javascript:void(0)" class="closebtn" onclick="closeNav3()"><i
-              class="fa-solid fa-circle-xmark"></i></a>
-          <div class="overlay-content">
-            <?php include 'master/delivery.php' ?>
-          </div>
-        </div>
+        </a>
+
         <!--======================= OVERLAY =========================-->
         <a class="btn btn-icon text-center btn-kecil" href="?menu=shop">
           <img src="images/ico/food.png" width="60px">
           <h6 class="font-small-1 pt-1 text-Capitalize">SantriFood</h6>
         </a>
 
-        <div class="btn btn-icon text-center btn-kecil" onclick="openNav5()">
+        <a class="btn btn-icon text-center btn-kecil" href="?menu=delivery">
           <img src="images/ico/send.png" width="60px">
           <h6 class="font-small-1 pt-1 text-Capitalize">SantriSend</h6>
-        </div>
-        <!--======================= OVERLAY =========================-->
-        <div id="myNav5" class="overlay">
-          <a href="javascript:void(0)" class="closebtn" onclick="closeNav5()"><i
-              class="fa-solid fa-circle-xmark"></i></a>
-          <div class="overlay-content">
-            <?php include 'master/delivery.php' ?>
-          </div>
-        </div>
-        <!--======================= OVERLAY =========================-->
+        </a>
 
+        <!--======================= OVERLAY =========================-->
         <a class="btn btn-icon text-center btn-kecil" href="?menu=now">
           <img src="images/ico/now.png" width="60px">
           <h6 class="font-small-1 pt-1 text-Capitalize">SantriNow</h6>
