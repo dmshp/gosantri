@@ -1,5 +1,14 @@
-<?php include "inc/koneksi.php";
-$a = mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM tabel_toko")); ?>
+<?php
+include "./inc/koneksi.php";
+session_start();
+if (!isset($_SESSION['nm_user']) && !isset($_SESSION['pass'])) {
+    header('location: ../p/login.php');
+} else {
+}
+// $kode_toko = $_SESSION['kd_toko'];
+// var_dump($_SESSION);
+// die;
+?>
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
 <!-- BEGIN: Head-->
@@ -84,9 +93,12 @@ $a = mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM tabel_toko")); ?>
 
 <!--<body class="horizontal-layout horizontal-menu 2-columns navbar-floating footer-static ecommerce-application" data-open="hover" data-menu="horizontal-menu" data-col="2-columns" style="background: #fff">-->
 	<body class="horizontal-layout horizontal-menu content-left-sidebar chat-application navbar-floating footer-static" data-open="hover" data-menu="horizontal-menu" data-col="content-left-sidebar">
+    <input type='hidden' id='latitude_toko' value='<?= $a['latitude'] ?>'>
+    <input type='hidden' id='longitude_toko' value='<?= $a['longitude'] ?>'>
+    <input type="hidden" name="id_user" id="id_user" value="<?= $_SESSION['id_user'] ?>">
 
 
-    <?php include 'inc/header.php' ;?>
+    <?php include 'inc/navigation.php'; ?>
 	<!-- BEGIN: Content-->
 	
     <div class="app-content content pb-5 mb-5 mt-0 pt-3">
