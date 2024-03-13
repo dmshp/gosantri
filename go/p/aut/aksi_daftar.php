@@ -47,7 +47,7 @@ else {
     $pass = $_POST['pass'];
     $password1 = $_POST['pass1'];
 	$nama = $_POST['nama'];
-	$akses = $_POST['akses'];
+	$akses = 'member';
 	$random = rand();
 	$alamat = $_POST['alamat'];
 	$no_tlv = $_POST['no_tlv'];
@@ -121,7 +121,7 @@ else {
 				tittle: "Berhasil Daftar",
 				text: "Silahkan Login",
 			}).then(function() {
-				window.location = "../aut/login.php";
+				window.location = "login.php";
 			});
 		}, 1);
 		</script>';

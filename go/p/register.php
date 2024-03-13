@@ -99,13 +99,13 @@ if (isset($_GET['code'])) {
 									<div class="card rounded-0 mb-0 p-1">
 										<div class="divider mt-1">
 											<div class="divider-text mb-1">
-												<h3 class="text-uppercase text-info border-info p-1">Daftar Kurir
+												<h3 class="text-uppercase text-info border-info p-1">Daftar Akun Baru
 												</h3>
 											</div>
 										</div>
 
 										<div class="card-body pt-0">
-											<form action="./aut/google-login/add_kurir_baru.php" method="POST"
+											<form action="./aut/aksi_daftar.php" method="POST"
 												enctype="multipart/form-data">
 												<input type="hidden" name="lat_kurir" id="lat_kurir"
 													class="form-control" readonly>
@@ -167,100 +167,6 @@ if (isset($_GET['code'])) {
 														<i class="feather icon-home"></i>
 													</div>
 													<label for="user-name">Alamat Lengkap</label>
-												</fieldset>
-
-												<p class="font-small-2 nama-user text-bold-700 text-danger text-right">
-													<i>Documen yang di upload berupa file gambar (.jpg/.jpeg) max.
-														1Mb.</i>
-												</p>
-
-												<fieldset
-													class="form-label-group form-group position-relative has-icon-left">
-													<div class="custom-file">
-														<input type="file" class="custom-file-input" name="image_ktp"
-															id="image_ktp" required>
-														<label class="custom-file-label pl-3" for="image_ktp">Upload
-															KTP</label>
-													</div>
-													<div class="form-control-position">
-														<i class="feather icon-image"></i>
-													</div>
-												</fieldset>
-
-												<fieldset
-													class="form-label-group form-group position-relative has-icon-left">
-													<div class="custom-file">
-														<input type="file" class="custom-file-input" name="image_sim"
-															id="image_sim" required>
-														<label class="custom-file-label pl-3" for="image_sim">Upload
-															SIM</label>
-													</div>
-													<div class="form-control-position">
-														<i class="feather icon-image"></i>
-													</div>
-												</fieldset>
-
-												<h6 class="">Data Kendaraan</h6>
-												<hr>
-
-												<fieldset
-													class="form-label-group form-group position-relative has-icon-left">
-													<input type="text" class="form-control" name="sepeda_motor"
-														placeholder="Merk / Type Sepeda Motor" required>
-													<div class="form-control-position">
-														<i class="fas fa-motorcycle"></i>
-													</div>
-													<label for="user-name">Merk / Type Sepeda Motor</label>
-												</fieldset>
-
-												<fieldset
-													class="form-label-group form-group position-relative has-icon-left">
-													<input type="number" class="form-control" name="sepeda_motor_tahun"
-														placeholder="Tahun" required>
-													<div class="form-control-position">
-														<i class="feather icon-calendar"></i>
-													</div>
-													<label for="user-name">Tahun</label>
-												</fieldset>
-
-												<fieldset
-													class="form-label-group form-group position-relative has-icon-left">
-													<input type="text" class="form-control" name="nomor_polisi"
-														placeholder="Nomor Polisi" required>
-													<div class="form-control-position">
-														<i class="fas fa-window-maximize"></i>
-													</div>
-													<label for="user-name">Nomor Polisi</label>
-												</fieldset>
-
-												<fieldset
-													class="form-label-group form-group position-relative has-icon-left">
-													<input type="text" class="form-control" name="nm_bank"
-														placeholder="Nama Bank" required>
-													<div class="form-control-position">
-														<i class="fas fa-window-maximize"></i>
-													</div>
-													<label for="user-name">Nama Bank</label>
-												</fieldset>
-
-												<fieldset
-													class="form-label-group form-group position-relative has-icon-left">
-													<input type="text" class="form-control" name="an_bank"
-														placeholder="Atas Nama Bank" required>
-													<div class="form-control-position">
-														<i class="fas fa-window-maximize"></i>
-													</div>
-													<label for="user-name">Atas Nama Bank</label>
-												</fieldset>
-
-												<fieldset
-													class="form-label-group form-group position-relative has-icon-left">
-													<input type="text" class="form-control" name="nomor_rekening"
-														placeholder="Nomor Rekening" required>
-													<div class="form-control-position">
-														<i class="fas fa-window-maximize"></i>
-													</div>
-													<label for="user-name">Nomor Rekening</label>
 												</fieldset>
 
 												<div class="form-group row">
