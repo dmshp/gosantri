@@ -22,7 +22,7 @@
 			<img src="images/ico/history.png" width="30" class="pb-1"><br>Riwayat</a>
 		<a class="btn btn-icon font-small-3 ml-1 mr-1" href="?menu=home">
 			<img src="images/ico/home.png" width="40" class="pb-1"><br>Beranda</a> 
-		<a class="btn btn-icon font-small-2 ml-1" href="?menu=upload">
+		<a class="btn btn-icon font-small-2 ml-1" href="?menu=product">
 			<img src="images/ico/product.png" width="30" class="pb-1"><br>Jual</a>
 		<a class="btn btn-icon font-small-2 ml-1" href="?menu=account">
 			<img src="images/ico/akun.png" width="30" class="pb-1"><br>Akun</a> 
