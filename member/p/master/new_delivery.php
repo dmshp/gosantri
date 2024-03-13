@@ -198,7 +198,7 @@ if (isset($_POST['submit'])) {
                 <input type="hidden" name="longitude" id="longitude" readonly>
                 <input type="hidden" name="tarif_mobil" id="tarif_mobil" value="<?php echo $rupiah_mobil; ?>" readonly>
                 <input type="hidden" name="tarif_motor" id="tarif_motor" value="<?php echo $rupiah_motor; ?>" readonly>
-                <form action="../aksi/add_delivery_member.php" method="POST" enctype="multipart/form-data"
+                <form action="aksi/add_delivery_member.php" method="POST" enctype="multipart/form-data"
                   id="distance_form">
                   <div class="form-group">
                     <label>Lokasi Penjemputan</label>
