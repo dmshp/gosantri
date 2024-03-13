@@ -9,6 +9,23 @@ if (!isset($_SESSION['nm_user']) && !isset($_SESSION['pass'])) {
 // var_dump($_SESSION);
 // die;
 ?>
+<?php
+$a = mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM `tabel_toko`"));
+$background		= $a['background'];
+$headerfooter	= $a['headerfooter'];
+$tombol			= $a['tombol'];
+$logo       	= $a['logo'];
+$toko			= $a['nm_toko'];
+$kd_toko		= $a['kd_toko'];
+$almt_toko		= $a['almt_toko'];
+$tlp_toko		= $a['tlp_toko'];
+$latlng_toko	= $a['latitude'] . "," . $a['longitude'];
+?>
+
+<?php $user = mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM tabel_member WHERE nm_user = '$_SESSION[nm_user]'"));
+$foto       = $user['foto'];
+?>
+
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
 <!-- BEGIN: Head-->
