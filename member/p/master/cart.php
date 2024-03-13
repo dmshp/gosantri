@@ -18,7 +18,7 @@
                     <div class="col-5">
                       <div class="item-img text-center">
                         <a href="?menu=product">
-                          <img src="images/produk/1.jpg" class="img-fluid" width="100%">
+                          <img src="../images/produk/1.jpg" class="img-fluid" width="100%">
                         </a>
                       </div>
                     </div>

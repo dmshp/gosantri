@@ -88,7 +88,7 @@
                 <div class="card-body">
                     <input type="hidden" name="kd_toko" id="kd_toko" value="<?php echo $d['kd_toko']; ?> ">                
                     <!--<span class="badge badge-pill gradient-light-warning badge-up badge-sm mt-2 mr-2 font-small-1 text-dark">NEW</span>-->
-                    <img class="img-kecil" style="height: 100%;" src="../img/produk/<?php echo $gambars[0]; ?>">
+                    <img class="img-kecil" style="height: 100%;" src="images/produk/<?php echo $gambars[0]; ?>">
                     <h5 class="my-1 font-small-3"><?php echo $d['nm_barang']; ?></h5>
                     <div class="d-flex justify-content-between">
                       <small class="float-left font-weight-bold mb-25" id="example-caption-1">Stock</small>

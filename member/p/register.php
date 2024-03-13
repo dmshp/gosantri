@@ -99,7 +99,7 @@ if (isset($_GET['code'])) {
 									<div class="card rounded-0 mb-0 p-1">
 										<div class="divider mt-1">
 											<div class="divider-text mb-1">
-												<h3 class="text-uppercase text-info border-info p-1">Daftar Kurir
+												<h3 class="text-uppercase text-info border-info p-1">Daftar Member
 												</h3>
 											</div>
 										</div>

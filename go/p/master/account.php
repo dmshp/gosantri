@@ -7,7 +7,7 @@ $a = mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM tabel_member WHERE
   <div class="card mt-2">
     <div class="card-header mx-auto">
       <div class="avatar avatar-xl">
-        <img class="img-fluid" src="../img/user/user.png">
+        <img class="img-fluid" src="../images/user/user.png">
       </div>
     </div>
     <div class="card-content">
@@ -27,7 +27,7 @@ $a = mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM tabel_member WHERE
           <a href="#" class="btn btn-success btn-icon btn-sm text-uppercase">
             <i class="fa-solid fa-user-slash mr-50"></i>Non Aktifkan akun anda</a>
 
-          <a href="../aut/logout.php" class="btn btn-danger btn-icon btn-sm">
+          <a href="aut/logout.php" class="btn btn-danger btn-icon btn-sm">
             <i class="fa-solid fa-power-off ml-50"></i></a>
 
         </div>
@@ -50,7 +50,7 @@ $a = mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM tabel_member WHERE
     <div class="card-content">
       <div class="card-body">
         <h4>Profil</h4>
-        <form method="post" action="../aksi/edit_profile.php" enctype="multipart/form-data">
+        <form method="post" action="aksi/edit_profile.php" enctype="multipart/form-data">
           <div class="row">
             <div class="col-12 col-sm-6">
               <div class="form-group">
