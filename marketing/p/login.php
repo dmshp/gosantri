@@ -102,7 +102,7 @@ if (isset($_GET['code'])) {
                                         
                  <div class="card-content">
                     <div class="card-body pt-1">
-                      <form action="index.php?menu=home" method="post">
+                      <form action="./aut/aksi_login.php" method="post">
                        <fieldset class="form-label-group form-group position-relative has-icon-left">
                           <input type="text" class="form-control" name="nm_user" placeholder="username" required>
                        <div class="form-control-position">

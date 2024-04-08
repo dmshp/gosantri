@@ -622,7 +622,7 @@ if (isset($_POST['submit'])) {
       $('#in_mile').html(" Distance in Mile: <span class='badge badge-pill badge-primary'>" + distance_in_mile.toFixed(2) + "</span>");
       $('#in_kilo').html("Estimasi jarak tempuh : <span class='badge badge-pill badge-primary'>" + distance_in_kilo.toFixed(2) + " KM</span>");
       $('#duration_text').html("Estimasi waktu : <span class='badge badge-pill badge-success'>" + duration_text + "</span>");
-      $('#rupiah_text').html("Estimasi waktu : <span class='badge badge-pill badge-warning'>Rp. " + total_rupiah.toLocaleString('en-US') + "</span>");
+      $('#rupiah_text').html("Harga : <span class='badge badge-pill badge-warning'>Rp. " + total_rupiah.toLocaleString('en-US') + "</span>");
       $('#jarak').val(distance_in_kilo.toFixed(2));
       $('#durasi').val(duration_text);
       $('#tot_rupiah').val(total_rupiah);
@@ -664,7 +664,7 @@ if (isset($_POST['submit'])) {
       if (responses && responses.length > 0) {
         $("#origin").val(responses[1].formatted_address);
         $("#from_places").val(responses[1].formatted_address);
-        $("#to_places").val(responses[1].formatted_address);
+        // $("#to_places").val(responses[1].formatted_address);
         //    console.log(responses[1].formatted_address);
       } else {
         alert("Cannot determine address at this location.")
