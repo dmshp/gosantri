@@ -76,7 +76,7 @@
               </div>
               <!--------STATUS STOK---------------------------->
               <div class="btn-group">
-                <a href="?menu=product&kd_barang=P-0001 ?>"
+                <a href="?menu=product&kd_barang=P-0001"
                   class="btn block btn-icon gradient-light-info white">
                   <i class='fa-regular fa-eye'></i> view</a>
                 <a href="?menu=edit" class="btn block btn-icon gradient-light-success white">
