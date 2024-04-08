@@ -104,7 +104,7 @@ if (isset($_GET['code'])) {
                     <div class="card-body pt-1">
                       <form action="./aut/aksi_login.php" method="post">
                        <fieldset class="form-label-group form-group position-relative has-icon-left">
-                          <input type="text" class="form-control" name="nm_user" placeholder="username" required>
+                          <input type="text" class="form-control" name="nama" placeholder="username" required>
                        <div class="form-control-position">
                          <i class="feather icon-user"></i>
                         </div>
@@ -112,7 +112,7 @@ if (isset($_GET['code'])) {
                        </fieldset>
 
                        <fieldset class="form-label-group position-relative has-icon-left">
-                         <input type="password" class="form-control" name="password" placeholder="Password" required>
+                         <input type="password" class="form-control" name="pass" placeholder="Password" required>
                          <div class="form-control-position">
                            <i class="feather icon-lock"></i>
                          </div>

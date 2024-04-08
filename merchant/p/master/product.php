@@ -1,1127 +1,344 @@
-<style type="text/css">
-  table.dataTable thead tr {
-    background-color: #337ab7;
-    color: #fff;
-    font-size: 11px;
-  }
 
-  .modal-title {
-    margin-bottom: 0;
-    line-height: 1.45;
-    color: white;
-  }
+<?php 
+    // error_reporting(0);
+    $idUser = '1';
+    $akses  = isset($_SESSION['akses']) ? $_SESSION['akses'] : '';
 
-  .modal .modal-header {
-    background-color: #49b5c3;
-    border-radius: 0.42rem;
-    padding: 0.8rem;
-    color: white;
-    border-bottom: none;
-  }
+ ?>  
+<!-- BEGIN: Content-->   
+     <div class="card mt-2">
+       <div class="card-body p-1">
+		    <div class="divider">
+			    <div class="divider-text">Product</div>
+		    </div>
+            <!-- Detail Produk -->
+            <?php 
+            // error_reporting(0);
+            $kodekategori = '';
+            $kodemerchant = '';
 
-  .header-tabel {
-    color: #fff;
-    font-size: 11px;
-    background-color: #337ab7;
-  }
+            $kd_barang = $_GET['kd_barang'];
+            $jumlah_comment = mysqli_fetch_array(mysqli_query($koneksi, "SELECT COUNT(comment) FROM tabel_comment_barang"));
+            $jml_rating = mysqli_fetch_array(mysqli_query($koneksi, "SELECT case when rating is null then '0' else ROUND(AVG(rating),1) end as averageRating FROM tabel_ulasan_barang WHERE kd_barang='$kd_barang';")); // var_dump($jml_rating['averageRating']); die();
+            $ketQuery = "SELECT * FROM tabel_barang,tabel_barang_gambar,tabel_stok_toko WHERE tabel_barang.kd_barang = tabel_barang_gambar.id_brg AND tabel_barang.kd_barang = tabel_stok_toko.kd_barang AND tabel_barang.kd_barang = '$kd_barang' ";
+            $executeSat = mysqli_query($koneksi, $ketQuery);
+            while ($d = mysqli_fetch_array($executeSat)) {
+                // print_r($d);
+                $stok = $d['stok'];
+                $fotoProduk =  explode(",", $d['gambar']);
+                $harga = $d['hrg_jual'];
+                $nm_barang = $d['nm_barang'];
+                $kodekategori = $d['kd_kategori'];
+                $kodemerchant = $d['kd_merchant'];
+            ?>
+                    <input type="hidden" name="nama_barang" id="nama_barang" value="<?php echo strtoupper($d['nm_barang']); ?> [<?php echo strtoupper($d['kd_barang']); ?>]" readonly>
+                    <input type="hidden" name="id_user" id="id_user" value="<?= $idUser ?>" readonly>
+                    <input type="hidden" name="id_merchant" id="id_merchant" value="<?php echo $d['kd_merchant'] ?>" readonly>
+                    <input type="hidden" name="kd_barang" id="kd_barang" value="<?php echo $d['kd_barang']; ?>" readonly>
+                    <input type="hidden" name="nm_barang" id="nm_barang" value="<?php echo $d['nm_barang']; ?>" readonly>
+                    <input type="hidden" name="kd_toko" id="kd_toko" value="<?= $d['kd_toko'] ?>" readonly>
+                    <input type="hidden" name="jml_rating" id="jml_rating" value="<?php echo $jml_rating['averageRating']?>" readonly>
 
-  .pagination .page-item.active .page-link {
-    z-index: 3;
-    border-radius: 5rem;
-    background-color: #337ab7;
-    color: #FFFFFF;
-    -webkit-transform: scale(1.05);
-    -ms-transform: scale(1.05);
-    transform: scale(1.05);
-  }
 
-  .horizontal-menu.navbar-floating:not(.blank-page) .app-content {
-    padding-top: -6.25rem;
-  }
-
-  html body .content.app-content {
-    overflow: hidden;
-    margin-top: -130px;
-  }
-</style>
-
-<!-- BEGIN: Content-->
-<div class="app-content content">
-  <div class="content-overlay"></div>
-  <div class="header-navbar-shadow"></div>
-  <div class="content-wrapper">
-    <div class="content-header row">
-      <div class="content-header-left col-md-9 col-12 mb-2">
-        <div class="row breadcrumbs-top">
-          <div class="col-12">
-            <h2 class="content-header-title float-left mb-0 text-dark text-capitalize">
-              <?php echo $_SESSION['akses']; ?>
-            </h2>
-            <div class="breadcrumb-wrapper col-12">
-              <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.php?menu=home" class="text-dark">Home</a>
-                </li>
-                <li class="breadcrumb-item"><a href="#" class="text-dark">Produk</a>
-                </li>
-              </ol>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-body">
-        <div class="divider">
-          <div class="divider-text">
-            <h3 class="mb-3 display-10 text-uppercase">Data Produk</h3>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-5 col-12 pb-5">
-
-            <form method="post" action="aksi/add_product.php" enctype="multipart/form-data">
-
-              <div class="row">
-                <!-- <div class="col-12 col-md-12 text-right">
-            <button class="btn btn-primary" style="border-radius: 20%;" type="button" onclick="location.reload()">Refresh</button>
-          </div> -->
-                <div class="col-12 col-md-12">
-                  <div class="font-small-2">Gunakan Barcode/ Masukkan kode barang manual</div>
-                  <fieldset>
-                    <div class="input-group">
-                      <input type="text" name="kode" class="form-control" autofocus="autofocus"
-                        placeholder="Scan Here!">
-                      <div class="input-group-append" id="button-addon2">
-                        <button class="btn btn-primary rounded-0" type="button"><i class="fas fa-qrcode"></i></button>
-                      </div>
+                    <div class="row">           
+                        <div class="col-6">
+                             <a href="#" data-toggle="modal" data-target="#imagemodal">
+                                <img class="img-fluid img-thumbnail" src="images/produk/6.jpg">
+                                  <div class="card-img-overlay overflow-hidden overlay-lighten-3">
+                                    <h4 class="card-title badge badge-up badge-danger mr-2 mt-2 round">
+                                        <i class="fa-solid fa-magnifying-glass-plus"></i></h4>
+                                  </div>
+                              </a>
+                        </div>    
+                        <div class="col-6">                
+                            <div class="text-center mt-1">  
+                               <span class="font-small-3">
+                                   <i class="feather icon-star text-warning"></i>
+                                   <i class="feather icon-star text-warning"></i>
+                                   <i class="feather icon-star text-warning"></i>
+                                   <i class="feather icon-star text-warning"></i>
+                                   <i class="feather icon-star text-secondary"></i>
+                                </span>
+                            </div>
+                            <div class="text-center mt-1">
+                                <?php 
+                                if ($d['diskon'] != null) { 
+                                    $diskon = ($d['hrg_jual']*$d['diskon'])/100;
+                                    $harga = $harga - $diskon;
+                                ?>
+                                <h1 class="mb-0 text-center text-success border-bottom-primary border-2 round font-weight-bold"><sup class="font-medium-2 text-muted">Rp. </sup><?php echo number_format($harga, 0, ",", "."); ?></h1>
+                                
+                                <p class="text-muted text-center font-medium-1"><del>Rp. <?php echo number_format($d['hrg_jual'], 0, ",", "."); ?></del></p>
+                                <?php } else {  ?>  
+                                <h1 class="mb-0 text-center text-success border-bottom-primary border-2 round font-weight-bold"><sup class="font-medium-2 text-muted">Rp. </sup><?php echo number_format($harga, 0, ",", "."); ?></h1>
+                                <?php  } ?> 
+                                <hr class="my-1">
+                                
+                                <strong>Stock</strong>
+                            <!--------STATUS STOK---------------------------->        
+                              <div class="progress progress-bar-danger mb-0">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="15" aria-valuemin="15" aria-valuemax="100" style="width:15%" aria-describedby="example-caption-2"></div>
+                              </div>       
+                           <!--------STATUS STOK---------------------------->
+                                         
+                            </div>
+                        </div> 
+                        <div class="col-12">
+                            <div class="text-center mt-2"> 
+                                 <a href="?menu=cart" class="badge badge-primary badge-md pr-1 pl-1 round">
+                                     <i class="fa-solid fa-cart-arrow-down mr-1"></i><small>BELI</small></a>                     
+                                 <a class="badge badge-info badge-md pr-1 pl-1 round" href="?menu=merchant">
+                                     <i class="fa-solid fa-store mr-1"></i><small>CEK TOKO</small></a>
+                                 <a class="badge badge-success badge-md pr-1 pl-1 round" href="?menu=schat">
+                                     <i class="fa-regular fa-comment mr-1"></i><small>CHAT</small></a>
+                            </div>
+                            <h5 class="text-uppercase mb-0 mt-1"><?php echo $d['nm_barang']; ?></h5>
+                            <p class="text-danger font-small-1">by Santrigo</p>
+                            <p><?php echo $d['deskripsi']; ?></p>
+                        </div>
                     </div>
-                  </fieldset>
-                </div>
-                <div class="col-12 col-md-12 mt-2 mb-1">
-                  <div class="font-small-2">Upload Foto terbaik <span class="badge badge-dark text-title">Max.3
-                      (JPG/JPEG/PNG)</span></div>
-                </div>
+                    <div class="item-features mt-0 pt-0">
+                        <div class="row text-center">
+                            <div class="col-4 col-md-4 mb-4 mb-md-0 ">
+                               <div class="w-100 mx-auto">
+                                  <i class="feather icon-award text-primary font-large-2"></i>
+                                  <h5 class="mt-2 font-weight-bold font-small-2">Guaranteed</h5>
+                               </div>
+                            </div>
+                            <div class="col-4 col-md-4 mb-4 mb-md-0">
+                                <div class="w-100 mx-auto">
+                                   <i class="feather icon-clock text-primary font-large-2"></i>
+                                   <h5 class="mt-2 font-weight-bold font-small-2">Return</h5>
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-4 mb-4 mb-md-0">
+                                <div class="w-100 mx-auto">
+                                    <i class="feather icon-shield text-primary font-large-2"></i>
+                                    <h5 class="mt-2 font-weight-bold font-small-2">Secured</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>	
 
-                <div class="col-12 col-md-4 mb-2 order-md-first order-md-last">
-                  <span class="position-absolute" onclick="delete_image1()">&times;</span>
-                  <br>
-                  <figure class="image-container">
-                    <img id="chosen-image1" style="width: 100% !important">
-                  </figure>
+                    <div class="d-flex justify-content-start align-items-center mb-1">
+                         <div class="d-flex align-items-center">
+                           <i class="feather icon-heart font-medium-2 mr-50"></i><span class="mr-50">145</span>
+                           <i class="feather icon-message-square font-medium-2 mr-50"></i><span>77</span>
+                         </div>
+                    </div>
+                    <fieldset class="form-label-group mb-50">
+                        <textarea class="form-control" id="comment" rows="3" placeholder="Add Comment"></textarea>
+                        <label for="label-textarea">Add Comment</label>
+                    </fieldset>
+                   <button type="button" class="btn btn-sm btn-primary" onclick="add_comment(`<?php echo $d['kd_barang'] ?>`,`<?php echo $idUser ?>`)">Post Comment</button>
 
-                  <input class="input-image" type="file" id="upload-button1" name="image1">
-                  <label class="label-images" for="upload-button1">
-                    <i class="fas fa-upload"></i> &nbsp; Choose A Photo
-                  </label>
-                </div>
-                <div class="col-12 col-md-4 mb-2 order-md-first order-md-last">
-                  <span class="position-absolute" onclick="delete_image2()">&times;</span>
-                  <br>
-                  <figure class="image-container">
-                    <img id="chosen-image2" style="width: 100% !important">
-                  </figure>
-
-                  <input class="input-image" type="file" id="upload-button2" name="image2">
-                  <label class="label-images" for="upload-button2">
-                    <i class="fas fa-upload"></i> &nbsp; Choose A Photo
-                  </label>
-                </div>
-                <div class="col-12 col-md-4 mb-2 order-md-first order-md-last">
-                  <span class="position-absolute" onclick="delete_image3()">&times;</span>
-                  <br>
-                  <figure class="image-container">
-                    <img id="chosen-image3" style="width: 100% !important">
-                  </figure>
-
-                  <input class="input-image" type="file" id="upload-button3" name="image3">
-                  <label class="label-images" for="upload-button3">
-                    <i class="fas fa-upload"></i> &nbsp; Choose A Photo
-                  </label>
-                </div>
-
-                <div class="col-12 col-md-12">
-                  <div class="font-small-2">Masukkan nama produk anda</div>
-                  <fieldset class="form-group position-relative has-icon-left input-divider-left">
-                    <input type="text" name="nama" class="form-control" placeholder="Isi disini" />
-                    <div class="form-control-position"><i class="fas fa-box-open"></i>
-                    </div>
-                  </fieldset>
-                </div>
-              </div>
-              <?php if ($_SESSION['akses'] == 'admin' || $_SESSION['akses'] == 'merchant' || $_SESSION['akses'] == 'member') { ?>
-                <div class="row">
-                  <div class="col-12 col-md-4 mb-2">
-                    <div class="font-small-2 mt-1 mb-1">
-                      Kategori <a href="#" class="badge badge-dark" data-toggle="modal" data-target="#kategori-modal">
-                        <i class="fas fa-plus-circle"></i>Tambah</a>
-                    </div>
-                    <select name="kategori" id="kategori" class="select2 form-control" onchange="pilihVarian()">
-                      <option disabled selected>Pilih Kategori</option>
-                      <?php error_reporting(0);
-                      $ketQuery = "SELECT * FROM tabel_kategori_barang ORDER BY nm_kategori ASC";
-                      $executeSat = mysqli_query($koneksi, $ketQuery);
-                      while ($k = mysqli_fetch_array($executeSat)) {
-                        ?>
-                        <option value="<?php echo $k['kd_kategori']; ?>">
-                          <?php echo $k['nm_kategori']; ?>
-                        </option>
-                      <?php } ?>
-                    </select>
-                  </div>
-                  <div class="col-12 col-md-4 mb-2">
-                    <div class="font-small-2 mt-1 mb-1">
-                      Merk <a href="#" class="badge badge-dark" data-toggle="modal" data-target="#merk">
-                        <i class="fas fa-plus-circle"></i>Tambah</a>
-                    </div>
-                    <select name="merk" class="select2 form-control">
-                      <option disabled selected>Pilih Merk</option>
-                      <?php error_reporting(0);
-                      $ketQuery = "SELECT * FROM tabel_merk_barang ORDER BY merk ASC";
-                      $executeSat = mysqli_query($koneksi, $ketQuery);
-                      while ($s = mysqli_fetch_array($executeSat)) {
-                        ?>
-                        <option value="<?php echo $s['id_merk']; ?>">
-                          <?php echo $s['merk']; ?>
-                        </option>
-                      <?php } ?>
-                    </select>
-                  </div>
-                  <div class="col-12 col-md-4 mb-2">
-                    <div class="font-small-2 mt-1 mb-1">
-                      Satuan Produk <a href="#" class="badge badge-dark" data-toggle="modal" data-target="#satuan">
-                        <i class="fas fa-plus-circle"></i>Tambah</a>
-                    </div>
-                    <select class="select2 form-control" name="satuan">
-                      <option disabled selected>Pilih Satuan</option>
-                      <?php error_reporting(0);
-                      $ketQuery = "SELECT * FROM tabel_satuan_barang ORDER BY nm_satuan ASC";
-                      $executeSat = mysqli_query($koneksi, $ketQuery);
-                      while ($s = mysqli_fetch_array($executeSat)) {
-                        ?>
-                        <option value="<?php echo $s['id_satuan']; ?>">
-                          <?php echo $s['nm_satuan']; ?>
-                        </option>
-                      <?php } ?>
-                    </select>
-                  </div>
-                </div>
-              <?php } ?>
-
-
-              <!-- varian         -->
-              <div class="row mt-2" id="varian">
-
-              </div>
-              <div class="row">
-                <div class="col-6 col-md-4">
-                  <div class="font-small-2">Jumlah Stok</div>
-                  <div class="d-inline-block mb-1">
-                    <div class="input-group">
-                      <input type="number" name="stok" class="form-control" value="0">
-                      <!-- <input type="number" name="stok" class="touchspin rounded-0" value="1"> -->
-                    </div>
-                  </div>
-                </div>
-                <div class="col-6 col-md-4">
-                  <div class="font-small-2">Berat (gram)</div>
-                  <div class="d-inline-block mb-1">
-                    <div class="input-group">
-                      <input type="number" name="berat" id="berat" class="form-control" value="">
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-12 col-md-4">
-                  <div class="font-small-2 mb-1">Harga Beli Produk</div>
-                  <fieldset class="form-group position-relative has-icon-left input-divider-left">
-                    <input type="text" name="harga_beli" class="form-control" placeholder="Isi disini" />
-                    <small class="counter-value float-right"><span class="char-text">Tanpa titik dan
-                        Rupiah</span></small>
-                    <div class="form-control-position"><i class="feather icon-clipboard"></i>
-                    </div>
-                  </fieldset>
-                </div>
-                <div class="col-12 col-md-4">
-                  <div class="font-small-2 mb-1">Harga Jual Produk</div>
-                  <fieldset class="form-group position-relative has-icon-left input-divider-left">
-                    <input type="text" name="harga_jual" class="form-control" placeholder="Isi disini" />
-                    <small class="counter-value float-right"><span class="char-text">Tanpa titik dan
-                        Rupiah</span></small>
-                    <div class="form-control-position"><i class="feather icon-clipboard"></i>
-                    </div>
-                  </fieldset>
-                </div>
-                <div class="col-12 col-md-4">
-                  <div class="font-small-2 mb-1">Harga Grosir Produk</div>
-                  <fieldset class="form-group position-relative has-icon-left input-divider-left">
-                    <input type="text" name="harga_grosir" class="form-control" placeholder="Isi disini" />
-                    <small class="counter-value float-right"><span class="char-text">Tanpa titik dan
-                        Rupiah</span></small>
-                    <div class="form-control-position"><i class="feather icon-clipboard"></i>
-                    </div>
-                  </fieldset>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-12 mt-1">
-                  <div class="font-small-2 mb-1">Deskripsi Produk anda</div>
-                  <fieldset class="form-label-group mb-0">
-                    <textarea data-length=100 class="form-control char-textarea" rows="3" name="deskripsi"
-                      placeholder="Isi disini"></textarea>
-                  </fieldset>
-                  <small class="counter-value float-right"><span class="char-count">maks.</span> / 100 karakter</small>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-12 mt-1">
-                  <input type="submit" name="upload_product" value="Upload" class="btn btn-primary rounded-0" />
-                  <input type="reset" value="Cancel" onClick="hide(0)" class="btn btn-danger rounded-0" />
-                </div>
-              </div>
-            </form>
-          </div>
-          <div class="col-lg-7 col-12">
-            <div class="badge badge-primary float-right">
-              <?php $sql_user = mysqli_query($koneksi, "SELECT * FROM tabel_barang");
-              $jumlah_user = mysqli_num_rows($sql_user); ?>
-              <span class="badge badge-pill badge-up badge-danger font-small-2 mr-2">
-                <?php echo $jumlah_user ?>
-              </span>Total Produk
-            </div>
-            <div class="table-responsive">
-              <table class="table table-striped dataex-html5-selectors">
-                <thead>
-                  <tr>
-                    <th>Kode</th>
-                    <th>Produk</th>
-                    <th>Stok</th>
-                    <th>Harga Jual</th>
-                    <th>Harga Beli</th>
-                    <th>Harga Grosir</th>
-                    <th>Satuan</th>
-                    <th>Edit</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php
-                  $ketQuery = "SELECT * FROM tabel_barang, tabel_stok_toko, tabel_barang_gambar WHERE tabel_barang.kd_barang = tabel_barang_gambar.id_brg AND tabel_barang.kd_barang = tabel_stok_toko.kd_barang";
-                  $executeSat = mysqli_query($koneksi, $ketQuery);
-                  while ($b = mysqli_fetch_array($executeSat)) {
-
-                    $id_satuan = $b['kd_satuan'];
-                    $querySatuan = "SELECT * FROM `tabel_satuan_barang` WHERE id_satuan = '$id_satuan'";
-                    $hasilSatuan = mysqli_fetch_array(mysqli_query($koneksi, $querySatuan));
-                    // var_dump($hasilSatuan);
-                    // die;
-                  
+                    <?php 
+                        $kd_barang = $_GET['kd_barang'];
+                        $query_comment = "SELECT * FROM tabel_comment_barang, tabel_member WHERE id_member=id_user and id_brg = '$kd_barang' ";
+                        $hasil = mysqli_query($koneksi, $query_comment);
+                        while ($comment = mysqli_fetch_array($hasil)) {
+                            if ($comment['foto']!='') {
+                                $images = $comment['foto'];
+                            } else {
+                                $images = 'user.png';
+                            }
                     ?>
-                    <tr>
-                      <td>
-                        <?php echo $b['kd_barang'] ?>
-                      </td>
-                      <td class="text-capitalize">
-                        <?php echo $b['nm_barang'] ?>
-                      </td>
-                      <td>
-                        <?php echo $b['stok'] ?>
-                      </td>
-                      <td>Rp.
-                        <?php echo number_format($b['hrg_jual'], 0, ",", "."); ?>
-                      </td>
-                      <td>Rp.
-                        <?php echo number_format($b['hrg_beli'], 0, ",", "."); ?>
-                      </td>
-                      <td>Rp.
-                        <?php echo number_format($b['hrg_grosir'], 0, ",", "."); ?>
-                      </td>
-                      <td>
-                        <?php echo $hasilSatuan['nm_satuan']; ?>
-                      </td>
-                      <td>
-                        <!-- <a href="#" data-toggle="modal" data-target="#produk<?php echo $b['kd_barang'] ?>"> -->
-                        <a href="index.php?kode_produk=<?php echo $b['kd_barang'] ?>">
-                          <i class="fas fa-edit"></i>
+                        <hr>
+                        <div class="d-flex justify-content-start align-items-center mb-1">
+                            <div class="avatar mr-50">
+                              <img src="images/user/user.png" alt="Avatar" height="30" width="30">
+                            </div>
+                            <div class="user-page-info">
+                                <h6 class="mb-0">Yanti***</h6>
+                                <span class="font-small-2">Bagus</span>
+                            </div>
+                            <div class="ml-auto cursor-pointer">
+                                <i class="feather icon-heart mr-50"></i>
+                                <i class="feather icon-message-square"></i>
+                            </div>
+                        </div>  
+
+                    <?php } ?>
+
+            <?php } ?>
+            <!-- End Detail Produk -->
+
+<!-- Multiple Slides Per View swiper start -->
+  <section id="component-swiper-multiple" class="border-top-secondary pt-1">
+	<h5 class="font-medium-2">Produk Terkait</h5> 
+	<p class="font-small-2">Orang-orang juga mencari <b>item</b> ini</p>
+      <div class="card-content">
+         <div class="swiper-multiple swiper-container">
+            <div class="swiper-wrapper">
+				<?php
+                $query = "SELECT * FROM `tabel_barang` INNER JOIN tabel_barang_gambar INNER JOIN tabel_stok_toko WHERE tabel_barang.kd_barang = tabel_barang_gambar.id_brg AND tabel_barang.kd_barang = tabel_stok_toko.kd_barang AND tabel_barang.kd_kategori='$kodekategori' and tabel_barang.kd_merchant='$kodemerchant'";
+
+                $result = mysqli_query($koneksi, $query);
+                while ($produk = mysqli_fetch_array($result)) {
+                    $gambars = $produk['gambar'];
+                    $gambars = explode(",", $gambars);
+                    $stok = $produk['stok'];
+                ?>
+                   <div class="swiper-slide" style="margin: 0px"> 
+                        <a href="?menu=produk&kd_barang=<?php echo $produk['kd_barang']; ?>">
+                            <img class="img-fluid img-kecil" src="images/produk/1.jpg">
+                            <p class="font-small-2"><?php echo $produk['nm_barang']; ?></p>
                         </a>
-                        <!-- <a onclick="show(`<?php echo $b['kd_barang'] ?>`)">
-                                        <i class="fas fa-edit"></i>
-                                      </a> -->
-                        <a class="action-delete" onclick="deleteImage(`<?php echo $b['kd_barang'] ?>`)">
-                          <i class="fas fa-trash-alt"></i>
-                        </a>
-                      </td>
-                    </tr>
-                  <?php } ?>
-                </tbody>
-                <tfoot>
-                  <tr class="header-tabel">
-                    <th>Kode</th>
-                    <th>Produk</th>
-                    <th>Stok</th>
-                    <th>Harga Jual</th>
-                    <th>Harga Beli</th>
-                    <th>Harga Grosir</th>
-                    <th>Harga Satuan</th>
-                    <th>Edit</th>
-                  </tr>
-                </tfoot>
-              </table>
-            </div>
-            <div class="badge badge-warning text-title">
-              <i><strong>Harga Jual</strong> dan <strong>Harga Grosir</strong> diatas sudah ditambahkan 5% untuk biaya
-                admin</i>
-            </div>
+                   </div>
 
-          </div>
-        </div>
-        <!-- END: Content-->
+                <?php } ?>
+				
+             </div>
+           <div class="swiper-pagination"></div>
+         </div>
       </div>
-    </div>
-
-    <!---------------------------------------- Modal Kategori ------------------------------------>
-    <div class="modal fade" id="kategori-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-      aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <form action="aksi/add_kategori.php" method="post" enctype="multipart/form-data">
-            <div class="modal-body">
-              <div class="row">
-                <div class="col-12">
-                  <div class="font-small-2 mb-1">Icon</div>
-                  <span class="position-absolute" onclick="delete_image_kategori()">&times;</span>
-                  <br>
-                  <figure class="image-container">
-                    <img id="chosen-image-kategori" style="width: 100% !important">
-                  </figure>
-                  <input class="input-image" type="file" id="upload-button-kategori" name="gambar">
-                  <label class="label-images" for="upload-button-kategori">
-                    <i class="fas fa-upload"></i> &nbsp; Choose A Photo
-                  </label>
-                </div>
-                <div class="col-12">
-                  <div class="font-small-2 mb-1">Nama Kategori</div>
-                  <fieldset class="form-group">
-                    <div class="custom-file">
-                      <input type="text" name="kategori" class="form-control" placeholder="Isi disini" />
-                    </div>
-                  </fieldset>
-                </div>
-                <div class="col-12">
-                  <div class="font-small-2 mb-1">Form</div>
-                  <fieldset class="form-group">
-                    <div class="custom-file">
-                      <select class="select2 form-control" name="form">
-                        <option value="sf">Single Form</option>
-                        <option value="mf">Multi Form</option>
-                      </select>
-                    </div>
-                  </fieldset>
-                </div>
-                <div class="col-12">
-                  <div class="font-small-2 mb-1">Varian</div>
-                </div>
-                <div class="col-4">
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" name="panjang" id="panjang">
-                    <label class="form-check-label" for="panjang">
-                      Panjang
-                    </label>
-                  </div>
-                </div>
-                <div class="col-4">
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" name="lebar" id="lebar">
-                    <label class="form-check-label" for="lebar">
-                      Lebar
-                    </label>
-                  </div>
-                </div>
-                <div class="col-4">
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" name="tinggi" id="tinggi">
-                    <label class="form-check-label" for="tinggi">
-                      Tinggi
-                    </label>
-                  </div>
-                </div>
-                <div class="col-4">
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" name="warna" id="warna">
-                    <label class="form-check-label" for="warna">
-                      Warna
-                    </label>
-                  </div>
-                </div>
-                <div class="col-4">
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" name="type" id="type">
-                    <label class="form-check-label" for="type">
-                      Type
-                    </label>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="submit" name="add_kategori" class="btn btn-primary">Save</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-    <!---------------------------------------- Modal Kategori ------------------------------------>
-
-
-    <!---------------------------------------- Modal Satuan------------------------------------>
-    <div class="modal fade text-left" id="satuan" tabindex="-1" role="dialog" aria-labelledby="myModalLabel20"
-      aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xs" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title font-medium-2" id="myModalLabel20"><i class="fas fa-plus-circle"></i> Tambahkan
-              Satuan baru</h4>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span></button>
-          </div>
-          <form action="aksi/add_satuan.php" method="post" class="form-kategori">
-            <div class="modal-body">
-              <div class="col-12">
-                <div class="font-small-2 mb-1">Nama Satuan</div>
-                <fieldset class="form-group">
-                  <div class="custom-file">
-                    <input type="text" name="satuan" class="form-control" placeholder="Isi disini" />
-                  </div>
-                </fieldset>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="submit" name="add_satuan" class="btn btn-primary">Save</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
+   </section>
+<!-- Multiple Slides Per View swiper ends -->               
+	</div>
   </div>
-  <!---------------------------------------- Modal Satuan------------------------------------>
+    
+<!-- app ecommerce details end -->
 
-  <!---------------------------------------- Modal Merk------------------------------------>
-  <div class="modal fade text-left" id="merk" tabindex="-1" role="dialog" aria-labelledby="myModalLabel20"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xs" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title font-medium-2" id="myModalLabel20"><i class="fas fa-plus-circle"></i> Tambahkan Merk
-            baru</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span></button>
-        </div>
-        <form action="aksi/add_merk.php" method="post" class="form-kategori">
-          <div class="modal-body">
-            <div class="col-12">
-              <div class="font-small-2 mb-1">Nama Merk</div>
-              <fieldset class="form-group">
-                <div class="custom-file">
-                  <input type="text" name="merk" class="form-control" placeholder="Isi disini" />
-                </div>
-              </fieldset>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" name="add_merk" class="btn btn-primary">Save</button>
-          </div>
-        </form>
+<!-----------=============MODAL IMAGE=============================------------------->
+<div class="modal fade text-center" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg pt-5" role="document">
+    <div class="modal-content rounded-0" style="opacity: 0.9">
+       <div class="modal-header bg-transparent"> 
+         <button type="button" class="close rounded-0" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+         </button>
+       </div>
+       <div class="modal-body">         
+		  <div id="carousel-keyboard" class="carousel slide" data-keyboard="true">
+            <ol class="carousel-indicators">
+               <li data-target="#carousel-keyboard" data-slide-to="0" class="active"></li>
+               <li data-target="#carousel-keyboard" data-slide-to="1"></li>
+               <li data-target="#carousel-keyboard" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner" role="listbox">
+               <div class="carousel-item active">
+                 <img class="img-fluid" src="images/produk/1.jpg">
+               </div>
+               <div class="carousel-item">
+                   <img class="img-fluid" src="images/produk/2.jpg">
+               </div>
+               <div class="carousel-item">
+                   <img class="img-fluid" src="images/produk/1.jpg">
+               </div>
+           </div>
+           <a class="carousel-control-prev" href="#carousel-keyboard" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only"></span>
+          </a>
+          <a class="carousel-control-next" href="#carousel-keyboard" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only"></span>
+          </a>
+         </div> 
       </div>
+	 <div class="modal-footer bg-transparent">
+        <h4 class="modal-title" id="myModalLabel1">Ini nama produk yang bagus sekali</h4>
+     </div>
     </div>
   </div>
 </div>
-<!---------------------------------------- Modal Merk------------------------------------>
-<!---------------------------------------- Modal Produk------------------------------------>
-<div class="modal fade" id="modal_produk" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle"
-  aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable" role="document">
-    <form method="post" action="aksi/edit_product.php" enctype="multipart/form-data" class="form-kategori">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title font-medium-2" id="myModalLabel20"><i class="fas fa-plus-circle"></i> Ubah Data Produk
-          </h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span></button>
-        </div>
-        <div class="modal-body">
-          <div class="row">
-            <input type="text" hidden name="kode" id="kd_barang">
-            <input type="text" hidden name="kd_toko" id="kd_toko">
-            <div class="col-12 col-md-12 mt-2 mb-1">
-              <div class="font-small-2">Upload Foto terbaik <span class="badge badge-dark">Max.3 (JPG/JPEG/PNG)</span>
-              </div>
-            </div>
-            <div class="col-4 col-md-4 mb-2 mt-2">
-              <span class="position-absolute" onclick="edit_delete_image1()">&times;</span>
-              <br>
-              <input type="text" name="cek_hapus1" id="cek_hapus1" hidden>
-              <figure class="image-container">
-                <img id="edit-chosen-image1" style="width: 100% !important">
-              </figure>
-
-              <input class="input-image" type="file" id="edit-upload-button1" name="edit-image1">
-              <label class="label-images" for="edit-upload-button1">
-                <i class="fas fa-upload"></i> &nbsp; Choose A Photo
-              </label>
-            </div>
-            <div class="col-4 col-md-4 mb-2 mt-2">
-              <span class="position-absolute" onclick="edit_delete_image2()">&times;</span>
-              <br>
-              <input type="text" name="cek_hapus2" id="cek_hapus2" hidden>
-              <figure class="image-container">
-                <img id="edit-chosen-image2" style="width: 100% !important">
-              </figure>
-
-              <input class="input-image" type="file" id="edit-upload-button2" name="edit-image2">
-              <label class="label-images" for="edit-upload-button2">
-                <i class="fas fa-upload"></i> &nbsp; Choose A Photo
-              </label>
-            </div>
-            <div class="col-4 col-md-4 mb-2 mt-2">
-              <span class="position-absolute" onclick="edit_delete_image3()">&times;</span>
-              <br>
-              <input type="text" name="cek_hapus3" id="cek_hapus3" hidden>
-              <figure class="image-container">
-                <img id="edit-chosen-image3" style="width: 100% !important">
-              </figure>
-
-              <input class="input-image" type="file" id="edit-upload-button3" name="edit-image3">
-              <label class="label-images" for="edit-upload-button3">
-                <i class="fas fa-upload"></i> &nbsp; Choose A Photo
-              </label>
-            </div>
-
-            <div class="col-12 col-md-12">
-              <div class="font-small-2">Masukkan nama produk anda</div>
-              <fieldset class="form-group position-relative has-icon-left input-divider-left">
-                <input type="text" name="nama" id="nm_barang" class="form-control" placeholder="Isi disini" value="" />
-                <div class="form-control-position"><i class="fas fa-box-open"></i>
-                </div>
-              </fieldset>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-6 col-md-6">
-              <div class="font-small-2 mt-1 mb-1">
-                Kategori Produk
-                <!-- <a href="#" class="badge badge-dark" data-toggle="modal" data-target="#kategori">
-                <i class="fas fa-plus-circle"></i>Tambah</a> -->
-              </div>
-              <select name="kategori" id="kategori_edit" class="form-control select2" onchange="pilihVarianEdit()">
-                <option disabled selected>Pilih Kategori</option>
-                <?php error_reporting(0);
-                $ketQuery = "SELECT * FROM tabel_kategori_barang ORDER BY nm_kategori ASC";
-                $executeSat = mysqli_query($koneksi, $ketQuery);
-                while ($k = mysqli_fetch_array($executeSat)) {
-                  ?>
-                  <option value="<?php echo $k['kd_kategori']; ?>">
-                    <?php echo $k['nm_kategori']; ?>
-                  </option>
-                <?php } ?>
-              </select>
-            </div>
-            <div class="col-6 col-md-6">
-              <div class="font-small-2 mt-1 mb-1">
-                Merk Produk
-                <!-- <a href="#" class="badge badge-dark" data-toggle="modal" data-target="#satuan">
-                <i class="fas fa-plus-circle"></i>Tambah</a> -->
-              </div>
-              <select name="merk" id="merk_edit" class="select2 form-control">
-                <option disabled selected>Pilih Merk</option>
-                <?php error_reporting(0);
-                $ketQuery = "SELECT * FROM tabel_merk_barang ORDER BY merk ASC";
-                $executeSat = mysqli_query($koneksi, $ketQuery);
-                while ($s = mysqli_fetch_array($executeSat)) {
-                  ?>
-                  <option value="<?php echo $s['id_merk']; ?>">
-                    <?php echo $s['merk']; ?>
-                  </option>
-                <?php } ?>
-              </select>
-            </div>
-            <div class="col-6 col-md-6">
-              <div class="font-small-2 mt-1 mb-1">
-                Satuan Produk
-                <!-- <a href="#" class="badge badge-dark" data-toggle="modal" data-target="#satuan">
-                <i class="fas fa-plus-circle"></i>Tambah</a> -->
-              </div>
-              <select class="select2 form-control" name="satuan" id="satuan_edit">
-                <option disabled selected>Pilih Satuan</option>
-                <?php error_reporting(0);
-                $ketQuery = "SELECT * FROM tabel_satuan_barang ORDER BY nm_satuan ASC";
-                $executeSat = mysqli_query($koneksi, $ketQuery);
-                while ($s = mysqli_fetch_array($executeSat)) {
-                  ?>
-                  <option value="<?php echo $s['id_satuan']; ?>">
-                    <?php echo $s['nm_satuan']; ?>
-                  </option>
-                <?php } ?>
-              </select>
-            </div>
-          </div>
-
-          <!-- varian -->
-          <div class="row mt-2" id="varian_edit">
-
-          </div>
-
-          <div class="row">
-            <div class="col-6 col-md-4">
-              <div class="font-small-2">Jumlah Stok</div>
-              <div class="d-inline-block mb-1">
-                <div class="input-group">
-                  <input type="number" name="stok" id="stok_edit" class="touchspin rounded-0" value="">
-                </div>
-              </div>
-            </div>
-            <div class="col-6 col-md-4">
-              <div class="font-small-2">Berat (gram)</div>
-              <div class="d-inline-block mb-1">
-                <div class="input-group">
-                  <input type="number" name="berat" id="berat_edit" class="touchspin rounded-0" value="">
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-12 col-md-4">
-              <div class="font-small-2 mb-1">Harga Beli Produk</div>
-              <fieldset class="form-group position-relative has-icon-left input-divider-left">
-                <input type="text" name="harga_beli" id="harga_beli_edit" class="form-control"
-                  placeholder="Isi disini" />
-                <small class="counter-value float-right"><span class="char-count">Tanpa titik dan Rupiah</span></small>
-                <div class="form-control-position"><i class="feather icon-clipboard"></i>
-                </div>
-              </fieldset>
-            </div>
-            <div class="col-12 col-md-4">
-              <div class="font-small-2 mb-1">Harga Jual Produk</div>
-              <fieldset class="form-group position-relative has-icon-left input-divider-left">
-                <input type="text" name="harga_jual" id="harga_jual_edit" class="form-control"
-                  placeholder="Isi disini" />
-                <small class="counter-value float-right"><span class="char-count">Tanpa titik dan Rupiah</span></small>
-                <div class="form-control-position"><i class="feather icon-clipboard"></i>
-                </div>
-              </fieldset>
-            </div>
-            <div class="col-12 col-md-4">
-              <div class="font-small-2 mb-1">Harga Grosir Produk</div>
-              <fieldset class="form-group position-relative has-icon-left input-divider-left">
-                <input type="text" name="harga_grosir" id="harga_grosir_edit" class="form-control"
-                  placeholder="Isi disini" />
-                <small class="counter-value float-right"><span class="char-count">Tanpa titik dan Rupiah</span></small>
-                <div class="form-control-position"><i class="feather icon-clipboard"></i>
-                </div>
-              </fieldset>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-12 mt-1">
-              <div class="font-small-2 mb-1">Deskripsi Produk anda</div>
-              <fieldset class="form-label-group mb-0">
-                <textarea data-length=100 class="form-control char-textarea" rows="3" id="deskripsi_edit"
-                  name="deskripsi">Isi disini</textarea>
-              </fieldset>
-              <small class="counter-value float-right"><span class="char-count">maks.</span> / 100 karakter</small>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <input type="submit" name="upload_edit_product" value="Upload" class="btn btn-primary rounded-0" />
-          <input type="reset" name="" value="Cancel" onClick="hide(0)" class="btn btn-danger rounded-0" />
-        </div>
-      </div>
-    </form>
-  </div>
-</div>
-<!---------------------------------------- Modal Produk------------------------------------>
+<!-----------=============MODAL IMAGE=============================------------------->
 
 
 <script type="text/javascript">
-  // $(document).ready(function() {
-  //   setTimeout(function(){
-  //     window.location.reload(1);
-  //   }, 5000);
-  // });
 
-  let uploadButtonKategori = document.getElementById("upload-button-kategori");
-  let chosenImageKategori = document.getElementById("chosen-image-kategori");
+    $(document).ready(function() {
 
-  uploadButtonKategori.onchange = () => {
-    let reader = new FileReader();
-    reader.readAsDataURL(uploadButtonKategori.files[0]);
-    reader.onload = () => {
-      chosenImageKategori.setAttribute("src", reader.result);
-    }
-  }
+        var jml_rating = $('#jml_rating_det').val();
+        $(".rating").starRating({
+            initialRating: jml_rating,
+            strokeColor: '#894A00',
+            strokeWidth: 10,
+            starSize: 25
+        });
 
-  function delete_image_kategori() {
-    chosenImageKategori.setAttribute("src", "")
-  }
+    })
 
-  let uploadButton1 = document.getElementById("upload-button1");
-  let chosenImage1 = document.getElementById("chosen-image1");
-  let uploadButton2 = document.getElementById("upload-button2");
-  let chosenImage2 = document.getElementById("chosen-image2");
-  let uploadButton3 = document.getElementById("upload-button3");
-  let chosenImage3 = document.getElementById("chosen-image3");
-
-  uploadButton1.onchange = () => {
-    let reader = new FileReader();
-    reader.readAsDataURL(uploadButton1.files[0]);
-    reader.onload = () => {
-      chosenImage1.setAttribute("src", reader.result);
-    }
-  }
-
-  function delete_image1() {
-    chosenImage1.setAttribute("src", "")
-  }
-
-  uploadButton2.onchange = () => {
-    let reader = new FileReader();
-    reader.readAsDataURL(uploadButton2.files[0]);
-    reader.onload = () => {
-      chosenImage2.setAttribute("src", reader.result);
-    }
-  }
-
-  function delete_image2() {
-    chosenImage2.setAttribute("src", "")
-  }
-
-  uploadButton3.onchange = () => {
-    let reader = new FileReader();
-    reader.readAsDataURL(uploadButton3.files[0]);
-    reader.onload = () => {
-      chosenImage3.setAttribute("src", reader.result);
-    }
-  }
-
-  function delete_image3() {
-    chosenImage3.setAttribute("src", "")
-  }
-
-
-  let uploadButtonEdit1 = document.getElementById("edit-upload-button1");
-  let chosenImageEdit1 = document.getElementById("edit-chosen-image1");
-  let uploadButtonEdit2 = document.getElementById("edit-upload-button2");
-  let chosenImageEdit2 = document.getElementById("edit-chosen-image2");
-  let uploadButtonEdit3 = document.getElementById("edit-upload-button3");
-  let chosenImageEdit3 = document.getElementById("edit-chosen-image3");
-
-  uploadButtonEdit1.onchange = () => {
-    let reader = new FileReader();
-    reader.readAsDataURL(uploadButtonEdit1.files[0]);
-    reader.onload = () => {
-      chosenImageEdit1.setAttribute("src", reader.result);
-    }
-  }
-
-  function edit_delete_image1() {
-    chosenImageEdit1.setAttribute("src", "")
-    $('#cek_hapus1').val('1');
-  }
-
-  uploadButtonEdit2.onchange = () => {
-    let reader = new FileReader();
-    reader.readAsDataURL(uploadButtonEdit2.files[0]);
-    reader.onload = () => {
-      chosenImageEdit2.setAttribute("src", reader.result);
-    }
-  }
-
-  function edit_delete_image2() {
-    chosenImageEdit2.setAttribute("src", "")
-    $('#cek_hapus2').val('1');
-  }
-
-  uploadButtonEdit3.onchange = () => {
-    let reader = new FileReader();
-    reader.readAsDataURL(uploadButtonEdit3.files[0]);
-    reader.onload = () => {
-      chosenImageEdit3.setAttribute("src", reader.result);
-    }
-  }
-
-  function edit_delete_image3() {
-    chosenImageEdit3.setAttribute("src", "")
-    $('#cek_hapus3').val('1');
-  }
-
-
-  function pilihVarian() {
-    var x = document.getElementById("kategori").value;
-    var response = '';
-    $.ajax({
-      type: "GET",
-      url: "aksi/select_varian_in_kategori.php?id_kategori=" + x,
-      async: false,
-      success: function (text) {
-        response = text;
-      }
-    });
-    let text = "";
-    let varian = response.replace('"', '');
-    varian = varian.replace('"', '');
-    varian = varian.split(',');
-
-    for (var i = 0; i < varian.length; i++) {
-      if (varian[i] == 'panjang') {
-        text += `<div class="col-6 col-md-4">
-            <div class="font-small-2">Panjang</div>
-               <fieldset class="form-group position-relative has-icon-left input-divider-left">
-                  <input type="text" name="panjang" class="form-control" placeholder="Isi disini" />                     
-               <div class="form-control-position"><i class="fas fa-ruler-horizontal"></i>
-             </div>
-            </fieldset>
-          </div>`
-      } else if (varian[i] == 'lebar') {
-        text += `<div class="col-6 col-md-4">
-            <div class="font-small-2">Lebar</div>
-                <fieldset class="form-group position-relative has-icon-left input-divider-left">
-                   <input type="text" name="lebar" class="form-control" placeholder="Isi disini" />                     
-                <div class="form-control-position"><i class="fas fa-ruler-combined"></i>
-               </div>
-              </fieldset>
-          </div>`
-      } else if (varian[i] == 'tinggi') {
-        text += `<div class="col-6 col-md-4">
-             <div class="font-small-2">Tinggi</div>
-                <fieldset class="form-group position-relative has-icon-left input-divider-left">
-                    <input type="text" name="tinggi" class="form-control" placeholder="Isi disini" />                     
-                 <div class="form-control-position"><i class="fas fa-ruler-vertical"></i>
-                </div>
-               </fieldset>
-          </div>`
-      } else if (varian[i] == 'warna') {
-        text += `<div class="col-6 col-md-4">
-            <div class="font-small-2">Warna</div>
-                 <fieldset class="form-group position-relative has-icon-left input-divider-left">
-                    <input type="text" name="warna" class="form-control" placeholder="Isi disini" />                     
-                 <div class="form-control-position"><i class="fas fa-eye-dropper"></i>
-               </div>
-              </fieldset>
-          </div>`
-      } else if (varian[i] == 'type') {
-        text += `<div class="col-6 col-md-4">
-            <div class="font-small-2">Type</div>
-                 <fieldset class="form-group position-relative has-icon-left input-divider-left">
-                    <input type="text" name="type" class="form-control" placeholder="Isi disini" />                     
-                 <div class="form-control-position"><i class="fas fa-tag"></i>
-               </div>
-              </fieldset>
-          </div>`
-      }
-    }
-    if (text == "") {
-      text += `<div class="col-6 col-md-12">
-            <p class="text-center"> tidak ada varian </p>
-          </div>`
+    function chat_merchant() {
+        var idSender = $("#id_user").val();
+        var idReceiver = $("#id_merchant").val();
+        var chatp = $('#nama_barang').val();
+        if(chatp != ""){
+            $.ajax({
+                url: "add_chat_member.php",
+                type: "post",
+                data: {
+                    idSender: idSender,
+                    idReceiver: idReceiver,
+                    // photo: photo,
+                    chatp: chatp
+                },
+                success: function(data) {
+                    document.getElementById("chat-input").value = "";
+                }
+            })
+        }       
     }
 
-    $("#varian").html(text);
-  }
 
-  function pilihVarianEdit() {
-    var x = document.getElementById("kategori_edit").value;
-    var response = '';
-    $.ajax({
-      type: "GET",
-      url: "aksi/select_varian_in_kategori.php?id_kategori=" + x,
-      async: false,
-      success: function (text) {
-        response = text;
-      }
-    });
-    let text = "";
-    let varian = response.replace('"', '');
-    varian = varian.replace('"', '');
-    varian = varian.split(',');
 
-    for (var i = 0; i < varian.length; i++) {
-      if (varian[i] == 'panjang') {
-        text += `<div class="col-6 col-md-4">
-            <div class="font-small-2">Panjang</div>
-               <fieldset class="form-group position-relative has-icon-left input-divider-left">
-                  <input type="text" name="panjang" class="form-control" placeholder="Isi disini" />                     
-               <div class="form-control-position"><i class="fas fa-ruler-horizontal"></i>
-             </div>
-            </fieldset>
-          </div>`
-      } else if (varian[i] == 'lebar') {
-        text += `<div class="col-6 col-md-4">
-            <div class="font-small-2">Lebar</div>
-                <fieldset class="form-group position-relative has-icon-left input-divider-left">
-                   <input type="text" name="lebar" class="form-control" placeholder="Isi disini" />                     
-                <div class="form-control-position"><i class="fas fa-ruler-combined"></i>
-               </div>
-              </fieldset>
-          </div>`
-      } else if (varian[i] == 'tinggi') {
-        text += `<div class="col-6 col-md-4">
-             <div class="font-small-2">Tinggi</div>
-                <fieldset class="form-group position-relative has-icon-left input-divider-left">
-                    <input type="text" name="tinggi" class="form-control" placeholder="Isi disini" />                     
-                 <div class="form-control-position"><i class="fas fa-ruler-vertical"></i>
-                </div>
-               </fieldset>
-          </div>`
-      } else if (varian[i] == 'warna') {
-        text += `<div class="col-6 col-md-4">
-            <div class="font-small-2">Warna</div>
-                 <fieldset class="form-group position-relative has-icon-left input-divider-left">
-                    <input type="text" name="warna" class="form-control" placeholder="Isi disini" />                     
-                 <div class="form-control-position"><i class="fas fa-eye-dropper"></i>
-               </div>
-              </fieldset>
-          </div>`
-      } else if (varian[i] == 'type') {
-        text += `<div class="col-6 col-md-4">
-            <div class="font-small-2">Type</div>
-                 <fieldset class="form-group position-relative has-icon-left input-divider-left">
-                    <input type="text" name="type" class="form-control" placeholder="Isi disini" />                     
-                 <div class="form-control-position"><i class="fas fa-tag"></i>
-               </div>
-              </fieldset>
-          </div>`
-      }
-    }
-    if (text == "") {
-      text += `<div class="col-6 col-md-12">
-            <p class="text-center"> tidak ada varian </p>
-          </div>`
+    function add_comment(idbarang, nama) {
+        $.ajax({
+            type: "POST",
+            url: "../aksi/add_comment_barang.php",
+            data: {
+                idbarang: idbarang,
+                nama: nama,
+                comment: $("#comment").val()
+            },
+
+            success: function(data) {
+                // alert("Barang sudah ditambahkan ke Keranjang");
+                alert(data);
+                location.reload();
+            }
+        });
     }
 
-    $("#varian_edit").html(text);
-  }
-
-  function deleteImage(id) {
-    console.log(id);
-    $.ajax({
-      type: "GET",
-      url: "aksi/delete_produk.php?id_produk=" + id,
-      async: false,
-      success: function (text) {
-        alert(text);
-      }
-    });
-  }
-
-  function show(id) {
-    var response = [];
-    var gambar = "";
-    let text = "";
-
-    chosenImageEdit1.setAttribute("src", "");
-    chosenImageEdit2.setAttribute("src", "");
-    chosenImageEdit3.setAttribute("src", "");
-
-    $('#cek_hapus1').val('');
-    $('#cek_hapus2').val('');
-    $('#cek_hapus3').val('');
-
-    $.ajax({
-      type: "GET",
-      url: "aksi/show_produk.php?id_produk=" + id,
-      async: false,
-      success: function (text) {
-        response = JSON.parse(text);
-      }
-    });
-    console.log(response);
-    $('#kd_barang').val(response.barang.kd_barang);
-    $('#kd_toko').val(response.barang.kd_toko);
-    $('#nm_barang').val(response.barang.nm_barang);
-    $('#kategori_edit option[value="' + response.barang.kd_kategori + '"]').prop('selected', true);
-    $('#satuan_edit option[value="' + response.barang.kd_satuan + '"]').prop('selected', true);
-    $('#merk_edit option[value="' + response.barang.merek + '"]').prop('selected', true);
-    $('#stok_edit').val(response.stok.stok);
-    $('#harga_beli_edit').val(response.barang.hrg_beli);
-    $('#harga_jual_edit').val(response.barang.hrg_jual);
-    $('#harga_grosir_edit').val(response.barang.hrg_grosir);
-    $('#deskripsi_edit').val(response.barang.deskripsi);
-
-    if (response.barang.panjang != "") {
-      text += `<div class="col-6 col-md-4">
-          <div class="font-small-2">Panjang</div>
-             <fieldset class="form-group position-relative has-icon-left input-divider-left">
-                <input type="text" name="panjang" value="${response.barang.panjang}" class="form-control" placeholder="Isi disini" />                     
-             <div class="form-control-position"><i class="fas fa-ruler-horizontal"></i>
-           </div>
-          </fieldset>
-        </div>`
-    }
-    if (response.barang.lebar != "") {
-      text += `<div class="col-6 col-md-4">
-          <div class="font-small-2">Lebar</div>
-              <fieldset class="form-group position-relative has-icon-left input-divider-left">
-                 <input type="text" name="lebar" value="${response.barang.lebar}" class="form-control" placeholder="Isi disini" />                     
-              <div class="form-control-position"><i class="fas fa-ruler-combined"></i>
-             </div>
-            </fieldset>
-        </div>`
-    }
-    if (response.barang.tinggi != "") {
-      text += `<div class="col-6 col-md-4">
-           <div class="font-small-2">Tinggi</div>
-              <fieldset class="form-group position-relative has-icon-left input-divider-left">
-                  <input type="text" name="tinggi" value="${response.barang.tinggi}" class="form-control" placeholder="Isi disini" />                     
-               <div class="form-control-position"><i class="fas fa-ruler-vertical"></i>
-              </div>
-             </fieldset>
-        </div>`
-    }
-    if (response.barang.warna != "") {
-      text += `<div class="col-6 col-md-4">
-          <div class="font-small-2">Warna</div>
-               <fieldset class="form-group position-relative has-icon-left input-divider-left">
-                  <input type="text" name="warna" value="${response.barang.warna}" class="form-control" placeholder="Isi disini" />                     
-               <div class="form-control-position"><i class="fas fa-eye-dropper"></i>
-             </div>
-            </fieldset>
-        </div>`
-    }
-    if (response.barang.tipe != "") {
-      text += `<div class="col-6 col-md-4">
-          <div class="font-small-2">Type</div>
-               <fieldset class="form-group position-relative has-icon-left input-divider-left">
-                  <input type="text" name="type" value="${response.barang.tipe}" class="form-control" placeholder="Isi disini" />                     
-               <div class="form-control-position"><i class="fas fa-tag"></i>
-             </div>
-            </fieldset>
-        </div>`
-    }
-    $("#varian_edit").html(text);
-    gambar = response.gambar.gambar
-    gambar = gambar.split(',');
-    console.log(gambar[2]);
-
-    if (gambar[0] != "kosong") {
-      chosenImageEdit1.setAttribute("src", "../images/produk/" + gambar[0]);
-
-    }
-    if (gambar[1] != "kosong") {
-      chosenImageEdit2.setAttribute("src", "../images/produk/" + gambar[1]);
-
-    }
-    if (gambar[2] != "kosong") {
-      chosenImageEdit3.setAttribute("src", "../images/produk/" + gambar[2]);
-    }
-    $("#modal_produk").modal('show');
-  }
 </script>
+<script type="text/javascript">
+
+function add_keranjang(stok, kdbarang, kdToko, idUser) {
+    // console.log(stok, kdToko, kdbarang, idUser);
+    if (stok <= 0) {
+        alert('stok habis')
+    } else {
+        $.ajax({
+            type: "POST",
+            url: "../aksi/add_keranjang.php",
+            data: {
+                kd_barang: kdbarang,
+                id_user: idUser,
+                kd_toko: kdToko
+            },
+            success: function(data) {
+                // alert("Barang sudah ditambahkan ke Keranjang");
+                window.location.href = "../page/index.php?menu=checkout";
+            }
+        });
+    }
+}
+
+function pilihKategori(kd_kategori, nm_kategori) {
+    var produk = document.getElementById('produk');
+    $('#all-produk').remove();
+    $('#judul_produk').val(nm_kategori);
+    nm_toko = $('#nama-toko').val();
+    $.ajax({
+        type: "GET",
+        url: '../aksi/produk_kategori.php?key=' + kd_kategori + '&nama_toko=' + nm_toko,
+        dataType: "html",
+        async: false,
+        success: function(text) {
+            produk.innerHTML = text;
+        }
+    });
+}
+
+</script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
