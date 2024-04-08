@@ -216,7 +216,13 @@ if (isset($_POST['submit'])) {
                   <div class="form-group">
                     <label>Lokasi Tujuan</label>
                     <input class="form-control" id="to_places" placeholder="Lokasi Tujuan" required />
+                    <br>
+                    <button type="button" class="btn btn-primary btn-xs" id="select_location">
+                      <i class="fas fa-map-marker-alt"></i> &nbsp;
+                      PILIH LOKASI TUJUAN
+                    </button>
                   </div>
+
                   <input type="hidden" name="destination" id="destination" required="" readonly />
                   <input type="hidden" name="des_latitude" id="des_latitude" readonly>
                   <input type="hidden" name="des_longitude" id="des_longitude" readonly>
@@ -327,7 +333,7 @@ if (isset($_POST['submit'])) {
                   <div class="btn box-affiliate-member" href="">
                     <input type="hidden" class="form-control" readonly name="id_order" id="id_order"
                       value="<?php echo $m['id']; ?>">
-                    <div class="col-12" style="">
+                    <div class="col-12">
                       <div class="controls">
                         <h5 class="font-small-3" style="color: black; font-weight:600;">
                           <?php echo $m['nm_lokasi_awal'] ?></i> - <i>
@@ -452,6 +458,59 @@ if (isset($_POST['submit'])) {
       var latitude = $("#latitude").val();
       var longitude = $("#longitude").val();
       initMap(latitude, longitude);
+    });
+
+    $('#select_location').click(function () {
+      // Tampilkan peta
+      $('#map').show();
+      // Gulir ke bagian peta
+      $('html, body').animate({
+        scrollTop: $('#map').offset().top
+      }, 'slow');
+
+      var myLatLng = {
+        lat: parseFloat($("#latitude").val()),
+        lng: parseFloat($("#longitude").val())
+      };
+
+      map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 12,
+        center: myLatLng
+      });
+
+      var marker = new google.maps.Marker({
+        position: map.getCenter(),
+        map: map,
+        draggable: true
+      });
+
+      google.maps.event.addListener(marker, 'dragend', function (event) {
+        var geocoder = new google.maps.Geocoder();
+        var latlng = {
+          lat: parseFloat(event.latLng.lat()),
+          lng: parseFloat(event.latLng.lng())
+        };
+        // Panggil geocoder untuk mendapatkan alamat
+        geocoder.geocode({ 'location': latlng }, function (results, status) {
+          if (status === google.maps.GeocoderStatus.OK) {
+            if (results[0]) {
+              $('#to_places').val(results[0].formatted_address);
+
+              // Dapatkan informasi tempat menggunakan Places API
+              var to_place = map.getCenter();
+              var to_address = results[0].formatted_address;
+              $('#destination').val(to_address);
+              $('#des_latitude').val(to_place.lat());
+              $('#des_longitude').val(to_place.lng());
+              // $('#des_name').val(""); // Tidak ada nama yang diberikan oleh Geocoder
+            } else {
+              console.log('Alamat tidak ditemukan');
+            }
+          } else {
+            console.log('Geocoder gagal, status: ' + status);
+          }
+        });
+      });
     });
 
     // init or load map
@@ -605,6 +664,7 @@ if (isset($_POST['submit'])) {
       if (responses && responses.length > 0) {
         $("#origin").val(responses[1].formatted_address);
         $("#from_places").val(responses[1].formatted_address);
+        $("#to_places").val(responses[1].formatted_address);
         //    console.log(responses[1].formatted_address);
       } else {
         alert("Cannot determine address at this location.")
