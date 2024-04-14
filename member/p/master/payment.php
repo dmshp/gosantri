@@ -1,6 +1,6 @@
 <?php
 $id_user = $_SESSION['id_user'];
-// debet jika status 1, kredit jika status 1 atau status 0 saat penarikan
+//debet jika status 1, kredit jika status 1 atau status 0 saat penarikan
 $kurir = mysqli_fetch_array(mysqli_query($koneksi, "SELECT SUM(CASE WHEN arus=0 and status=1 THEN `nominal` END) as saldo, SUM(CASE WHEN (arus=1 and status=1) or (arus=1 and status=0 and no_faktur_pembelian='') THEN `nominal` END) as wd FROM `tabel_keuangan` WHERE `id_member`=$id_user"));
 $saldo = $kurir['saldo'] - $kurir['wd'];
 
@@ -33,16 +33,17 @@ $data = mysqli_fetch_array($execute);
                 <div class="card-body d-flex justify-content-center align-items-center flex-column">
                   <div>
                     <h1 class="mb-0 text-center text-success border-bottom-primary border-2 round p-1 font-weight-bold">
-                      <sup class="font-medium-2 text-dark">Rp. </sup>
-                      <?= number_format($saldo, 0, ",", "."); ?>
+                      <sup class="font-medium-2 text-dark">Rp. </sup><?= number_format($saldo, 0, ",", "."); ?>
                     </h1>
                     <small class="text-muted">Selalu cek saldo, demi kelancaran
                       <b>Transaksi </b>anda</small>
-                    <h5 class="mt-1">
-                      <span class="text-success">Transaksi Terakhir <sup>Rp. </sup>
-                        <?php echo !empty($b['nominal']) ? number_format($b['nominal'], 0, ",", ".") : "0"; ?>
-                      </span>
-                    </h5>
+                    <?php
+                    $nominal = isset($b['nominal']) ? $b['nominal'] : 0; // Jika $b['nominal'] null, maka gunakan 0
+                    ?>
+
+                    <h5 class="mt-1"><span class="text-success">Transaksi Terakhir <sup>Rp.
+                        </sup><?= number_format($nominal, 0, ",", "."); ?></span></h5>
+
                   </div>
                 </div>
                 <div class="btn-group">

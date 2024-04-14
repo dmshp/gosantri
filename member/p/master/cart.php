@@ -1,3 +1,10 @@
+<?php
+// error_reporting(0);
+$idUser = isset($_SESSION['id_user']) ? $_SESSION['id_user'] : '';
+$akses = isset($_SESSION['akses']) ? $_SESSION['akses'] : '';
+
+?>
+
 <div class="card mt-2">
   <div class="card-content">
     <div class="divider">
@@ -18,7 +25,7 @@
                     <div class="col-5">
                       <div class="item-img text-center">
                         <a href="?menu=product">
-                          <img src="../images/produk/1.jpg" class="img-fluid" width="100%">
+                          <img src="images/produk/1.jpg" class="img-fluid" width="100%">
                         </a>
                       </div>
                     </div>
@@ -92,8 +99,39 @@
         <!-- Step 2 -->
         <h6><i class="step-icon fa-solid fa-map-location-dot"></i> Alamat</h6>
         <fieldset>
-          Sama seperti sebelumnya
+
+          <?php
+          // Ambil alamat dari database
+          $query_comment = "SELECT * FROM tabel_member WHERE id_user = '$idUser' ";
+          $hasil = mysqli_query($koneksi, $query_comment);
+          if ($hasil) {
+            while ($row = mysqli_fetch_assoc($hasil)) {
+              $idUser = $row['id_user']; // Menetapkan nilai $idUser dari hasil query
+              $alamat = $row['alamat_user']; // Mengambil alamat dari hasil query
+              ?>
+              <hr>
+              <label for="alamat">Alamat Pofile Anda</label>
+            <input type="text" class="form-control" id="alamat" name="alamat"
+              value="<?php echo $alamat; ?>" readonly>
+              <?php
+            }
+          } else {
+            // Handle error jika query tidak berhasil
+            echo "Error: " . mysqli_error($koneksi);
+          }
+          ?>
+
+          <!-- Form input untuk mengubah alamat -->
+          <div class="form-group">
+            <br>
+            <label for="alamat">Alamat</label>
+            <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Masukkan alamat baru"
+              value="<?php echo $alamat; ?>">
+          </div>
+
         </fieldset>
+
+
 
 
 

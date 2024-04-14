@@ -43,7 +43,7 @@
                     <div class="row">           
                         <div class="col-6">
                              <a href="#" data-toggle="modal" data-target="#imagemodal">
-                                <img class="img-fluid img-thumbnail" src="../img/produk/<?php echo $fotoProduk[0]; ?>">
+                                <img class="img-fluid img-thumbnail" src="images/produk/<?php echo $fotoProduk[0]; ?>">
                                   <div class="card-img-overlay overflow-hidden overlay-lighten-3">
                                     <h4 class="card-title badge badge-up badge-danger mr-2 mt-2 round">
                                         <i class="fa-solid fa-magnifying-glass-plus"></i></h4>
@@ -146,7 +146,7 @@
                         <hr>
                         <div class="d-flex justify-content-start align-items-center mb-1">
                             <div class="avatar mr-50">
-                              <img src="../img/user/<?php echo $images; ?>" alt="Avatar" height="30" width="30">
+                              <img src="images/user/<?php echo $images; ?>" alt="Avatar" height="30" width="30">
                             </div>
                             <div class="user-page-info">
                                 <h6 class="mb-0"><?php echo substr($comment['nm_user'],0,2) ?>***</h6>
@@ -181,7 +181,7 @@
                 ?>
                    <div class="swiper-slide" style="margin: 0px"> 
                         <a href="?menu=produk&kd_barang=<?php echo $produk['kd_barang']; ?>">
-                            <img class="img-fluid img-kecil" src="../img/produk/<?php echo $gambars[0]; ?>">
+                            <img class="img-fluid img-kecil" src="images/produk/<?php echo $gambars[0]; ?>">
                             <p class="font-small-2"><?php echo $produk['nm_barang']; ?></p>
                         </a>
                    </div>
@@ -217,13 +217,13 @@
             </ol>
             <div class="carousel-inner" role="listbox">
                <div class="carousel-item active">
-                 <img class="img-fluid" src="../img/produk/1.jpg">
+                 <img class="img-fluid" src="images/produk/1.jpg">
                </div>
                <div class="carousel-item">
-                   <img class="img-fluid" src="../img/produk/2.jpg">
+                   <img class="img-fluid" src="images/produk/2.jpg">
                </div>
                <div class="carousel-item">
-                   <img class="img-fluid" src="../img/produk/1.jpg">
+                   <img class="img-fluid" src="images/produk/1.jpg">
                </div>
            </div>
            <a class="carousel-control-prev" href="#carousel-keyboard" role="button" data-slide="prev">
