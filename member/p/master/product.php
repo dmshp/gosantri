@@ -85,7 +85,7 @@
                         </div> 
                         <div class="col-12">
                             <div class="text-center mt-2"> 
-                                 <a href="?menu=cart" class="badge badge-primary badge-md pr-1 pl-1 round">
+                                 <a href="?menu=cart&kd_barang=<?php echo $d['kd_barang']; ?>" class="badge badge-primary badge-md pr-1 pl-1 round">
                                      <i class="fa-solid fa-cart-arrow-down mr-1"></i><small>BELI</small></a>                     
                                  <a class="badge badge-info badge-md pr-1 pl-1 round" href="?menu=merchant">
                                      <i class="fa-solid fa-store mr-1"></i><small>CEK TOKO</small></a>
