@@ -71,128 +71,160 @@ if (isset($_GET['code'])) {
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
   <!-- END: Custom CSS-->
 
+  <style>
+    .password-container {
+      position: relative;
+    }
+
+    .password-container .field-icon {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+    }
+  </style>
 </head>
 <!-- END: Head-->
 
 <!-- BEGIN: Body-->
 
-<body class="horizontal-layout horizontal-menu 1-column  navbar-floating footer-static bg-full-screen-image  blank-page blank-page" data-open="hover" data-menu="horizontal-menu" data-col="1-column" style="background-image: url('images/backgrounds/bg.jpg');background-repeat: no-repeat;background-attachment: fixed;  background-position: center; " >
-<!-- BEGIN: Content-->
-	<div class="app-content content">
-      <div class="content-overlay"></div>
-      <div class="header-navbar-shadow"></div>
-      <div class="content-wrapper">
-            
-       <div class="content-body" style="opacity: 80%">
+<body
+  class="horizontal-layout horizontal-menu 1-column  navbar-floating footer-static bg-full-screen-image  blank-page blank-page"
+  data-open="hover" data-menu="horizontal-menu" data-col="1-column"
+  style="background-image: url('images/backgrounds/bg.jpg');background-repeat: no-repeat;background-attachment: fixed;  background-position: center; ">
+  <!-- BEGIN: Content-->
+  <div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="header-navbar-shadow"></div>
+    <div class="content-wrapper">
+
+      <div class="content-body" style="opacity: 80%">
         <section class="row flexbox-container">
           <div class="col-xl-10 col-10 d-flex justify-content-center">
-           <div class="card round mb-0">
-             <div class="row m-0 mr-0 ml-0">
-               <div class="col-lg-4 text-center align-self-center p-1">
-                 <img src="images/logo/logo-circle.png" width="90">
-               </div>
-               <div class="col-lg-8 col-12">
-                 <div class="card rounded-0 mb-0 px-0">
-                  <div class="card-header pb-1">
-                   <div class="card-title">
-                    <h4 class="mb-0">Selamat Datang
-						<p class="font-small-2">Login Nama Aplikasi &#8482; </p></h4>
+            <div class="card round mb-0">
+              <div class="row m-0 mr-0 ml-0">
+                <div class="col-lg-4 text-center align-self-center p-1">
+                  <img src="images/logo/logo-circle.png" width="90">
+                </div>
+                <div class="col-lg-8 col-12">
+                  <div class="card rounded-0 mb-0 px-0">
+                    <div class="card-header pb-1">
+                      <div class="card-title">
+                        <h4 class="mb-0">Selamat Datang
+                          <p class="font-small-2">Login Nama Aplikasi &#8482; </p>
+                        </h4>
+                      </div>
+                    </div>
+
+                    <div class="card-content">
+                      <div class="card-body pt-1">
+                        <form action="./aut/aksi_login.php" method="post">
+                          <fieldset class="form-label-group form-group position-relative has-icon-left">
+                            <input type="text" class="form-control" name="nama" placeholder="username" required>
+                            <div class="form-control-position">
+                              <i class="feather icon-user"></i>
+                            </div>
+                            <label for="user-name">Username</label>
+                          </fieldset>
+
+
+                          <div class="password-container">
+                            <fieldset class="form-label-group position-relative has-icon-left">
+                              <input type="password" class="form-control" name="pass" id="password"
+                                placeholder="Password" required>
+                              <span toggle="#password" class="feather icon-eye field-icon toggle-password"></span>
+                              <div class="form-control-position">
+                                <i class="feather icon-lock"></i>
+                              </div>
+                              <label for="user-password">Password</label>
+                            </fieldset>
+                          </div>
+
+
+                          <div class="form-group d-flex justify-content-between align-items-center">
+                            <div class="text-left">
+                              <fieldset class="checkbox">
+                                <div class="vs-checkbox-con vs-checkbox-primary">
+                                  <input type="checkbox">
+                                  <span class="vs-checkbox">
+                                    <span class="vs-checkbox--check">
+                                      <i class="vs-icon feather icon-check"></i>
+                                    </span>
+                                  </span>
+                                  <span class="">Ingat saya</span>
+                                </div>
+                              </fieldset>
+                            </div>
+                            <div class="text-right">
+                              <a href="#" class="card-link">Lupa kata sandi?</a>
+                            </div>
+                          </div>
+                          <div class="text-center">
+                            <div class="btn-group">
+                              <a href="register.php"
+                                class="btn btn-outline-primary round float-left btn-inline">Register</a>
+                              <button type="" name="button_login"
+                                class="btn round gradient-light-primary float-right btn-inline">Login</button>
+                            </div>
+                          </div>
+                        </form>
+
+                      </div>
+                    </div>
+                    <div class="login-footer text-center">
+
+                      <div class="divider">
+                        <div class="divider-text">OR</div>
+                      </div>
+
+                      <div class="footer-btn d-inline">
+                        <!--<a href="#" class="btn btn-facebook round"><span class="fa fa-facebook"></span></a>
+           <a href="#" class="btn btn-google round"><span class="fa fa-google"></span></a>-->
+                        <a href="#"><img src="images/ico/sign-google.png" width="175"></a>
+                      </div>
+
+                      <div class="divider">
+                        <div class="divider-text">© <?php echo date('Y'); ?></div>
+                      </div>
                     </div>
                   </div>
-                                        
-                 <div class="card-content">
-                    <div class="card-body pt-1">
-                      <form action="./aut/aksi_login.php" method="post">
-                       <fieldset class="form-label-group form-group position-relative has-icon-left">
-                          <input type="text" class="form-control" name="nama" placeholder="username" required>
-                       <div class="form-control-position">
-                         <i class="feather icon-user"></i>
-                        </div>
-                        <label for="user-name">Username</label>
-                       </fieldset>
-
-                       <fieldset class="form-label-group position-relative has-icon-left">
-                         <input type="password" class="form-control" name="pass" placeholder="Password" required>
-                         <div class="form-control-position">
-                           <i class="feather icon-lock"></i>
-                         </div>
-                         <label for="user-password">Password</label>
-                       </fieldset>
-                                                    
-					<div class="form-group d-flex justify-content-between align-items-center">
-                       <div class="text-left">
-                         <fieldset class="checkbox">
-                           <div class="vs-checkbox-con vs-checkbox-primary">
-                             <input type="checkbox">
-                                <span class="vs-checkbox">
-                                  <span class="vs-checkbox--check">
-                                     <i class="vs-icon feather icon-check"></i>
-                                  </span>
-                                </span>
-                              <span class="">Ingat saya</span>
-                             </div>
-                          </fieldset>
-                        </div>
-                        <div class="text-right">
-							<a href="#" class="card-link">Lupa kata sandi?</a>
-						</div>
-                      </div>
-                   <div class="text-center">                                 
-					<div class="btn-group">		
-						<a href="register.php" class="btn btn-outline-primary round float-left btn-inline">Register</a>
-                        <button type="" name="button_login" class="btn round gradient-light-primary float-right btn-inline">Login</button>
-					</div>
-				  </div>	   
-                </form>
-            
-			</div>
-         </div>
-        <div class="login-footer text-center">
-											
-        <div class="divider">
-           <div class="divider-text">OR</div>
-        </div>
-                                            
-	    <div class="footer-btn d-inline">
-           <!--<a href="#" class="btn btn-facebook round"><span class="fa fa-facebook"></span></a>
-           <a href="#" class="btn btn-google round"><span class="fa fa-google"></span></a>-->
-		   <a href="#"><img src="images/ico/sign-google.png" width="175"></a>	
-        </div>
-											
-       <div class="divider">
-            <div class="divider-text">© <?php echo date('Y'); ?></div>
-       </div>
-       </div>
+                </div>
+              </div>
+            </div>
+          </div>
       </div>
-     </div>
+      </section>
+
     </div>
-   </div>
   </div>
- </div>
-</section>
+  </div>
+  <!-- END: Content-->
+  <script>
+    document.querySelector('.toggle-password').addEventListener('click', function () {
+      const passwordInput = document.getElementById('password');
+      const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+      passwordInput.setAttribute('type', type);
+      this.classList.toggle('icon-eye-off');
+    });
+  </script>
 
- </div>
- </div>
-</div>	
-<!-- END: Content-->
+  <!-- BEGIN: Vendor JS-->
+  <script src="app-assets/vendors/js/vendors.min.js"></script>
+  <!-- BEGIN Vendor JS-->
 
+  <!-- BEGIN: Page Vendor JS-->
+  <script src="app-assets/vendors/js/ui/jquery.sticky.js"></script>
+  <!-- END: Page Vendor JS-->
 
-<!-- BEGIN: Vendor JS-->
-<script src="app-assets/vendors/js/vendors.min.js"></script>
-<!-- BEGIN Vendor JS-->
+  <!-- BEGIN: Theme JS-->
+  <script src="app-assets/js/core/app-menu.js"></script>
+  <script src="app-assets/js/core/app.js"></script>
+  <script src="app-assets/js/scripts/components.js"></script>
+  <!-- END: Theme JS-->
 
-<!-- BEGIN: Page Vendor JS-->
-<script src="app-assets/vendors/js/ui/jquery.sticky.js"></script>
-<!-- END: Page Vendor JS-->
-
-<!-- BEGIN: Theme JS-->
-<script src="app-assets/js/core/app-menu.js"></script>
-<script src="app-assets/js/core/app.js"></script>
-<script src="app-assets/js/scripts/components.js"></script>
-<!-- END: Theme JS-->
-
-    <!-- BEGIN: Page JS-->
-    <!-- END: Page JS-->
+  <!-- BEGIN: Page JS-->
+  <!-- END: Page JS-->
 
 </body>
 <!-- END: Body-->

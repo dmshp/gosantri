@@ -15,19 +15,19 @@ session_start();
 require_once './inc/config.php';
 
 if (isset($_GET['code'])) {
-  $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
-  $client->setAccessToken($token);
+	$token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
+	$client->setAccessToken($token);
 
-  // getting user profile
-  $gauth = new Google_Service_Oauth2($client);
-  $google_info = $gauth->userinfo->get();
+	// getting user profile
+	$gauth = new Google_Service_Oauth2($client);
+	$google_info = $gauth->userinfo->get();
 
-  $_SESSION['info'] = [
-    'name' => $google_info->name,
-    'email' => $google_info->email,
-    'picture' => $google_info->picture
-  ];
-  header('Location: /p/aut/google-login/login_google.php');
+	$_SESSION['info'] = [
+		'name' => $google_info->name,
+		'email' => $google_info->email,
+		'picture' => $google_info->picture
+	];
+	header('Location: /p/aut/google-login/login_google.php');
 }
 ?>
 <!DOCTYPE html>
@@ -35,42 +35,55 @@ if (isset($_GET['code'])) {
 <!-- BEGIN: Head-->
 
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-  <meta name="description" content="<?php echo $toko; ?>">
-  <meta name="keywords" content="<?php echo $toko; ?>">
-  <meta name="author" content="<?php echo $toko; ?>">
-  <title>.:
-    <?php echo $toko; ?> :.
-  </title>
-  <link rel="apple-touch-icon" href="images/ico/apple-icon-120.png">
-  <link rel="icon" type="image/png" href="./images/logo/<?php echo $logo; ?>" />
-  <link rel="shortcut icon" type="image/x-icon" href="images/ico/favicon.ico">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+	<meta name="description" content="<?php echo $toko; ?>">
+	<meta name="keywords" content="<?php echo $toko; ?>">
+	<meta name="author" content="<?php echo $toko; ?>">
+	<title>.:
+		<?php echo $toko; ?> :.
+	</title>
+	<link rel="apple-touch-icon" href="images/ico/apple-icon-120.png">
+	<link rel="icon" type="image/png" href="./images/logo/<?php echo $logo; ?>" />
+	<link rel="shortcut icon" type="image/x-icon" href="images/ico/favicon.ico">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">
 
-  <!-- BEGIN: Vendor CSS-->
-  <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/vendors.min.css">
-  <!-- END: Vendor CSS-->
+	<!-- BEGIN: Vendor CSS-->
+	<link rel="stylesheet" type="text/css" href="app-assets/vendors/css/vendors.min.css">
+	<!-- END: Vendor CSS-->
 
-  <!-- BEGIN: Theme CSS-->
-  <link rel="stylesheet" type="text/css" href="app-assets/css/bootstrap.css">
-  <link rel="stylesheet" type="text/css" href="app-assets/css/bootstrap-extended.css">
-  <link rel="stylesheet" type="text/css" href="app-assets/css/colors.css">
-  <link rel="stylesheet" type="text/css" href="app-assets/css/components.css">
-  <link rel="stylesheet" type="text/css" href="app-assets/css/themes/dark-layout.css">
-  <link rel="stylesheet" type="text/css" href="app-assets/css/themes/semi-dark-layout.css">
+	<!-- BEGIN: Theme CSS-->
+	<link rel="stylesheet" type="text/css" href="app-assets/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="app-assets/css/bootstrap-extended.css">
+	<link rel="stylesheet" type="text/css" href="app-assets/css/colors.css">
+	<link rel="stylesheet" type="text/css" href="app-assets/css/components.css">
+	<link rel="stylesheet" type="text/css" href="app-assets/css/themes/dark-layout.css">
+	<link rel="stylesheet" type="text/css" href="app-assets/css/themes/semi-dark-layout.css">
 
-  <!-- BEGIN: Page CSS-->
-  <link rel="stylesheet" type="text/css" href="app-assets/css/core/menu/menu-types/horizontal-menu.css">
-  <link rel="stylesheet" type="text/css" href="app-assets/css/core/colors/palette-gradient.css">
-  <link rel="stylesheet" type="text/css" href="app-assets/css/pages/authentication.css">
-  <!-- END: Page CSS-->
+	<!-- BEGIN: Page CSS-->
+	<link rel="stylesheet" type="text/css" href="app-assets/css/core/menu/menu-types/horizontal-menu.css">
+	<link rel="stylesheet" type="text/css" href="app-assets/css/core/colors/palette-gradient.css">
+	<link rel="stylesheet" type="text/css" href="app-assets/css/pages/authentication.css">
+	<!-- END: Page CSS-->
 
-  <!-- BEGIN: Custom CSS-->
-  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-  <!-- END: Custom CSS-->
+	<!-- BEGIN: Custom CSS-->
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<!-- END: Custom CSS-->
 
+	<style>
+		.password-container {
+			position: relative;
+		}
+
+		.password-container .field-icon {
+			position: absolute;
+			right: 10px;
+			top: 50%;
+			transform: translateY(-50%);
+			cursor: pointer;
+		}
+	</style>
 </head>
 <!-- END: Head-->
 
@@ -128,23 +141,37 @@ if (isset($_GET['code'])) {
 													<label for="user-name">Email</label>
 												</fieldset>
 
-												<fieldset class="form-label-group position-relative has-icon-left">
-													<input type="password" class="form-control" name="pass"
-														placeholder="Password" required>
-													<div class="form-control-position">
-														<i class="feather icon-lock"></i>
-													</div>
-													<label for="user-password">Password</label>
-												</fieldset>
 
-												<fieldset class="form-label-group position-relative has-icon-left">
-													<input type="password" class="form-control" name="pass1"
-														placeholder="Ketik Ulang Password" required>
-													<div class="form-control-position">
-														<i class="feather icon-lock"></i>
+												<div class="password-container">
+													<fieldset class="form-label-group position-relative has-icon-left">
+														<input type="password" class="form-control" name="pass"
+															id="password1" placeholder="Password" required>
+														<span toggle="#password1"
+															class="feather icon-eye field-icon toggle-password"></span>
+														<div class="form-control-position">
+															<i class="feather icon-lock"></i>
+														</div>
+														<label for="password1">Password</label>
+													</fieldset>
+												</div>
+
+												<div class="password-container">
+													<fieldset class="form-label-group position-relative has-icon-left" style="margin-bottom: 10px;">
+														<input type="password" class="form-control"
+															name="pass_confirmation" id="password2"
+															placeholder="Password" required>
+														<span toggle="#password2"
+															class="feather icon-eye field-icon toggle-password"></span>
+														<div class="form-control-position">
+															<i class="feather icon-lock"></i>
+														</div>
+														<label for="password2">Ketik ulang password</label>
+													</fieldset>
+													<div class="error-container" style="margin-bottom: 10px;">
+														<span id="password-error" class="text-danger"></span>
 													</div>
-													<label for="user-password">Ketik Ulang Password</label>
-												</fieldset>
+												</div>
+
 
 												<fieldset
 													class="form-label-group form-group position-relative has-icon-left">
@@ -226,7 +253,45 @@ if (isset($_GET['code'])) {
 	</div>
 	<!-- END: Content-->
 
+	
 
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			// Toggle password visibility
+			var togglePassword = document.querySelectorAll('.toggle-password');
+			togglePassword.forEach(function (element) {
+				element.addEventListener('click', function () {
+					var passwordInput = document.querySelector(this.getAttribute('toggle'));
+					if (passwordInput.type === "password") {
+						passwordInput.type = "text";
+						this.classList.remove('icon-eye');
+						this.classList.add('icon-eye-off');
+					} else {
+						passwordInput.type = "password";
+						this.classList.remove('icon-eye-off');
+						this.classList.add('icon-eye');
+					}
+				});
+			});
+
+			// Validate password confirmation
+			document.getElementById("password2").addEventListener("input", function () {
+				validatePassword();
+			});
+
+			function validatePassword() {
+				var password1 = document.getElementById("password1").value;
+				var password2 = document.getElementById("password2").value;
+				var error = document.getElementById("password-error");
+
+				if (password1 !== password2) {
+					error.textContent = "Password tidak cocok!";
+				} else {
+					error.textContent = "";
+				}
+			}
+		});
+		</script>
 	<!-- BEGIN: Vendor JS-->
 	<script src="app-assets/vendors/js/vendors.min.js"></script>
 	<!-- BEGIN Vendor JS-->

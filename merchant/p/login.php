@@ -70,7 +70,19 @@ if (isset($_GET['code'])) {
   <!-- BEGIN: Custom CSS-->
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
   <!-- END: Custom CSS-->
+  <style>
+    .password-container {
+      position: relative;
+    }
 
+    .password-container .field-icon {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+    }
+  </style>
 </head>
 <!-- END: Head-->
 
@@ -117,13 +129,18 @@ if (isset($_GET['code'])) {
                             <label for="user-name">Username</label>
                           </fieldset>
 
-                          <fieldset class="form-label-group position-relative has-icon-left">
-                            <input type="password" class="form-control" name="pass" placeholder="Password" required>
-                            <div class="form-control-position">
-                              <i class="feather icon-lock"></i>
-                            </div>
-                            <label for="user-password">Password</label>
-                          </fieldset>
+                          <div class="password-container">
+                            <fieldset class="form-label-group position-relative has-icon-left">
+                              <input type="password" class="form-control" name="pass" id="password"
+                                placeholder="Password" required>
+                              <span toggle="#password" class="feather icon-eye field-icon toggle-password"></span>
+                              <div class="form-control-position">
+                                <i class="feather icon-lock"></i>
+                              </div>
+                              <label for="user-password">Password</label>
+                            </fieldset>
+                          </div>
+
 
                           <div class="form-group d-flex justify-content-between align-items-center">
                             <div class="text-left">
@@ -189,7 +206,14 @@ if (isset($_GET['code'])) {
   </div>
   <!-- END: Content-->
 
-
+  <script>
+    document.querySelector('.toggle-password').addEventListener('click', function () {
+      const passwordInput = document.getElementById('password');
+      const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+      passwordInput.setAttribute('type', type);
+      this.classList.toggle('icon-eye-off');
+    });
+  </script>
   <!-- BEGIN: Vendor JS-->
   <script src="app-assets/vendors/js/vendors.min.js"></script>
   <!-- BEGIN Vendor JS-->
