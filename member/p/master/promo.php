@@ -4,7 +4,7 @@
         <div class="search-bar">
          <form>
            <fieldset class="form-group position-relative has-icon-left">
-            <input type="text" class="form-control round" id="searchbar" placeholder="cari promo">
+            <input type="text" class="form-control round" id="searchbar" placeholder="Cari Promo">
               <div class="form-control-position">
                 <i class="fa-solid fa-magnifying-glass px-1"></i>
               </div>
@@ -35,7 +35,7 @@
                                             
 				  <div class="p-1">
                     <a href="?menu=detail">
-                      <img src="images/news/1.jpg" width="100%" class="img-kecil mb-1"/>
+                      <img src="images/ads/slide-1.jpg" width="100%" class="img-kecil mb-1"/>
                     </a>
                     <a class="media-body" href="?menu=detail">
 					   <div class="d-flex justify-content-start">
@@ -55,7 +55,7 @@
 				  
 				  <div class="p-1">
                     <a href="?menu=detail">
-                      <img src="images/news/2.jpg" width="100%" class="img-kecil mb-1"/>
+                      <img src="images/ads/slide-2.jpg" width="100%" class="img-kecil mb-1"/>
                     </a>
                     <a class="media-body" href="?menu=detail">
 					   <div class="d-flex justify-content-start">
