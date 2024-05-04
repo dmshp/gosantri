@@ -23,8 +23,9 @@ $nama 				= $_POST['nama'];
 $random 			= rand();
 $alamat 			= $_POST['alamat'];
 $no_tlv 			= $_POST['no_tlv'];
-$sepeda_motor 		= $_POST['sepeda_motor'];
-$sepeda_motor_tahun	= $_POST['sepeda_motor_tahun'];
+$jenis_kendaraan 		= $_POST['jenis_kendaraan'];
+$kendaraan 		= $_POST['kendaraan'];
+$kendaraan_tahun	= $_POST['kendaraan_tahun'];
 $nomor_polisi 		= strtoupper($_POST['nomor_polisi']);
 $bank 				= strtoupper($_POST['nm_bank']);
 $an_bank 			= $_POST['an_bank'];
@@ -119,7 +120,7 @@ imagedestroy($source_sim);
 unlink($filesavesim);
 
 $insert_1=mysqli_query($koneksi, "INSERT INTO tabel_member VALUES ('','$random','$kode_toko',NOW(),'$nama','$email','$alamat','$passmd','$pass','','$no_tlv','kurir','$status','','','$bank','$an_bank','$norek')");
-$insert_2=mysqli_query($koneksi, "INSERT INTO tabel_kurir VALUES ('','$random','$nomor_polisi','$sepeda_motor','$sepeda_motor_tahun','$rename_image_ktp','$rename_image_sim','$lat_long','',NOW())");
+$insert_2=mysqli_query($koneksi, "INSERT INTO tabel_kurir VALUES ('','$random','$nomor_polisi','$jenis_kendaraan','$kendaraan','$kendaraan_tahun','$rename_image_ktp','$rename_image_sim','$lat_long','',NOW())");
 }
 ?>
 <script>

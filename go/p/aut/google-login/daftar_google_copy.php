@@ -92,7 +92,7 @@ $img    = isset($_SESSION['info']['picture']) ? $_SESSION['info']['picture'] : '
       box-shadow: none;
     }
 
-    .btn-info: hover {
+    .btn-info:hover {
         border-color: #01b1B5 !important;
         background-color: #00CFE8 !important;
         color: #FFFFFF;

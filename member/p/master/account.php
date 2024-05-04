@@ -6,8 +6,12 @@ $a = mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM tabel_member WHERE
 <section class="users-edit">
   <div class="card mt-2">
     <div class="card-header mx-auto">
-      <div class="avatar avatar-xl">
-        <img class="img-fluid" src="../images/user/user.png">
+      <div id="image-preview" class="avatar avatar-xl">
+        <?php if (empty($a['foto'])): ?>
+          <img id="preview" class="img-fluid" src="./images/user/user.png" alt="Preview">
+        <?php else: ?>
+          <img id="preview" class="img-fluid" src="./images/user/<?php echo $a['foto']; ?>" alt="Preview">
+        <?php endif; ?>
       </div>
     </div>
     <div class="card-content">
@@ -18,12 +22,22 @@ $a = mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM tabel_member WHERE
         <p class="font-small-1 text-italic">Active at
           <?php echo $a['tgl_daftar']; ?>
         </p>
-        <p class="font-small-1 text-italic mt-2 mb-0 pb-0">Ganti Foto</p>
+        <!-- <p class="font-small-1 text-italic mt-2 mb-0 pb-0">Ganti Foto</p> -->
         <div class="btn-group">
-          <a href="#" class="btn btn-primary btn-icon btn-sm text-uppercase" data-toggle="tooltip" data-placement="left"
-            data-trigger="hover" title="Upload foto">
-            <i class="fa-solid fa-cloud-arrow-up mr-50"></i></a>
-
+          <form action="./aksi/add_foto.php" method="POST" enctype="multipart/form-data">
+            <div class="d-flex">
+              <input id="file-upload" type="file" name="image_user" id="image_user" style="display: none;"
+                onchange="previewImage(this)">
+              <label for="file-upload" class="btn btn-primary btn-icon btn-sm text-uppercase"
+                style="border-radius: 5px 0 0 5px !important;" data-toggle="tooltip" data-placement="left"
+                data-trigger="hover" title="Upload foto">
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+              </label>
+              <button id="save-button" class="btn btn-info btn-icon btn-sm text-uppercase"
+                style="display: none; border-radius: 0 !important;" onclick="saveImageaccount()"><i
+                  class="fa-solid fa-check-square mr-50"></i>Save</button>
+            </div>
+          </form>
           <a href="#" class="btn btn-success btn-icon btn-sm text-uppercase">
             <i class="fa-solid fa-user-slash mr-50"></i>Non Aktifkan akun anda</a>
 
@@ -121,3 +135,17 @@ $a = mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM tabel_member WHERE
     </div>
   </div>
 </section>
+<script>
+  function previewImage(input) {
+    var preview = document.getElementById('preview');
+    var saveButton = document.getElementById('save-button');
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        preview.src = e.target.result;
+        saveButton.style.display = 'inline'; // Tampilkan tombol "Save"
+      }
+      reader.readAsDataURL(input.files[0]); // Membaca file gambar sebagai URL data
+    }
+  }
+</script>

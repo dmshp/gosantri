@@ -112,32 +112,32 @@ if (!isset($_SESSION['nm_user']) && !isset($_SESSION['pass'])) {
             if (isset($_GET['menu'])) {
                 $menu = $_GET['menu'];
                 switch ($menu) {
-                    case('home');
-                        include('master/home.php');
+                    case ('home');
+                        include ('master/home.php');
                         break;
-                    case('order');
-                        include('master/order.php');
+                    case ('order');
+                        include ('master/order.php');
                         break;
-                    case('account');
-                        include('master/account.php');
+                    case ('account');
+                        include ('master/account.php');
                         break;
-                    case('mchat');
-                        include('master/multichat.php');
+                    case ('mchat');
+                        include ('master/multichat.php');
                         break;
-                    case('schat');
-                        include('master/singlechat.php');
+                    case ('schat');
+                        include ('master/singlechat.php');
                         break;
-                    case('detail');
-                        include('master/detail.php');
+                    case ('detail');
+                        include ('master/detail.php');
                         break;
-                    case('pay');
-                        include('master/payment.php');
+                    case ('pay');
+                        include ('master/payment.php');
                         break;
-                    case('profit');
-                        include('master/profit.php');
+                    case ('profit');
+                        include ('master/profit.php');
                         break;
-                    case('history');
-                        include('master/history.php');
+                    case ('history');
+                        include ('master/history.php');
                         break;
 
                 }
@@ -225,6 +225,8 @@ if (!isset($_SESSION['nm_user']) && !isset($_SESSION['pass'])) {
 
     <!----SLIDE MASUK---->
     <script>
+       
+
         function openNav1() {
             document.getElementById("myNav1").style.height = "100%";
         }

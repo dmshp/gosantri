@@ -51,6 +51,8 @@ if (isset($_GET['code'])) {
 
 	<!-- BEGIN: Vendor CSS-->
 	<link rel="stylesheet" type="text/css" href="app-assets/vendors/css/vendors.min.css">
+	<link href="app-assets/font/css/fontawesome.min.css" rel="stylesheet" type="text/css">
+	<link href="app-assets/font/css/all.min.css" rel="stylesheet" type="text/css">
 	<!-- END: Vendor CSS-->
 
 	<!-- BEGIN: Theme CSS-->
@@ -113,8 +115,11 @@ if (isset($_GET['code'])) {
 											</div>
 										</div>
 
-										<div class="card-body pt-0">
-											<form action="./aut/aksi_daftar.php" method="POST"
+										<div class="card-body p-2">
+											<p class="font-small-3 text-bold-700 text-danger text-center">Halaman
+												Pendaftaran Kurir</p>
+											<br>
+											<form action="./aut/google-login/add_kurir_baru.php" method="POST"
 												enctype="multipart/form-data">
 												<input type="hidden" name="lat_kurir" id="lat_kurir"
 													class="form-control" readonly>
@@ -154,7 +159,8 @@ if (isset($_GET['code'])) {
 												</div>
 
 												<div class="password-container">
-													<fieldset class="form-label-group position-relative has-icon-left" style="margin-bottom: 10px;">
+													<fieldset class="form-label-group position-relative has-icon-left"
+														style="margin-bottom: 20px;">
 														<input type="password" class="form-control"
 															name="pass_confirmation" id="password2"
 															placeholder="Password" required>
@@ -169,7 +175,6 @@ if (isset($_GET['code'])) {
 														<span id="password-error" class="text-danger"></span>
 													</div>
 												</div>
-
 
 												<fieldset
 													class="form-label-group form-group position-relative has-icon-left">
@@ -191,6 +196,123 @@ if (isset($_GET['code'])) {
 													<label for="user-name">Alamat Lengkap</label>
 												</fieldset>
 
+												<p class="font-small-2 nama-user text-bold-700 text-danger text-right">
+													<i>Dokumen yang di upload berupa file gambar (.jpg/.jpeg) max.
+														2Mb. dan file gamabr harus jelas</i>
+												</p>
+
+												<fieldset
+													class="form-label-group form-group position-relative has-icon-left">
+													<div class="custom-file">
+														<input type="file" class="custom-file-input" name="image_ktp"
+															id="image_ktp" required>
+														<label class="custom-file-label pl-3" for="image_ktp">Upload
+															KTP</label>
+													</div>
+													<div class="form-control-position">
+														<i class="feather icon-image"></i>
+													</div>
+												</fieldset>
+												<div class="m-2">
+													<img id="image-preview-ktp" class="preview"
+														style="max-width: 100%;">
+												</div>
+
+												<fieldset
+													class="form-label-group form-group position-relative has-icon-left">
+													<div class="custom-file">
+														<input type="file" class="custom-file-input" name="image_sim"
+															id="image_sim" required>
+														<label class="custom-file-label pl-3" for="image_sim">Upload
+															SIM</label>
+													</div>
+													<div class="form-control-position">
+														<i class="feather icon-image"></i>
+													</div>
+												</fieldset>
+												<div class="m-2">
+													<img id="image-preview-sim" class="preview"
+														style="max-width: 100%;">
+												</div>
+
+
+												<!-- <h6 class="">Data Kendaraan</h6>
+												<hr> -->
+												<fieldset
+													class="form-label-group form-group position-relative has-icon-left">
+													<label for="jenis_kendaraan">Pilih kendaraan</label>
+													<select class="form-control" name="jenis_kendaraan"
+														id="jenis_kendaraan" required>
+														<option value="" disabled selected>Pilih kendaraan</option>
+														<option value="motor">Motor</option>
+														<option value="mobil">Mobil</option>
+													</select>
+													<div class="form-control-position">
+														<i class="fas fa-tachometer-alt"></i>
+													</div>
+												</fieldset>
+
+
+												<fieldset
+													class="form-label-group form-group position-relative has-icon-left">
+													<input type="text" class="form-control" name="kendaraan"
+														placeholder="Merk / Type Sepeda Motor" required>
+													<div class="form-control-position">
+														<i class="fas fa-rectangle-list"></i>
+													</div>
+													<label for="user-name">Merk / Type kendaraan</label>
+												</fieldset>
+
+												<fieldset
+													class="form-label-group form-group position-relative has-icon-left">
+													<input type="number" class="form-control" name="kendaraan_tahun"
+														placeholder="Tahun" required>
+													<div class="form-control-position">
+														<i class="feather icon-calendar"></i>
+													</div>
+													<label for="user-name">Tahun</label>
+												</fieldset>
+
+												<fieldset
+													class="form-label-group form-group position-relative has-icon-left">
+													<input type="text" class="form-control" name="nomor_polisi"
+														placeholder="Nomor Polisi" required>
+													<div class="form-control-position">
+														<i class="fas fa-window-maximize"></i>
+													</div>
+													<label for="user-name">Nomor Polisi</label>
+												</fieldset>
+
+												<fieldset
+													class="form-label-group form-group position-relative has-icon-left">
+													<input type="text" class="form-control" name="nm_bank"
+														placeholder="Nama Bank" required>
+													<div class="form-control-position">
+														<i class="fas fa-money-check"></i>
+													</div>
+													<label for="user-name">Nama Bank</label>
+												</fieldset>
+
+												<fieldset
+													class="form-label-group form-group position-relative has-icon-left">
+													<input type="text" class="form-control" name="an_bank"
+														placeholder="Atas Nama Bank" required>
+													<div class="form-control-position">
+														<i class="fas fa-id-card"></i>
+													</div>
+													<label for="user-name">Atas Nama Bank</label>
+												</fieldset>
+
+												<fieldset
+													class="form-label-group form-group position-relative has-icon-left">
+													<input type="text" class="form-control" name="nomor_rekening"
+														placeholder="Nomor Rekening" required>
+													<div class="form-control-position">
+														<i class="fas fa-wallet"></i>
+													</div>
+													<label for="user-name">Nomor Rekening</label>
+												</fieldset>
+
 												<div class="form-group row">
 													<div class="col-12">
 														<fieldset class="checkbox">
@@ -202,9 +324,7 @@ if (isset($_GET['code'])) {
 																	</span>
 																</span>
 																<span class="font-small-2"> Saya setuju dengan seluruh
-																	kebijakkan
-																	<?php echo $a['nm_toko']; ?>.
-																</span>
+																	kebijakkan <?php echo $a['nm_toko']; ?>.</span>
 															</div>
 														</fieldset>
 													</div>
@@ -253,6 +373,7 @@ if (isset($_GET['code'])) {
 
 
 	<script>
+
 		document.addEventListener("DOMContentLoaded", function () {
 			// Toggle password visibility
 			var togglePassword = document.querySelectorAll('.toggle-password');
@@ -288,6 +409,35 @@ if (isset($_GET['code'])) {
 				}
 			}
 		});
+		document.getElementById('image_ktp').addEventListener('change', function () {
+			previewImage(this, 'image-preview-ktp');
+		});
+
+		document.getElementById('image_sim').addEventListener('change', function () {
+			previewImage(this, 'image-preview-sim');
+		});
+
+		function previewImage(input, previewId) {
+			const file = input.files[0];
+			if (file) {
+				const reader = new FileReader();
+				reader.onload = function (event) {
+					const imagePreview = document.getElementById(previewId);
+					if (imagePreview) {
+						imagePreview.src = event.target.result;
+					} else {
+						const newImagePreview = document.createElement('img');
+						newImagePreview.id = previewId;
+						newImagePreview.className = 'preview';
+						newImagePreview.src = event.target.result;
+						newImagePreview.style.maxWidth = '100%';
+						document.querySelector('.form-control-position').appendChild(newImagePreview);
+					}
+				}
+				reader.readAsDataURL(file);
+			}
+		}
+
 	</script>
 	<!-- BEGIN: Vendor JS-->
 	<script src="app-assets/vendors/js/vendors.min.js"></script>
