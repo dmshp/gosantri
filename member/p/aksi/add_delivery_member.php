@@ -2,13 +2,17 @@
     <!-- SweetAlert -->
     <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> -->
     <!-- <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
-    <script src="../app-assets/js/jquery3.6.0.min.js"></script>
+    <script src="../app-assets/js/jquery-3.6.0.min.js"></script>
     <script src="../app-assets/js/sweetalert2@11.js"></script>
 </head>
 
 <?php
 error_reporting(0);
 session_start();
+
+// var_dump($_POST);
+// die;
+
 include '../inc/koneksi.php';
 if (!isset($_SESSION['nm_user']) && !isset($_SESSION['pass'])) {
   header('location:../aut/login.php');
@@ -70,7 +74,7 @@ if ($nm_lok_awal != '' && $det_lok_awal != '' && $lat_lok_awal != '' && $lng_lok
                         tittle: "BERHASIL.",
                         text: "Delivery order berhasil di simpan, dimohon menunggu Driver melakukan konfirmasi.",
                     }).then(function() {
-                        window.location = "../page/index.php?menu=delivery_member";
+                        window.location = "../?menu=delivery_detail";
                     });
                 }, 1);
             </script>';

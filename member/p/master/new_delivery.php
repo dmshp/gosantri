@@ -321,7 +321,7 @@ if (isset($_POST['submit'])) {
                 <?php
                 $id_user = $_SESSION['id_user'];
                 $no = 0;
-                $ketQuery = "SELECT a.id, a.nm_lokasi_awal, a.det_lokasi_awal, a.lat_lokasi_awal, a.lng_lokasi_awal, a.nm_lokasi_akhir, a.det_lokasi_akhir, a.lat_lokasi_akhir, a.lng_lokasi_akhir, a.jarak_lokasi, a.durasi_perjalanan, a.rupiah,a.jenis_pembayaran, a.kendaraan, a.keterangan, a.tgl_order, COALESCE(a.pickup_id_kurir,'-')AS pickup_id_kurir, COALESCE(a.tgl_pickup,'-')AS tgl_pickup, COALESCE(a.pickup_nm_kurir,'-')AS pickup_nm_kurir, COALESCE(b.hp ,'-')AS nomor_hp_kurir,COALESCE(a.selesai,'-')AS selesai, COALESCE(a.konfirm_selesai,'-')AS konfirm_selesai, COALESCE(a.sts_batal,'-')AS sts_batal, COALESCE(a.tgl_batal,'-')AS tgl_batal, COALESCE(a.ket_batal,'-')AS ket_batal, COALESCE(a.user_batal,'-')AS user_batal, COALESCE(c.sepeda_motor,'-')AS sepeda_motor, COALESCE(c.nomor_polisi,'-')AS nomor_polisi FROM tabel_delivery_order a 
+                $ketQuery = "SELECT a.id, a.nm_lokasi_awal, a.det_lokasi_awal, a.lat_lokasi_awal, a.lng_lokasi_awal, a.nm_lokasi_akhir, a.det_lokasi_akhir, a.lat_lokasi_akhir, a.lng_lokasi_akhir, a.jarak_lokasi, a.durasi_perjalanan, a.rupiah,a.jenis_pembayaran, a.kendaraan, a.keterangan, a.tgl_order, COALESCE(a.pickup_id_kurir,'-')AS pickup_id_kurir, COALESCE(a.tgl_pickup,'-')AS tgl_pickup, COALESCE(a.pickup_nm_kurir,'-')AS pickup_nm_kurir, COALESCE(b.hp ,'-')AS nomor_hp_kurir,COALESCE(a.selesai,'-')AS selesai, COALESCE(a.konfirm_selesai,'-')AS konfirm_selesai, COALESCE(a.sts_batal,'-')AS sts_batal, COALESCE(a.tgl_batal,'-')AS tgl_batal, COALESCE(a.ket_batal,'-')AS ket_batal, COALESCE(a.user_batal,'-')AS user_batal, COALESCE(c.kendaraan,'-')AS kendaraan, COALESCE(c.nomor_polisi,'-')AS nomor_polisi FROM tabel_delivery_order a 
                     LEFT JOIN tabel_member b ON a.pickup_id_kurir = b.kode_user
                     LEFT JOIN tabel_kurir c ON b.kode_user = c.id_user
                     WHERE a.id_user = '$id_user' ORDER BY a.tgl_order DESC";
@@ -439,17 +439,27 @@ if (isset($_POST['submit'])) {
     navigator.geolocation.getCurrentPosition((position) => {
       $("#latitude").val(`${position.coords.latitude}`);
       $("#longitude").val(`${position.coords.longitude}`);
+      initMap(position.coords.latitude, position.coords.longitude);
     });
 
     $('#btn_batal_order').click(function () {
       $('#id_batal_order').val($('#id_order').val());
       $('#modal_batal_order').modal('show');
     })
+
+    function initMap(latitude, longitude) {
+
+      var myLatLng = {
+        // lat: -7.217428,
+        // lng: 112.7271187
+        lat: Math.floor(latitude),
+        lng: Math.floor(longitude)
+      };
+      map = new google.maps.Map(document.getElementById('map'), { zoom: 13, center: myLatLng, });
+    }
   });
 
   $(function () {
-
-    var origin, destination, map;
 
     // add input listeners
     google.maps.event.addDomListener(window, 'load', function (listener) {
@@ -463,7 +473,6 @@ if (isset($_POST['submit'])) {
     $('#select_location').click(function () {
       // Tampilkan peta
       $('#map').show();
-      // Gulir ke bagian peta
       $('html, body').animate({
         scrollTop: $('#map').offset().top
       }, 'slow');
@@ -494,15 +503,18 @@ if (isset($_POST['submit'])) {
         geocoder.geocode({ 'location': latlng }, function (results, status) {
           if (status === google.maps.GeocoderStatus.OK) {
             if (results[0]) {
+           
               $('#to_places').val(results[0].formatted_address);
 
               // Dapatkan informasi tempat menggunakan Places API
               var to_place = map.getCenter();
               var to_address = results[0].formatted_address;
+              var to_name = results[0].address_components[2]['short_name'];
+
               $('#destination').val(to_address);
               $('#des_latitude').val(to_place.lat());
               $('#des_longitude').val(to_place.lng());
-              // $('#des_name').val(""); // Tidak ada nama yang diberikan oleh Geocoder
+              $('#des_name').val(to_name);
             } else {
               console.log('Alamat tidak ditemukan');
             }
@@ -514,16 +526,7 @@ if (isset($_POST['submit'])) {
     });
 
     // init or load map
-    function initMap(latitude, longitude) {
 
-      var myLatLng = {
-        // lat: -7.217428,
-        // lng: 112.7271187
-        lat: Math.floor(latitude),
-        lng: Math.floor(longitude)
-      };
-      map = new google.maps.Map(document.getElementById('map'), { zoom: 13, center: myLatLng, });
-    }
 
     function setDestination() {
       var from_places = new google.maps.places.Autocomplete(document.getElementById('from_places'));
@@ -551,6 +554,7 @@ if (isset($_POST['submit'])) {
     }
 
     function displayRoute(travel_mode, origin, destination, directionsService, directionsDisplay) {
+      console.log(map);
       directionsService.route({
         origin: origin,
         destination: destination,
@@ -611,7 +615,7 @@ if (isset($_POST['submit'])) {
           var total_rupiah = distance_in_kilo * tarif; // Total tarif ojek
 
           appendResults(distance_in_kilo, distance_in_mile, duration_text, total_rupiah);
-          sendAjaxRequest(origin, destination, distance_in_kilo, distance_in_mile, duration_text);
+          // sendAjaxRequest(origin, destination, distance_in_kilo, distance_in_mile, duration_text);
         }
       }
     }
@@ -663,6 +667,9 @@ if (isset($_POST['submit'])) {
       console.log(responses);
       if (responses && responses.length > 0) {
         $("#origin").val(responses[1].formatted_address);
+        $("#ori_latitude").val(parseFloat(pos.coords.latitude));
+        $("#ori_longitude").val(parseFloat(pos.coords.longitude));
+        $("#ori_name").val(responses[1].address_components[2]['short_name']);
         $("#from_places").val(responses[1].formatted_address);
         // $("#to_places").val(responses[1].formatted_address);
         //    console.log(responses[1].formatted_address);
