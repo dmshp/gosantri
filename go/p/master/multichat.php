@@ -169,51 +169,57 @@ function convertDate($tgl)
                     <ul class="chat-users-list-wrapper media-list">
                         <?php
                         $idUserActive = $_SESSION['id_user'];
-                        $ketQuery = "SELECT group_chat.*, chat.msg, chat.photo , chat.timesend 
-									FROM chat, 
-										(SELECT tm.id_user, tm.nm_user, tm.foto, tm.akses, COUNT(CASE WHEN tc.status='unread' AND tc.receiver_id = '$idUserActive' THEN tc.id END) as total, MAX(id) as id_chat 
-											FROM chat tc INNER JOIN tabel_member tm 
-											ON tc.sender_id = tm.id_user OR tc.receiver_id = tm.id_user 
-											WHERE tm.id_user != '$idUserActive' and (tc.sender_id = '$idUserActive' OR tc.receiver_id = '$idUserActive') 
-											GROUP BY tm.id_user, tm.nm_user, tm.foto, tm.akses
-										) group_chat 
-									where chat.id = group_chat.id_chat order by chat.timesend desc";
-                        $executeSat = mysqli_query($koneksi, $ketQuery);
-                        while ($a = mysqli_fetch_array($executeSat)) {
-                            $id = $a['id_user'];
+                        $ketQuery = "SELECT tm.id_user, tm.nm_user, tm.foto, tm.akses, COUNT(CASE WHEN tc.status='unread' AND tc.receiver_id = ? THEN tc.id END) as total, MAX(tc.id) as id_chat, MAX(tc.timesend) as timesend, MAX(tc.msg) as msg
+                FROM chat tc 
+                INNER JOIN tabel_member tm ON tc.sender_id = tm.id_user OR tc.receiver_id = tm.id_user 
+                WHERE tm.id_user != ? AND (tc.sender_id = ? OR tc.receiver_id = ?) 
+                GROUP BY tm.id_user, tm.nm_user, tm.foto, tm.akses
+                ORDER BY timesend DESC";
 
-                            $msg = $a['msg'];
-                            if ($a['msg'] == "") {
-                                $msg = '<span data-testid="status-image" data-icon="status-image" class=""><svg viewBox="0 0 16 20" width="16" height="20" class=""><path fill="currentColor" d="M13.822 4.668H7.14l-1.068-1.09a1.068 1.068 0 0 0-.663-.278H3.531c-.214 0-.51.128-.656.285L1.276 5.296c-.146.157-.266.46-.266.675v1.06l-.001.003v6.983c0 .646.524 1.17 1.17 1.17h11.643a1.17 1.17 0 0 0 1.17-1.17v-8.18a1.17 1.17 0 0 0-1.17-1.169zm-5.982 8.63a3.395 3.395 0 1 1 0-6.79 3.395 3.395 0 0 1 0 6.79zm0-5.787a2.392 2.392 0 1 0 0 4.784 2.392 2.392 0 0 0 0-4.784z"></path></svg></span> Photo';
+                        $stmt = $koneksi->prepare($ketQuery);
+                        $stmt->bind_param("iiii", $idUserActive, $idUserActive, $idUserActive, $idUserActive);
+                        $stmt->execute();
+                        $result = $stmt->get_result();
+
+                        if ($result->num_rows > 0) {
+                            while ($a = $result->fetch_assoc()) {
+                                $id = $a['id_user'];
+                                $msg = $a['msg'] ? $a['msg'] : '<span data-testid="status-image" data-icon="status-image" class=""><svg viewBox="0 0 16 20" width="16" height="20" class=""><path fill="currentColor" d="M13.822 4.668H7.14l-1.068-1.09a1.068 1.068 0 0 0-.663-.278H3.531c-.214 0-.51.128-.656.285L1.276 5.296c-.146.157-.266.46-.266.675v1.06l-.001.003v6.983c0 .646.524 1.17 1.17 1.17h11.643a1.17 1.17 0 0 0 1.17-1.17v-8.18a1.17 1.17 0 0 0-1.17-1.169zm-5.982 8.63a3.395 3.395 0 1 1 0-6.79 3.395 3.395 0 0 1 0 6.79zm0-5.787a2.392 2.392 0 1 0 0 4.784 2.392 2.392 0 0 0 0-4.784z"></path></svg></span> Photo';
+                                ?>
+                                <a href="?menu=mchat&id=<?= $id ?>">
+                                    <li class="<?= $a['id_user'] == $kodeChat ? 'active' : '' ?>">
+                                        <div class="pr-1">
+                                            <span class="avatar m-0 avatar-md">
+                                                <img class="media-object rounded-circle" src="./images/user/<?= $a['foto'] ?>"
+                                                    onerror="this.src='./images/user/user.png';" height="40" width="40">
+                                            </span>
+                                        </div>
+                                        <div class="user-chat-info">
+                                            <div class="contact-info">
+                                                <h5 class="font-weight-bold mb-0"><?= $a['nm_user'] ?></h5>
+                                                <span class="truncate font-small-2"><?= $msg ?></span>
+                                            </div>
+                                            <div class="contact-meta">
+                                                <div class="mb-25"><?= convertDate($a['timesend']) ?></div>
+                                                <?php if ($a['total']) { ?>
+                                                    <span
+                                                        class="badge badge-primary badge-pill float-right"><?= $a['total'] ?></span>
+                                                <?php } ?>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </a>
+                                <?php
                             }
-                            ?>
-                            <a href="?menu=mchat&id=<?php echo $id ?>">
-                                <li class="<?= $a['id_user'] == $kodeChat ? 'active' : '' ?>">
-                                    <div class="pr-1">
-                                        <span class="avatar m-0 avatar-md">
-                                            <img class="media-object rounded-circle" src="./images/user/<?= $a['foto'] ?>"
-                                                onerror="this.src='./images/user/user.png';" height="40" width="40">
-                                        </span>
-                                    </div>
-                                    <div class="user-chat-info">
-                                        <div class="contact-info">
-                                            <h5 class="font-weight-bold mb-0"><?php echo $a['nm_user'] ?></h5>
-                                            <span class="truncate font-small-2"><?= $msg ?></span>
-                                        </div>
-                                        <div class="contact-meta">
-                                            <div class="mb-25"><?= convertDate($a['timesend']) ?></div>
-                                            <?php if ($a['total']) { ?>
-                                                <span
-                                                    class="badge badge-primary badge-pill float-right"><?= $a['total'] ?></span>
-                                            <?php } ?>
-                                        </div>
-                                    </div>
-                                </li>
-                            </a>
-                        <?php } ?>
+                        } else {
+                            // Tidak ada hasil yang ditemukan
+                            echo "<p>Tidak ada percakapan yang tersedia.</p>";
+                        }
+                        ?>
                     </ul>
+
                     <h3 class="primary p-1 mb-0">Contacts</h3>
-                    <ul class="chat-users-list-wrapper media-list">
+                    <!-- <ul class="chat-users-list-wrapper media-list">
                         <li>
                             <div class="pr-1">
                                 <span class="avatar m-0 avatar-md"><img class="media-object rounded-circle"
@@ -366,7 +372,7 @@ function convertDate($tgl)
                                 </div>
                             </div>
                         </li>
-                    </ul>
+                    </ul> -->
                 </div>
             </div>
             <!--/ Chat Sidebar area -->
@@ -384,18 +390,21 @@ function convertDate($tgl)
                         <div class="chat_navbar">
                             <?php
                             $i = $_SESSION['id_user'];
-                            $ketQuery = "SELECT * FROM tabel_member WHERE `id_user` = $kodeChat";
-                            $executeSat = mysqli_query($koneksi, $ketQuery);
-                            if ($executeSat) {
-                                $row = mysqli_fetch_array($executeSat);
+                            $ketQuery = "SELECT * FROM tabel_member WHERE `id_user` = ?";
+                            $stmt = $koneksi->prepare($ketQuery);
+                            $stmt->bind_param("i", $kodeChat);
+                            $stmt->execute();
+                            $result = $stmt->get_result();
+                            if ($result->num_rows > 0) {
+                                $row = $result->fetch_assoc();
                                 ?>
                                 <header class="chat_header d-flex justify-content-between align-items-center p-1">
                                     <div class="vs-con-items d-flex align-items-center">
-                                        <div class="sidebar-toggle d-block d-lg-none mr-1"><i
-                                                class="feather icon-menu font-large-1"></i></div>
+                                        <div class="sidebar-toggle d-block d-lg-none mr-1">
+                                            <i class="feather icon-menu font-large-1"></i>
+                                        </div>
                                         <div class="avatar user-profile-toggle m-0 m-0 mr-1">
                                             <img src="../img/user/user.jpg" alt="" height="40" width="40" />
-                                            <!--<span class="avatar-status-busy"></span>-->
                                         </div>
                                         <div>
                                             <h6 class="mb-0"><?= $row['nm_user'] ?></h6>
@@ -409,14 +418,15 @@ function convertDate($tgl)
                                 <header class="chat_header d-flex justify-content-between align-items-center p-1"
                                     style="background-color: #DFDBE5;">
                                     <div class="vs-con-items d-flex align-items-center">
-                                        <div class="sidebar-toggle d-block d-lg-none mr-1"><i
-                                                class="feather icon-menu font-large-1"></i></div>
+                                        <div class="sidebar-toggle d-block d-lg-none mr-1">
+                                            <i class="feather icon-menu font-large-1"></i>
+                                        </div>
                                     </div>
                                 </header>
                             <?php } ?>
                         </div>
 
-                        <?php if ($executeSat) { ?>
+                        <?php if ($result->num_rows > 0) { ?>
                             <div class="user-chats mb-0 position-static overflow-auto d-flex flex-column-reverse"
                                 style="<?= $kodeChat == "" ? 'height: 665px;' : '' ?>">
                                 <div class="chats mb-0 <?= $kodeChat == "" ? 'hidden' : '' ?>" id="chat-box">

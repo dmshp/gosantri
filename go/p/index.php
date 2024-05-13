@@ -139,6 +139,9 @@ if (!isset($_SESSION['nm_user']) && !isset($_SESSION['pass'])) {
                     case ('history');
                         include ('master/history.php');
                         break;
+                    case ('kurir_delivery_detail');
+                        include ('master/kurir_delivery_detail.php');
+                        break;
 
                 }
             }
