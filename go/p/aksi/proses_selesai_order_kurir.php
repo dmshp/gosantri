@@ -58,7 +58,7 @@ if ($id_order != '' && $pembayaran != '' && $id_member != '' && $rupiah != '') {
                             tittle: "BERHASIL.",
                             text: "Proses Delivery order telah selesai",
                         }).then(function() {
-                            window.location = "../page/index.php?menu=delivery";
+                            window.location = "../?menu=order";
                         });
                     }, 1);
                 </script>';
@@ -80,7 +80,7 @@ if ($id_order != '' && $pembayaran != '' && $id_member != '' && $rupiah != '') {
                             tittle: "BERHASIL.",
                             text: "Proses Delivery order telah selesai",
                         }).then(function() {
-                            window.location = "../page/index.php?menu=delivery";
+                            window.location = "../?menu=order";
                         });
                     }, 1);
                 </script>';
