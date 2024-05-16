@@ -11,19 +11,19 @@ if (!isset($_SESSION['nm_user']) && !isset($_SESSION['pass'])) {
 ?>
 <?php
 $a = mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM `tabel_toko`"));
-$background		= $a['background'];
-$headerfooter	= $a['headerfooter'];
-$tombol			= $a['tombol'];
-$logo       	= $a['logo'];
-$toko			= $a['nm_toko'];
-$kd_toko		= $a['kd_toko'];
-$almt_toko		= $a['almt_toko'];
-$tlp_toko		= $a['tlp_toko'];
-$latlng_toko	= $a['latitude'] . "," . $a['longitude'];
+$background = $a['background'];
+$headerfooter = $a['headerfooter'];
+$tombol = $a['tombol'];
+$logo = $a['logo'];
+$toko = $a['nm_toko'];
+$kd_toko = $a['kd_toko'];
+$almt_toko = $a['almt_toko'];
+$tlp_toko = $a['tlp_toko'];
+$latlng_toko = $a['latitude'] . "," . $a['longitude'];
 ?>
 
 <?php $user = mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM tabel_member WHERE nm_user = '$_SESSION[nm_user]'"));
-$foto       = $user['foto'];
+$foto = $user['foto'];
 ?>
 
 <!DOCTYPE html>
@@ -127,53 +127,53 @@ $foto       = $user['foto'];
             if (isset($_GET['menu'])) {
                 $menu = $_GET['menu'];
                 switch ($menu) {
-                    case('home');
-                        include('master/home.php');
+                    case ('home');
+                        include ('master/home.php');
                         break;
-                    case('account');
-                        include('master/account.php');
+                    case ('account');
+                        include ('master/account.php');
                         break;
-                    case('mchat');
-                        include('master/multichat.php');
+                    case ('mchat');
+                        include ('master/multichat.php');
                         break;
-                    case('schat');
-                        include('master/singlechat.php');
+                    case ('schat');
+                        include ('master/singlechat.php');
                         break;
-                    case('now');
-                        include('master/news.php');
+                    case ('now');
+                        include ('master/news.php');
                         break;
-                    case('detail');
-                        include('master/detail.php');
+                    case ('detail');
+                        include ('master/detail.php');
                         break;
-                    case('delivery');
-                        include('master/new_delivery.php');
+                    case ('delivery');
+                        include ('master/new_delivery.php');
                         break;
-                    case('delivery_detail');
-                        include('master/new_delivery_detail.php');
+                    case ('delivery_detail');
+                        include ('master/new_delivery_detail.php');
                         break;
-                    case('shop');
-                        include('master/shopping.php');
+                    case ('shop');
+                        include ('master/shopping.php');
                         break;
-                    case('product');
-                        include('master/product.php');
+                    case ('product');
+                        include ('master/product.php');
                         break;
-                    case('cart');
-                        include('master/cart.php');
+                    case ('cart');
+                        include ('master/cart.php');
                         break;
-                    case('pay');
-                        include('master/payment.php');
+                    case ('pay');
+                        include ('master/payment.php');
                         break;
-                    case('history');
-                        include('master/history.php');
+                    case ('history');
+                        include ('master/history.php');
                         break;
-                    case('promo');
-                        include('master/promo.php');
+                    case ('promo');
+                        include ('master/promo.php');
                         break;
-                    case('merchant');
-                        include('master/merchant.php');
+                    case ('merchant');
+                        include ('master/merchant.php');
                         break;
-                    case('map');
-                        include('master/map.php');
+                    case ('map');
+                        include ('master/map.php');
                         break;
 
                 }
@@ -259,6 +259,107 @@ $foto       = $user['foto'];
     <script src="app-assets/js/scripts/pages/app-chat.js"></script>
     <!-- END: Page JS-->
 
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // Periksa apakah parameter menu memiliki nilai mchat
+            var menu = getParameterByName('menu');
+            if (menu === 'mchat' || menu === 'schat') {
+                // Jika menu adalah mchat, jalankan interval untuk mengambil chat
+                setInterval(() => {
+                    var idSender = $("#idSender").val();
+                    var idReceiver = $("#idReceiver").val();
+                    var chatp = document.getElementById("chat-input").value;
+
+                    $.ajax({
+                        type: "GET",
+                        url: "./aksi/get_chat.php",
+                        data: {
+                            idSender: idSender,
+                            idReceiver: idReceiver,
+                        },
+                        success: function (data) {
+                            $('#chat-box').html(data);
+                        }
+                    })
+                }, 1000);
+            }
+        });
+
+        // Fungsi untuk mendapatkan nilai parameter dari URL
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, '\\$&');
+            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+
+
+        function sendphoto() {
+            var idSender = $("#idSender").val();
+            var idReceiver = $("#idReceiver").val();
+            var file_data = $("#sub").prop("files")[0];
+            var form_data = new FormData(); // Creating object of FormData class
+            form_data.append("file", file_data);
+            form_data.append("idSender", idSender);
+            form_data.append("idReceiver", idReceiver);
+            $.ajax({
+                url: "../aksi/add_photo.php",
+                type: "post",
+                dataType: 'script',
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: form_data,
+                success: function (data) {
+                    alert(data)
+                }
+
+            })
+        }
+
+        function send() {
+            var idSender = $("#idSender").val();
+            var idReceiver = $("#idReceiver").val();
+            var chatp = document.getElementById("chat-input").value;
+            $.ajax({
+                url: "./aksi/add_chat.php",
+                type: "post",
+                data: {
+                    idSender: idSender,
+                    idReceiver: idReceiver,
+                    // photo: photo,
+                    chatp: chatp
+                },
+                success: function (data) {
+                    document.getElementById("chat-input").value = "";
+                }
+            })
+
+        }
+
+
+        function enter() {
+            var file = $('#sub')[0].files[0];
+            var reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = function (e) {
+                var img = $('#image_preview');
+                img.attr('src', this.result);
+
+            }
+
+            var html = '<div class="chat-content">' + '<img id="image_preview" width="100px" height="100px">' +
+                "</img>" +
+                "</div>";
+            $(".chat:last-child .chat-body").append(html);
+            $(".message").val("");
+            $(".user-chats").scrollTop($(".user-chats > .chats").height());
+
+        }
+    </script>
     <!----SLIDE MASUK---->
     <script>
         function openNav1() {

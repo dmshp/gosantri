@@ -404,7 +404,7 @@ function convertDate($tgl)
                                             <i class="feather icon-menu font-large-1"></i>
                                         </div>
                                         <div class="avatar user-profile-toggle m-0 m-0 mr-1">
-                                            <img src="../img/user/user.jpg" alt="" height="40" width="40" />
+                                            <img src="images/user/user.png" alt="" height="40" width="40" />
                                         </div>
                                         <div>
                                             <h6 class="mb-0"><?= $row['nm_user'] ?></h6>

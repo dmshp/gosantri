@@ -224,7 +224,107 @@ if (!isset($_SESSION['nm_user']) && !isset($_SESSION['pass'])) {
     <script src="app-assets/js/scripts/extensions/swiper.js"></script>
     <script src="app-assets/js/scripts/pages/app-chat.js"></script>
     <!-- END: Page JS-->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // Periksa apakah parameter menu memiliki nilai mchat
+            var menu = getParameterByName('menu');
+            if (menu === 'mchat') {
+                // Jika menu adalah mchat, jalankan interval untuk mengambil chat
+                setInterval(() => {
+                    var idSender = $("#idSender").val();
+                    var idReceiver = $("#idReceiver").val();
+                    var chatp = document.getElementById("chat-input").value;
 
+                    $.ajax({
+                        type: "GET",
+                        url: "./aksi/get_chat.php",
+                        data: {
+                            idSender: idSender,
+                            idReceiver: idReceiver,
+                        },
+                        success: function (data) {
+                            $('#chat-box').html(data);
+                        }
+                    })
+                }, 1000);
+            }
+        });
+
+        // Fungsi untuk mendapatkan nilai parameter dari URL
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, '\\$&');
+            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+
+
+        function sendphoto() {
+            var idSender = $("#idSender").val();
+            var idReceiver = $("#idReceiver").val();
+            var file_data = $("#sub").prop("files")[0];
+            var form_data = new FormData(); // Creating object of FormData class
+            form_data.append("file", file_data);
+            form_data.append("idSender", idSender);
+            form_data.append("idReceiver", idReceiver);
+            $.ajax({
+                url: "../aksi/add_photo.php",
+                type: "post",
+                dataType: 'script',
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: form_data,
+                success: function (data) {
+                    alert(data)
+                }
+
+            })
+        }
+
+        function send() {
+            var idSender = $("#idSender").val();
+            var idReceiver = $("#idReceiver").val();
+            var chatp = document.getElementById("chat-input").value;
+            $.ajax({
+                url: "./aksi/add_chat.php",
+                type: "post",
+                data: {
+                    idSender: idSender,
+                    idReceiver: idReceiver,
+                    // photo: photo,
+                    chatp: chatp
+                },
+                success: function (data) {
+                    document.getElementById("chat-input").value = "";
+                }
+            })
+
+        }
+
+
+        function enter() {
+            var file = $('#sub')[0].files[0];
+            var reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = function (e) {
+                var img = $('#image_preview');
+                img.attr('src', this.result);
+
+            }
+
+            var html = '<div class="chat-content">' + '<img id="image_preview" width="100px" height="100px">' +
+                "</img>" +
+                "</div>";
+            $(".chat:last-child .chat-body").append(html);
+            $(".message").val("");
+            $(".user-chats").scrollTop($(".user-chats > .chats").height());
+
+        }
+    </script>
     <script type="text/javascript">
         $(document).ready(function () {
             $('#edit_produk').on('show.bs.modal', function (e) {

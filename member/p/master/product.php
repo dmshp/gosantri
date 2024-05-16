@@ -89,7 +89,7 @@
                                      <i class="fa-solid fa-cart-arrow-down mr-1"></i><small>BELI</small></a>                     
                                  <a class="badge badge-info badge-md pr-1 pl-1 round" href="?menu=merchant">
                                      <i class="fa-solid fa-store mr-1"></i><small>CEK TOKO</small></a>
-                                 <a class="badge badge-success badge-md pr-1 pl-1 round" href="?menu=schat">
+                                 <a class="badge badge-success badge-md pr-1 pl-1 round" href="?menu=mchat&id=1">
                                      <i class="fa-regular fa-comment mr-1"></i><small>CHAT</small></a>
                             </div>
                             <h5 class="text-uppercase mb-0 mt-1"><?php echo $d['nm_barang']; ?></h5>
