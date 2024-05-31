@@ -67,6 +67,7 @@ if ($nm_lok_awal != '' && $det_lok_awal != '' && $lat_lok_awal != '' && $lng_lok
     // var_dump($n); die();
     
     if($n != null){
+        $last_id = mysqli_insert_id($koneksi);
         echo '<script>
                 setTimeout(function() {
                     Swal.fire({
@@ -74,7 +75,7 @@ if ($nm_lok_awal != '' && $det_lok_awal != '' && $lat_lok_awal != '' && $lng_lok
                         tittle: "BERHASIL.",
                         text: "Delivery order berhasil di simpan, dimohon menunggu Driver melakukan konfirmasi.",
                     }).then(function() {
-                        window.location = "../?menu=delivery_detail";
+                        window.location = "../?menu=delivery_detail&id_order=' . $last_id . '";
                     });
                 }, 1);
             </script>';

@@ -38,7 +38,7 @@ if ($id_order != '') {
                         tittle: "BERHASIL.",
                         text: "Delivery order berhasil diproses",
                     }).then(function() {
-                        window.location = "?menu=order";
+                        window.location = "../?menu=order";
                     });
                 }, 1);
             </script>';
