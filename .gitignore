@@ -1,10 +1,10 @@
 .republ23_santrigo.sql
-go/p/images/
+# go/p/images/
 go/p/vendor/
-marketing/p/images/
+# marketing/p/images/
 marketing/p/vendor/
-member/p/images/
+# member/p/images/
 member/p/vendor/
 merchant/p/vendor/
-merchant/p/images/
+# merchant/p/images/
 layout.zip
