@@ -1,0 +1,115 @@
+[08-Apr-2022 13:33:47 UTC] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/republ23/public_html/santrimart/w/inc/koneksi.php on line 7
+[08-Apr-2022 13:33:58 UTC] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/republ23/public_html/santrimart/w/inc/koneksi.php on line 7
+[08-Apr-2022 13:47:13 UTC] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/republ23/public_html/santrimart/w/inc/koneksi.php on line 7
+[08-Apr-2022 23:16:11 UTC] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/republ23/public_html/santrimart/w/inc/koneksi.php on line 7
+[09-Apr-2022 07:27:24 UTC] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/republ23/public_html/santrimart/w/inc/koneksi.php on line 7
+[09-Apr-2022 11:32:47 UTC] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/republ23/public_html/santrimart/w/inc/koneksi.php on line 7
+[10-Apr-2022 13:43:20 UTC] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/republ23/public_html/santrimart/w/inc/koneksi.php on line 7
+[11-Apr-2022 08:30:28 UTC] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/republ23/public_html/santrimart/w/inc/koneksi.php on line 7
+[12-Apr-2022 12:13:41 UTC] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/republ23/public_html/santrimart/w/inc/koneksi.php on line 7
+[13-Apr-2022 23:36:38 UTC] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/republ23/public_html/santrimart/w/inc/koneksi.php on line 7
+[13-Apr-2022 23:37:08 UTC] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/republ23/public_html/santrimart/w/inc/koneksi.php on line 7
+[13-Apr-2022 23:38:34 UTC] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/republ23/public_html/santrimart/w/inc/koneksi.php on line 7
+[13-Apr-2022 23:41:22 UTC] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/republ23/public_html/santrimart/w/inc/koneksi.php on line 7
+[13-Apr-2022 23:41:44 UTC] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/republ23/public_html/santrimart/w/inc/koneksi.php on line 7
+[13-Apr-2022 23:44:20 UTC] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/republ23/public_html/santrimart/w/inc/koneksi.php on line 7
+[13-Apr-2022 23:54:19 UTC] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/republ23/public_html/santrimart/w/inc/koneksi.php on line 7
+[13-Apr-2022 23:58:31 UTC] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/republ23/public_html/santrimart/w/inc/koneksi.php on line 7
+[14-Apr-2022 00:03:20 UTC] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/republ23/public_html/santrimart/w/inc/koneksi.php on line 7
+[14-Apr-2022 00:09:41 UTC] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/republ23/public_html/santrimart/w/inc/koneksi.php on line 7
+[14-Apr-2022 00:15:19 UTC] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/republ23/public_html/santrimart/w/inc/koneksi.php on line 7
+[14-Apr-2022 00:18:36 UTC] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/republ23/public_html/santrimart/w/inc/koneksi.php on line 7
+[14-Apr-2022 01:05:09 UTC] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/republ23/public_html/santrimart/w/inc/koneksi.php on line 7
+[14-Apr-2022 01:22:58 UTC] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/republ23/public_html/santrimart/w/inc/koneksi.php on line 7
+[14-Apr-2022 21:14:59 UTC] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/republ23/public_html/santrimart/w/inc/koneksi.php on line 7
+[16-Apr-2022 19:28:37 UTC] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/republ23/public_html/santrimart/w/inc/koneksi.php on line 7
+[30-May-2022 21:36:29 UTC] PHP Fatal error:  Uncaught TypeError: mysqli_fetch_array(): Argument #1 ($result) must be of type mysqli_result, bool given in /home/republ23/public_html/santrimart/w/index.php:2
+Stack trace:
+#0 /home/republ23/public_html/santrimart/w/index.php(2): mysqli_fetch_array()
+#1 {main}
+  thrown in /home/republ23/public_html/santrimart/w/index.php on line 2
+[30-May-2022 21:36:56 UTC] PHP Fatal error:  Uncaught TypeError: mysqli_fetch_array(): Argument #1 ($result) must be of type mysqli_result, bool given in /home/republ23/public_html/santrimart/w/index.php:2
+Stack trace:
+#0 /home/republ23/public_html/santrimart/w/index.php(2): mysqli_fetch_array()
+#1 {main}
+  thrown in /home/republ23/public_html/santrimart/w/index.php on line 2
+[30-May-2022 21:37:11 UTC] PHP Fatal error:  Uncaught TypeError: mysqli_fetch_array(): Argument #1 ($result) must be of type mysqli_result, bool given in /home/republ23/public_html/santrimart/w/index.php:2
+Stack trace:
+#0 /home/republ23/public_html/santrimart/w/index.php(2): mysqli_fetch_array()
+#1 {main}
+  thrown in /home/republ23/public_html/santrimart/w/index.php on line 2
+[30-May-2022 21:37:18 UTC] PHP Fatal error:  Uncaught TypeError: mysqli_fetch_array(): Argument #1 ($result) must be of type mysqli_result, bool given in /home/republ23/public_html/santrimart/w/index.php:2
+Stack trace:
+#0 /home/republ23/public_html/santrimart/w/index.php(2): mysqli_fetch_array()
+#1 {main}
+  thrown in /home/republ23/public_html/santrimart/w/index.php on line 2
+[30-May-2022 21:38:25 UTC] PHP Fatal error:  Uncaught TypeError: mysqli_fetch_array(): Argument #1 ($result) must be of type mysqli_result, bool given in /home/republ23/public_html/santrimart/w/index.php:2
+Stack trace:
+#0 /home/republ23/public_html/santrimart/w/index.php(2): mysqli_fetch_array()
+#1 {main}
+  thrown in /home/republ23/public_html/santrimart/w/index.php on line 2
+[16-Sep-2022 11:34:20 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/halimgol/public_html/santrimart.co.id/w/index.php on line 2
+[16-Sep-2022 11:34:20 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/halimgol/public_html/santrimart.co.id/w/index.php on line 203
+[16-Sep-2022 11:34:20 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/halimgol/public_html/santrimart.co.id/w/index.php on line 257
+[16-Sep-2022 11:34:20 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/halimgol/public_html/santrimart.co.id/w/index.php on line 444
+[16-Sep-2022 11:54:22 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/halimgol/public_html/santrimart.co.id/w/index.php on line 2
+[16-Sep-2022 11:54:22 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/halimgol/public_html/santrimart.co.id/w/index.php on line 203
+[16-Sep-2022 11:54:22 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/halimgol/public_html/santrimart.co.id/w/index.php on line 257
+[16-Sep-2022 11:54:22 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/halimgol/public_html/santrimart.co.id/w/index.php on line 444
+[16-Sep-2022 12:14:23 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/halimgol/public_html/santrimart.co.id/w/index.php on line 2
+[16-Sep-2022 12:14:23 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/halimgol/public_html/santrimart.co.id/w/index.php on line 203
+[16-Sep-2022 12:14:23 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/halimgol/public_html/santrimart.co.id/w/index.php on line 257
+[16-Sep-2022 12:14:23 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/halimgol/public_html/santrimart.co.id/w/index.php on line 444
+[16-Sep-2022 12:14:24 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/halimgol/public_html/santrimart.co.id/w/index.php on line 2
+[16-Sep-2022 12:14:24 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/halimgol/public_html/santrimart.co.id/w/index.php on line 203
+[16-Sep-2022 12:14:24 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/halimgol/public_html/santrimart.co.id/w/index.php on line 257
+[16-Sep-2022 12:14:24 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/halimgol/public_html/santrimart.co.id/w/index.php on line 444
+[16-Sep-2022 12:34:24 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/halimgol/public_html/santrimart.co.id/w/index.php on line 2
+[16-Sep-2022 12:34:24 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/halimgol/public_html/santrimart.co.id/w/index.php on line 203
+[16-Sep-2022 14:47:05 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function mysqli_connect() in /home/halimgol/public_html/santrimart.co.id/w/inc/koneksi.php:7
+Stack trace:
+#0 /home/halimgol/public_html/santrimart.co.id/w/index.php(1): include()
+#1 {main}
+  thrown in /home/halimgol/public_html/santrimart.co.id/w/inc/koneksi.php on line 7
+[16-Sep-2022 14:47:08 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function mysqli_connect() in /home/halimgol/public_html/santrimart.co.id/w/inc/koneksi.php:7
+Stack trace:
+#0 /home/halimgol/public_html/santrimart.co.id/w/index.php(1): include()
+#1 {main}
+  thrown in /home/halimgol/public_html/santrimart.co.id/w/inc/koneksi.php on line 7
+[16-Sep-2022 14:48:08 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function mysqli_connect() in /home/halimgol/public_html/santrimart.co.id/w/inc/koneksi.php:7
+Stack trace:
+#0 /home/halimgol/public_html/santrimart.co.id/w/index.php(1): include()
+#1 {main}
+  thrown in /home/halimgol/public_html/santrimart.co.id/w/inc/koneksi.php on line 7
+[16-Sep-2022 14:48:09 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function mysqli_connect() in /home/halimgol/public_html/santrimart.co.id/w/inc/koneksi.php:7
+Stack trace:
+#0 /home/halimgol/public_html/santrimart.co.id/w/index.php(1): include()
+#1 {main}
+  thrown in /home/halimgol/public_html/santrimart.co.id/w/inc/koneksi.php on line 7
+[16-Sep-2022 15:17:34 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function mysqli_connect() in /home/halimgol/public_html/santrimart.co.id/w/inc/koneksi.php:7
+Stack trace:
+#0 /home/halimgol/public_html/santrimart.co.id/w/index.php(1): include()
+#1 {main}
+  thrown in /home/halimgol/public_html/santrimart.co.id/w/inc/koneksi.php on line 7
+[16-Sep-2022 15:17:34 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function mysqli_connect() in /home/halimgol/public_html/santrimart.co.id/w/inc/koneksi.php:7
+Stack trace:
+#0 /home/halimgol/public_html/santrimart.co.id/w/index.php(1): include()
+#1 {main}
+  thrown in /home/halimgol/public_html/santrimart.co.id/w/inc/koneksi.php on line 7
+[05-Nov-2022 13:33:30 UTC] PHP Warning:  mysqli_connect(): (08004/1040): Too many connections in /home/halimgol/public_html/santrimart.co.id/w/inc/koneksi.php on line 7
+[08-Nov-2022 14:31:09 UTC] PHP Warning:  mysqli_connect(): (HY000/2002): No such file or directory in /home/halimgol/public_html/santrimart.co.id/w/inc/koneksi.php on line 7
+[16-Sep-2023 23:47:44 UTC] PHP Notice:  Undefined index: akses in /home/halimgol/public_html/santrimart.co.id/w/detail_produk.php on line 4
+[17-Sep-2023 19:31:02 UTC] PHP Notice:  Undefined index: akses in /home/halimgol/public_html/santrimart.co.id/w/detail_produk.php on line 4
+[18-Sep-2023 03:31:47 UTC] PHP Notice:  Undefined index: akses in /home/halimgol/public_html/santrimart.co.id/w/detail_produkbaru.php on line 4
+[18-Sep-2023 03:31:47 UTC] PHP Notice:  Undefined index: kd_kategori in /home/halimgol/public_html/santrimart.co.id/w/detail_produkbaru.php on line 682
+[18-Sep-2023 11:57:15 UTC] PHP Notice:  Undefined index: akses in /home/halimgol/public_html/santrimart.co.id/w/detail_produk.php on line 4
+[18-Sep-2023 19:41:32 UTC] PHP Notice:  Undefined index: akses in /home/halimgol/public_html/santrimart.co.id/w/detail_produk.php on line 4
+[18-Sep-2023 21:41:52 UTC] PHP Notice:  Undefined index: akses in /home/halimgol/public_html/santrimart.co.id/w/detail_flashsale.php on line 4
+[18-Sep-2023 21:41:52 UTC] PHP Notice:  Undefined index: kd_kategori in /home/halimgol/public_html/santrimart.co.id/w/detail_flashsale.php on line 683
+[19-Sep-2023 05:38:05 UTC] PHP Notice:  Undefined index: akses in /home/halimgol/public_html/santrimart.co.id/w/detail_produk.php on line 4
+[19-Sep-2023 10:26:22 UTC] PHP Notice:  Undefined index: akses in /home/halimgol/public_html/santrimart.co.id/w/detail_produk.php on line 4
+[19-Sep-2023 16:00:49 UTC] PHP Notice:  Undefined index: akses in /home/halimgol/public_html/santrimart.co.id/w/detail_produk.php on line 4
+[19-Sep-2023 19:08:34 UTC] PHP Notice:  Undefined index: akses in /home/halimgol/public_html/santrimart.co.id/w/detail_produk.php on line 4
+[19-Sep-2023 21:19:49 UTC] PHP Notice:  Undefined index: akses in /home/halimgol/public_html/santrimart.co.id/w/detail_produk.php on line 4
+[19-Sep-2023 22:58:50 UTC] PHP Notice:  Undefined index: akses in /home/halimgol/public_html/santrimart.co.id/w/detail_produk.php on line 4
+[20-Sep-2023 16:11:14 UTC] PHP Notice:  Undefined index: akses in /home/halimgol/public_html/santrimart.co.id/w/detail_produk.php on line 4
