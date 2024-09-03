@@ -7,10 +7,10 @@ $a = mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM tabel_member WHERE
   <div class="card mt-2">
     <div class="card-header mx-auto">
       <div id="image-preview" class="avatar avatar-xl">
-        <?php if (empty($a['foto'])): ?>
+        <?php if (empty($_SESSION['foto'])): ?>
           <img id="preview" class="img-fluid" src="./images/user/user.png" alt="Preview">
         <?php else: ?>
-          <img id="preview" class="img-fluid" src="./images/user/<?php echo $a['foto']; ?>" alt="Preview">
+          <img id="preview" class="img-fluid" src="./images/user/<?php echo $_SESSION['foto']; ?>" alt="Preview">
         <?php endif; ?>
       </div>
     </div>

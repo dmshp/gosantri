@@ -24,7 +24,7 @@ $nm_kurir     = $_SESSION['nm_user'];
 
 if ($id_order != '') {
 
-    $query = "UPDATE tabel_delivery_order SET pickup_id_kurir = null, tgl_pickup = null, pickup_nm_kurir = null WHERE id = '$id_order';";
+    $query = "UPDATE tabel_delivery_order SET pickup_id_kurir = null, tgl_pickup = null, pickup_nm_kurir = null, sts_batal = 1,  WHERE id = '$id_order';";
     $n = mysqli_query($koneksi, $query);
 
     // var_dump($n); die();
@@ -38,7 +38,7 @@ if ($id_order != '') {
                         tittle: "BERHASIL.",
                         text: "Delivery order berhasil dibatalkan",
                     }).then(function() {
-                        window.location = "../page/index.php?menu=delivery";
+                        window.location = "../?menu=order";
                     });
                 }, 1);
             </script>';

@@ -32,7 +32,7 @@
                         </ul>                        
                     </div>
                     <ul class="nav navbar-nav float-right"> 						 
-						<li class="nav-item"><a href="?menu=pay" class="btn btn-outline-info round mr-1 mb-1 mt-2" style="border: solid 1px; border-color: #1C993E; border-radius: 100px; padding: 5px 40px 5px 5px"><i class="fa-solid fa-wallet text-danger"></i> Rp.50.000</a></li>
+						<li class="nav-item"><a href="?menu=pay" class="btn btn-outline-info round mr-1 mb-1 mt-2" style="border: solid 1px; border-color: #1C993E; border-radius: 100px; padding: 5px 40px 5px 5px"><i class="fa-solid fa-wallet text-danger"></i> </a></li>
                     </ul>
                 </div>
             </div>

@@ -69,7 +69,7 @@ function convertDate($tgl)
                     </span>
                     <div class="header-profile-sidebar">
                         <div class="avatar">
-                            <img src="images/user/user.png" alt="user_avatar" height="70" width="70">
+                            <img src="images/user/<?= $foto ?>" alt="user_avatar" height="70" width="70">
                             <span class="avatar-status-online avatar-status-lg"></span>
                         </div>
                         <h4 class="chat-user-name">John Doe</h4>
@@ -150,7 +150,7 @@ function convertDate($tgl)
                     <div class="d-flex align-items-center">
                         <div class="sidebar-profile-toggle position-relative d-inline-flex">
                             <div class="avatar">
-                                <img src="images/user/user.png" alt="user_avatar" height="40" width="40">
+                                <img src="images/user/<?= $foto ?>" alt="user_avatar" height="40" width="40">
                                 <span class="avatar-status-online"></span>
                             </div>
                             <div class="bullet-success bullet-sm position-absolute"></div>
@@ -185,7 +185,7 @@ function convertDate($tgl)
                             while ($a = $result->fetch_assoc()) {
                                 $id = $a['id_user'];
                                 $msg = $a['msg'] ? $a['msg'] : '<span data-testid="status-image" data-icon="status-image" class=""><svg viewBox="0 0 16 20" width="16" height="20" class=""><path fill="currentColor" d="M13.822 4.668H7.14l-1.068-1.09a1.068 1.068 0 0 0-.663-.278H3.531c-.214 0-.51.128-.656.285L1.276 5.296c-.146.157-.266.46-.266.675v1.06l-.001.003v6.983c0 .646.524 1.17 1.17 1.17h11.643a1.17 1.17 0 0 0 1.17-1.17v-8.18a1.17 1.17 0 0 0-1.17-1.169zm-5.982 8.63a3.395 3.395 0 1 1 0-6.79 3.395 3.395 0 0 1 0 6.79zm0-5.787a2.392 2.392 0 1 0 0 4.784 2.392 2.392 0 0 0 0-4.784z"></path></svg></span> Photo';
-                                ?>
+                        ?>
                                 <a href="?menu=mchat&id=<?= $id ?>">
                                     <li class="<?= $a['id_user'] == $kodeChat ? 'active' : '' ?>">
                                         <div class="pr-1">
@@ -209,7 +209,7 @@ function convertDate($tgl)
                                         </div>
                                     </li>
                                 </a>
-                                <?php
+                        <?php
                             }
                         } else {
                             // Tidak ada hasil yang ditemukan
@@ -397,14 +397,14 @@ function convertDate($tgl)
                             $result = $stmt->get_result();
                             if ($result->num_rows > 0) {
                                 $row = $result->fetch_assoc();
-                                ?>
+                            ?>
                                 <header class="chat_header d-flex justify-content-between align-items-center p-1">
                                     <div class="vs-con-items d-flex align-items-center">
                                         <div class="sidebar-toggle d-block d-lg-none mr-1">
                                             <i class="feather icon-menu font-large-1"></i>
                                         </div>
                                         <div class="avatar user-profile-toggle m-0 m-0 mr-1">
-                                            <img src="images/user/user.png" alt="" height="40" width="40" />
+                                            <img src="images/user/<?= $foto ?>" alt="" height="40" width="40" />
                                         </div>
                                         <div>
                                             <h6 class="mb-0"><?= $row['nm_user'] ?></h6>

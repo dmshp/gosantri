@@ -179,7 +179,7 @@ if (isset($_POST['submit'])) {
                 $hasil = isset($sql_order['jml']) ? $sql_order['jml'] : '';
 
                 // var_dump($hasil); die();
-                
+
                 $sql_mobile = mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM tabel_tarif_delivery WHERE jenis_order = 'Ojek Online' AND jenis_kendaraan = 'Mobil'"));
                 $rupiah_mobil = $sql_mobile['tarif'];
 
@@ -248,13 +248,13 @@ if (isset($_POST['submit'])) {
                         <!-- <option value="SALDO">Saldo</option> -->
                         <option value="CASH">Tunai</option>
                       <?php } else if ($jml_saldo <= '20000') { ?>
-                          <option value="">-pilih pembayaran-</option>
-                          <!-- <option value="SALDO">Saldo</option> -->
-                          <option value="CASH">Tunai</option>
+                        <option value="">-pilih pembayaran-</option>
+                        <!-- <option value="SALDO">Saldo</option> -->
+                        <option value="CASH">Tunai</option>
                       <?php } else { ?>
-                          <option value="">-pilih pembayaran-</option>
-                          <option value="SALDO">Saldo</option>
-                          <option value="CASH">Tunai</option>
+                        <option value="">-pilih pembayaran-</option>
+                        <option value="SALDO">Saldo</option>
+                        <option value="CASH">Tunai</option>
                       <?php } ?>
                     </select>
                   </div>
@@ -328,7 +328,7 @@ if (isset($_POST['submit'])) {
                 $executeSat = mysqli_query($koneksi, $ketQuery);
                 while ($m = mysqli_fetch_array($executeSat)) {
                   $no++;
-                  ?>
+                ?>
 
                   <div class="btn box-affiliate-member" href="">
                     <input type="hidden" class="form-control" readonly name="id_order" id="id_order"
@@ -374,10 +374,10 @@ if (isset($_POST['submit'])) {
                             <i class="fas fa-save"></i>
                           </a>
                         <?php } else if ($m['sts_batal'] == null && $m['selesai'] == null) { ?>
-                            <a type="button" class="badge2 badge2-success text-white" title="Selesai Perjalanan"
-                              href="../aksi/proses_selesai_order_member.php?id_order=<?php echo $m['id']; ?>">
-                              <i class="fas fa-save"></i>
-                            </a>
+                          <a type="button" class="badge2 badge2-success text-white" title="Selesai Perjalanan"
+                            href="../aksi/proses_selesai_order_member.php?id_order=<?php echo $m['id']; ?>">
+                            <i class="fas fa-save"></i>
+                          </a>
                         <?php } ?>
                         <?php if ($m['sts_batal'] != '1' && $m['selesai'] != 'Y') { ?>
                           <a type="button" class="badge2 badge-danger text-white" id="btn_batal_order"
@@ -433,7 +433,7 @@ if (isset($_POST['submit'])) {
 </div>
 
 <script>
-  $(document).ready(function () {
+  $(document).ready(function() {
     $('#travel_mode').select2();
     $('#jns_pembayaran').select2();
     navigator.geolocation.getCurrentPosition((position) => {
@@ -442,7 +442,7 @@ if (isset($_POST['submit'])) {
       initMap(position.coords.latitude, position.coords.longitude);
     });
 
-    $('#btn_batal_order').click(function () {
+    $('#btn_batal_order').click(function() {
       $('#id_batal_order').val($('#id_order').val());
       $('#modal_batal_order').modal('show');
     })
@@ -455,14 +455,17 @@ if (isset($_POST['submit'])) {
         lat: Math.floor(latitude),
         lng: Math.floor(longitude)
       };
-      map = new google.maps.Map(document.getElementById('map'), { zoom: 13, center: myLatLng, });
+      map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 13,
+        center: myLatLng,
+      });
     }
   });
 
-  $(function () {
+  $(function() {
 
     // add input listeners
-    google.maps.event.addDomListener(window, 'load', function (listener) {
+    google.maps.event.addDomListener(window, 'load', function(listener) {
       setDestination();
       // initMap();
       var latitude = $("#latitude").val();
@@ -470,7 +473,7 @@ if (isset($_POST['submit'])) {
       initMap(latitude, longitude);
     });
 
-    $('#select_location').click(function () {
+    $('#select_location').click(function() {
       // Tampilkan peta
       $('#map').show();
       $('html, body').animate({
@@ -493,17 +496,19 @@ if (isset($_POST['submit'])) {
         draggable: true
       });
 
-      google.maps.event.addListener(marker, 'dragend', function (event) {
+      google.maps.event.addListener(marker, 'dragend', function(event) {
         var geocoder = new google.maps.Geocoder();
         var latlng = {
           lat: parseFloat(event.latLng.lat()),
           lng: parseFloat(event.latLng.lng())
         };
         // Panggil geocoder untuk mendapatkan alamat
-        geocoder.geocode({ 'location': latlng }, function (results, status) {
+        geocoder.geocode({
+          'location': latlng
+        }, function(results, status) {
           if (status === google.maps.GeocoderStatus.OK) {
             if (results[0]) {
-           
+
               $('#to_places').val(results[0].formatted_address);
 
               // Dapatkan informasi tempat menggunakan Places API
@@ -532,7 +537,7 @@ if (isset($_POST['submit'])) {
       var from_places = new google.maps.places.Autocomplete(document.getElementById('from_places'));
       var to_places = new google.maps.places.Autocomplete(document.getElementById('to_places'));
 
-      google.maps.event.addListener(from_places, 'place_changed', function () {
+      google.maps.event.addListener(from_places, 'place_changed', function() {
         var from_place = from_places.getPlace();
         var from_address = from_place.formatted_address;
         $('#origin').val(from_address);
@@ -541,7 +546,7 @@ if (isset($_POST['submit'])) {
         $('#ori_name').val(from_place.name);
       });
 
-      google.maps.event.addListener(to_places, 'place_changed', function () {
+      google.maps.event.addListener(to_places, 'place_changed', function() {
         var to_place = to_places.getPlace();
         var to_address = to_place.formatted_address;
         $('#destination').val(to_address);
@@ -560,7 +565,7 @@ if (isset($_POST['submit'])) {
         destination: destination,
         travelMode: travel_mode,
         avoidTolls: true
-      }, function (response, status) {
+      }, function(response, status) {
         if (status === 'OK') {
           directionsDisplay.setMap(map);
           directionsDisplay.setDirections(response);
@@ -576,16 +581,15 @@ if (isset($_POST['submit'])) {
     function calculateDistance(travel_mode, origin, destination) {
 
       var DistanceMatrixService = new google.maps.DistanceMatrixService();
-      DistanceMatrixService.getDistanceMatrix(
-        {
-          origins: [origin],
-          destinations: [destination],
-          travelMode: google.maps.TravelMode[travel_mode],
-          unitSystem: google.maps.UnitSystem.IMPERIAL, // miles and feet.
-          // unitSystem: google.maps.UnitSystem.metric, // kilometers and meters.
-          avoidHighways: false,
-          avoidTolls: false
-        }, save_results);
+      DistanceMatrixService.getDistanceMatrix({
+        origins: [origin],
+        destinations: [destination],
+        travelMode: google.maps.TravelMode[travel_mode],
+        unitSystem: google.maps.UnitSystem.IMPERIAL, // miles and feet.
+        // unitSystem: google.maps.UnitSystem.metric, // kilometers and meters.
+        avoidHighways: false,
+        avoidTolls: false
+      }, save_results);
     }
 
     // save distance results
@@ -636,13 +640,15 @@ if (isset($_POST['submit'])) {
 
 
     // on submit  display route ,append results and send calculateDistance to ajax request
-    $('#btn_cari').click(function (e) {
+    $('#btn_cari').click(function(e) {
       // $('#distance_form').submit(function (e) {
       e.preventDefault();
       var origin = $('#origin').val();
       var destination = $('#destination').val();
       var travel_mode = $('#travel_mode').val();
-      var directionsDisplay = new google.maps.DirectionsRenderer({ 'draggable': false });
+      var directionsDisplay = new google.maps.DirectionsRenderer({
+        'draggable': false
+      });
       var directionsService = new google.maps.DirectionsService();
       displayRoute(travel_mode, origin, destination, directionsService, directionsDisplay);
       calculateDistance(travel_mode, origin, destination);
@@ -662,8 +668,13 @@ if (isset($_POST['submit'])) {
   // get formatted address based on current position and set it to input
   function setCurrentPosition(pos) {
     var geocoder = new google.maps.Geocoder();
-    var latlng = { lat: parseFloat(pos.coords.latitude), lng: parseFloat(pos.coords.longitude) };
-    geocoder.geocode({ 'location': latlng }, function (responses) {
+    var latlng = {
+      lat: parseFloat(pos.coords.latitude),
+      lng: parseFloat(pos.coords.longitude)
+    };
+    geocoder.geocode({
+      'location': latlng
+    }, function(responses) {
       console.log(responses);
       if (responses && responses.length > 0) {
         $("#origin").val(responses[1].formatted_address);
@@ -671,15 +682,13 @@ if (isset($_POST['submit'])) {
         $("#ori_longitude").val(parseFloat(pos.coords.longitude));
         $("#ori_name").val(responses[1].address_components[2]['short_name']);
         $("#from_places").val(responses[1].formatted_address);
-        // $("#to_places").val(responses[1].formatted_address);
-        //    console.log(responses[1].formatted_address);
+        $("#to_places").val(responses[1].formatted_address);
+           console.log(responses[1].formatted_address);
       } else {
         alert("Cannot determine address at this location.")
       }
     });
   }
-
-
 </script>
 
 <script defer src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyDRLyfpZFV4Un7iP3AaT45e2cIanre21Hs"

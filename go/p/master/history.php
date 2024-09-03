@@ -62,7 +62,7 @@
                               $ketQuery = "SELECT * FROM tabel_pembelian as p, tabel_pembelian_status as ps, tabel_member as a WHERE p.status = ps.kd_pembelian_status and p.id_user = a.id_user and a.id_user = '$id_user' order by p.tgl_pembelian desc";
                               $executeSat = mysqli_query($koneksi, $ketQuery);
                               while ($b = mysqli_fetch_array($executeSat)) {
-                                 $no_faktur = isset($b['no_faktur_pembelian']) ? $b['no_faktur_pembelian'] : '';
+                                 $no_faktur = isset($b['4']) ? $b['no_faktur_pembelian'] : '';
 
 
                                  ?>

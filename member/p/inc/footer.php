@@ -17,15 +17,15 @@
      <div class="btn-group">
 		<a class="btn btn-icon font-small-2 mr-1" href="?menu=mchat">
 			<span class="badge badge-pill badge-primary badge-up badge-md mt-2 mr-1">5</span>
-			<img src="images/ico/chat.png" width="30" class="pb-1"><br>Chat</a>
-		<a class="btn btn-icon font-small-2 mr-1" href="?menu=history">
-			<img src="images/ico/history.png" width="30" class="pb-1"><br>Riwayat</a>
-		<a class="btn btn-icon font-small-3 ml-1 mr-1" href="?menu=home">
-			<img src="images/ico/home.png" width="40" class="pb-1"><br>Beranda</a> 
-		<a class="btn btn-icon font-small-2 ml-1" href="?menu=promo">
-			<img src="images/ico/tag.png" width="30" class="pb-1"><br>Promo</a>
-		<a class="btn btn-icon font-small-2 ml-1" href="?menu=account">
-			<img src="images/ico/akun.png" width="30" class="pb-1"><br>Akun</a> 
+			<img src="images/ico/chat.png" width="23" class="pb-1"><br>Chat</a>
+		<a class="btn btn-icon font-small-2 mr-0" href="?menu=history">
+			<img src="images/ico/history.png" width="23" class="pb-1"><br>Riwayat</a>
+		<a class="btn btn-icon font-small-3 ml-0 mr-0" href="?menu=home">
+			<img src="images/ico/home.png" width="30" class="pb-1"><br>Beranda</a> 
+		<a class="btn btn-icon font-small-2 ml-0" href="?menu=promo">
+			<img src="images/ico/tag.png" width="23" class="pb-1"><br>Promo</a>
+		<a class="btn btn-icon font-small-2 ml-0" href="?menu=account">
+			<img src="images/ico/akun.png" width="23" class="pb-1"><br>Akun</a> 
 	 </div> 	
 </footer>
  <!-- BEGIN: Footer-->

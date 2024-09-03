@@ -102,7 +102,7 @@ if (!isset($_SESSION['nm_user']) && !isset($_SESSION['pass'])) {
     <input type='hidden' id='longitude_toko' value='<?= $a['longitude'] ?>'>
     <input type="hidden" name="id_user" id="id_user" value="<?= $_SESSION['id_user'] ?>">
 
-    <?php include 'inc/header.php'; ?>
+    <?php include 'inc/navigation.php'; ?>
     <!-- BEGIN: Content-->
 
     <div class="app-content content pb-5 mb-5 mt-0 pt-3">

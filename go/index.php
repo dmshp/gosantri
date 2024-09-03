@@ -14,11 +14,11 @@
     <link rel="apple-touch-icon" href="p/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="p/images/ico/favicon.png">
     
-	<link href="p/app-assets/font/css/fontawesome.min.css" rel="stylesheet" type="text/css">
-	<link href="p/app-assets/font/css/all.min.css" rel="stylesheet" type="text/css">
-	<link href="p/app-assets/font/css/brands.min.css" rel="stylesheet" type="text/css">
-	<link href="p/app-assets/font/css/regular.min.css" rel="stylesheet" type="text/css">
-	<link href="p/app-assets/font/css/solid.min.css" rel="stylesheet" type="text/css">
+    <link href="p/app-assets/font/css/fontawesome.min.css" rel="stylesheet" type="text/css">
+    <link href="p/app-assets/font/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="p/app-assets/font/css/brands.min.css" rel="stylesheet" type="text/css">
+    <link href="p/app-assets/font/css/regular.min.css" rel="stylesheet" type="text/css">
+    <link href="p/app-assets/font/css/solid.min.css" rel="stylesheet" type="text/css">
 
     <!-- BEGIN: Vendor CSS-->
     <link rel="stylesheet" type="text/css" href="p/app-assets/vendors/css/vendors.min.css">

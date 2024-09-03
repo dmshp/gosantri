@@ -7,7 +7,7 @@
 </head>
 
 <?php
-error_reporting(0);
+// error_reporting(0);
 session_start();
 
 // var_dump($_POST);
@@ -59,8 +59,8 @@ if ($_POST['travel_mode'] == 'DRIVING') {
 
 if ($nm_lok_awal != '' && $det_lok_awal != '' && $lat_lok_awal != '' && $lng_lok_awal != '' && $nm_lok_akhir != '' && $det_lok_akhir != '' && $lat_lok_akhir != '' && $lng_lok_akhir != '' && $hitung_jarak != '' && $hitung_durasi != '' && $rupiah != '' && $pembayaran != '' && $keterangan != '' && $kendaraan != '') {
 
-    $query = "INSERT INTO tabel_delivery_order (id,nm_lokasi_awal,det_lokasi_awal,lat_lokasi_awal,lng_lokasi_awal,nm_lokasi_akhir,det_lokasi_akhir,lat_lokasi_akhir,lng_lokasi_akhir,jarak_lokasi,durasi_perjalanan,rupiah,jenis_pembayaran,kendaraan,keterangan,tgl_order,id_user,nm_member,pickup_id_kurir,tgl_pickup,pickup_nm_kurir,selesai,konfirm_selesai,sts_batal,tgl_batal,ket_batal,id_user_batal,user_batal) 
-        VALUES ( '','$nm_lok_awal','$det_lok_awal','$lat_lok_awal','$lng_lok_awal','$nm_lok_akhir','$det_lok_akhir','$lat_lok_akhir','$lng_lok_akhir','$hitung_jarak','$hitung_durasi','$rupiah','$pembayaran','$kendaraan','$keterangan',NOW(),'$id_user','$nm_user',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)";
+    $query = "INSERT INTO tabel_delivery_order (nm_lokasi_awal,det_lokasi_awal,lat_lokasi_awal,lng_lokasi_awal,nm_lokasi_akhir,det_lokasi_akhir,lat_lokasi_akhir,lng_lokasi_akhir,jarak_lokasi,durasi_perjalanan,rupiah,jenis_pembayaran,kendaraan,keterangan,tgl_order,id_user,nm_member,pickup_id_kurir,tgl_pickup,pickup_nm_kurir,selesai,konfirm_selesai,sts_batal,tgl_batal,ket_batal,id_user_batal,user_batal) 
+        VALUES ( '$nm_lok_awal','$det_lok_awal','$lat_lok_awal','$lng_lok_awal','$nm_lok_akhir','$det_lok_akhir','$lat_lok_akhir','$lng_lok_akhir','$hitung_jarak','$hitung_durasi','$rupiah','$pembayaran','$kendaraan','$keterangan',NOW(),'$id_user','$nm_user',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)";
 
     $n = mysqli_query($koneksi, $query);
 

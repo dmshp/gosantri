@@ -150,7 +150,6 @@ if (isset($_POST['submit'])) {
   <div class="divider">
     <?php
     $id_user = $_SESSION['id_user'];
-    // var_dump($id_user); die(); 
     
     $sql_kurir = mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM tabel_member WHERE id_user = '$id_user'"));
     $kode_user = isset($sql_kurir['kode_user']) ? $sql_kurir['kode_user'] : '';
@@ -193,18 +192,18 @@ if (isset($_POST['submit'])) {
               <?php if ($m['konfirm_selesai'] != 'Y') { ?>
                 <a class="btn btn-sm gradient-light-success" title="Selesai Transaksi"
                   href="aksi/proses_selesai_order_kurir.php?id_order=<?php echo $m['id']; ?>&&jenis_pembayaran=<?php echo $m['jenis_pembayaran']; ?>&&id_member=<?php echo $m['id_member']; ?>&&rupiah=<?php echo $m['rupiah']; ?>">
-                  <i class="fa-regular fa-save"></i> Selesai
+                  <i class="fa-regular fa-save"></i> Selesaikan Orderan
                 </a>
               <?php } else { ?>
-                <a class="btn btn-sm gradient-light-success" readonly title="Transaksi Selesai" href="">
-                  <i class="fa-regular fa-save"></i> Selesai
+                <a class="btn btn-sm gradient-light-success" readonly title="Transaksi Selesai">
+                  <i class="fas fa-check"></i> Sudah Selesai
                 </a>
               <?php } ?>
 
               <?php if ($m['konfirm_selesai'] != 'Y') { ?>
                 <a class="btn btn-sm gradient-light-danger" title="Batal Order"
-                  href="batal_terima_order.php?id_order=<?php echo $m['id']; ?>">
-                  <i class="fa fa-close"></i>
+                  href="aksi/batal_terima_order.php?id_order=<?php echo $m['id']; ?>">
+                  <i class="fa fa-close"></i> Batal Ambil Orderan
                 </a>
               <?php } ?>
 
